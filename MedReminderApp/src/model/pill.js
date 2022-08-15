@@ -1,10 +1,12 @@
 // TODO: extend Component and implement render() method for pill icon 
-class Pill {
-    pillName;
-    pillSize;
-    pillColour;
-    pillInformation;
-    pillRepeats = [0, 0, 0, 0, 0, 0, 0];
-    pillFrequency;
-    pillTimes = [];
+export default class Pill {
+    constructor() {
+        this.pillName = "";
+        this.pillSize = "";
+        this.pillColour = ["", ""];
+        this.pillInformation = "";
+        this.pillRepeats = [0, 0, 0, 0, 0, 0, 0];
+        this.pillFrequency = 0;
+        this.pillTimes = [];
+    }
 }

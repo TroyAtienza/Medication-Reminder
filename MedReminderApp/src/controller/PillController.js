@@ -1,4 +1,5 @@
 import { data } from './src/model/list';
+import Pill from "./pill";
 
 //Builder Model
 const currentPill = new Pill();

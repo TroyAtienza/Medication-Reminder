@@ -6,8 +6,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>
-        value: {data[0].items}
-        </Text>
+        value: {data[0].items[0].pillName}
+      </Text>
       <StatusBar style="auto" />
     </View>
   );

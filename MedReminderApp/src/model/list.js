@@ -1,7 +1,12 @@
+import Pill from "./pill";
+
+const temp = new Pill();
+temp.pillName = "hi";
+
 export const data = [
     {
         day: "Monday",
-        items: []
+        items: [temp]
     },
     {
         day: "Tuesday",
