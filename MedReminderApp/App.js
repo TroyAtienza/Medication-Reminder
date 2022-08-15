@@ -1,14 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { data } from './src/model/list';
+import { PillList } from './src/model/list';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>
-        value: {data[0].items[0].pillName}
-      </Text>
+      
+      <PillList day={"Monday"}/>
       <StatusBar style="auto" />
+      
     </View>
   );
 }
