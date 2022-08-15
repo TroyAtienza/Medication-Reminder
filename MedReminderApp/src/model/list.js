@@ -1,31 +1,31 @@
 export const data = [
     {
         day: "Monday",
-        items: [0, 1, 2]
+        items: []
     },
     {
         day: "Tuesday",
-        items: [3, 4, 5]
+        items: []
     },
     {
         day: "Wednesday",
-        items: [0, 1, 2]
+        items: []
     },
     {
         day: "Thursday",
-        items: [0, 1, 2]
+        items: []
     },
     {
         day: "Friday",
-        items: [0, 1, 2]
+        items: []
     },
     {
         day: "Saturday",
-        items: [0, 1, 2]
+        items: []
     },
     {
         day: "Sunday",
-        items: [0, 1, 2]
+        items: []
     }
 ];
 
