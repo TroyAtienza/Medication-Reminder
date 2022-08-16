@@ -7,7 +7,7 @@ temp.pillName = "hi";
 export const data = [
     {
         day: "Monday",
-        items: [temp]
+        items: [temp, new Pill(), new Pill(), new Pill()]
     },
     {
         day: "Tuesday",
@@ -44,13 +44,13 @@ const PillList = (props) => {
     const index = data.findIndex(e => e.day === props.day);   // Finds the index of the provided day.
     return (
     <ScrollView>
-        {data[index].items.map((pill) => {
+        {data[index].items.map((pill, index) => {
         return (
-            <TouchableOpacity 
+            <TouchableOpacity
+                key={index}
                 onPress = {() => toggle(pill)}
                 //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
                 style = {[(pill.isTaken) ? styles.taken : styles.notTaken, styles.listItem]}
-                key={pill}
             >
             <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
             </TouchableOpacity>
