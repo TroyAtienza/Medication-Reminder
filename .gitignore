@@ -1,0 +1,78 @@
+# Mac OS system files
+.DS_Store
+._*
+.AppleDouble
+
+# Windows system files
+Thumbs.db
+
+## PDF - for now.
+*.pdf
+
+# PyCharm
+.idea/
+
+# React Native
+MedReminderApp/node_modules/
+.expo/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+
+## Emacs
+*~
+\#*\#
+.\#*
+
+
+
+## LaTeX
+# Core latex/pdflatex auxiliary files:
+*.aux
+*.lo[gft]
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.dvi
+*.fdb_latexmk
+_minted*
+*.pyg
+*.synctex.gz
+*.blg
+*.bbl
+*.bak
+*.sav
+.texpadtmp
+*.backup
+*~[0-9]*
+*/auto/*
+
+# NOTE: Students should not commit third-party dependencies into their repo.
+
+## Packages
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.ear
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.tar.gz
+*.war
+*.zip
+
+## Log file
+# *.log
