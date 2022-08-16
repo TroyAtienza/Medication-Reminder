@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { startTransition } from 'react';
-import { PillList } from './src/model/list';
+import { PillList } from './src/model/PillList';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
