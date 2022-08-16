@@ -2,12 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { startTransition } from 'react';
 import { PillList } from './src/model/PillList';
 import { StyleSheet, Text, View } from 'react-native';
+import BackButton from './src/components/BackButton';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.topScreen}>
-        <Text>Top Screen!</Text>
+        <BackButton/>
       </View>
       <View style={styles.bottomScreen}>
         <Text>Bottom screen!</Text>

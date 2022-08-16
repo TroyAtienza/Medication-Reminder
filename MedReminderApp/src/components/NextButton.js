@@ -1,15 +1,15 @@
-import { View, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 
 
 const buttonStyle = require('./ButtonStyle')
-const BackButton = (props) => {
+const NextButton = (props) => {
     return (
         <View>
             <TouchableOpacity style={buttonStyle.buttons} onPress={props.onPress}>
-                <Text style={styles.text}>Next</Text>
+                <Text style={buttonStyle.text}>Next</Text>
             </TouchableOpacity>
         </View>
     )
 }
 
-export default BackButton;
+export default NextButton;
