@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Text, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
-import Pill from "./pill";
+import Pill from "./Pill";
 
 const temp = new Pill();
 temp.pillName = "hi";
@@ -45,12 +46,13 @@ const PillList = (props) => {
     return (
     <ScrollView>
         {data[index].items.map((pill, index) => {
+            const [taken, setTaken] = useState(false);
         return (
             <TouchableOpacity
                 key={index}
-                onPress = {() => toggle(pill)}
+                onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
                 //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
-                style = {[(pill.isTaken) ? styles.taken : styles.notTaken, styles.listItem]}
+                style = {[(taken) ? styles.taken : styles.notTaken, styles.listItem]}
             >
             <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
             </TouchableOpacity>
@@ -58,10 +60,6 @@ const PillList = (props) => {
         })}
     </ScrollView>
     )
-}
-
-function toggle(pill) {
-    (pill.isTaken) ? pill.isTaken = false : pill.isTaken = true;
 }
 
 const styles = StyleSheet.create({
