@@ -2,6 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import { startTransition } from 'react';
 import { PillList } from './src/model/PillList';
 import { StyleSheet, Text, View } from 'react-native';
+
+
+
 import BackButton from './src/components/BackButton';
 import AddButton from './src/components/AddButton';
 
