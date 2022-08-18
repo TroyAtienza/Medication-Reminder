@@ -14,11 +14,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={PillListScreen}/>
-        <Stack.Screen name="PillType" component={AddPillTypeScreen}/>
-        <Stack.Screen name="PillColour" component={AddPillColourScreen}/>
-        <Stack.Screen name="PillDetails" component={AddPillDetailsScreen}/>
-        <Stack.Screen name="PillTimes" component={AddPillTimesScreen}/>
+        <Stack.Screen name="Home" component={PillListScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="PillType" component={AddPillTypeScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="PillColour" component={AddPillColourScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="PillDetails" component={AddPillDetailsScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="PillTimes" component={AddPillTimesScreen} options ={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
