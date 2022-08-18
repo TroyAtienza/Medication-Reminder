@@ -17,7 +17,6 @@ export default function App() {
         <Stack.Screen name="Home" component={PillListScreen}/>
         <Stack.Screen name="PillType" component={AddPillTypeScreen}/>
         <Stack.Screen name="PillColour" component={AddPillColourScreen}/>
-        <Stack.Screen name="PillColour" component={AddPillColourScreen}/>
         <Stack.Screen name="PillDetails" component={AddPillDetailsScreen}/>
         <Stack.Screen name="PillTimes" component={AddPillTimesScreen}/>
       </Stack.Navigator>

@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { PillList } from '../model/List';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+const PillListScreen = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.topScreen}>
@@ -49,3 +49,5 @@ const styles = StyleSheet.create({
     paddingRight: paddingLeftRight,
   },  
 });
+
+export default PillListScreen;
