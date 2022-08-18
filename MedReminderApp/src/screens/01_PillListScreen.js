@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { PillList } from '../model/List.js';
+import { PillList } from '../model/List';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
