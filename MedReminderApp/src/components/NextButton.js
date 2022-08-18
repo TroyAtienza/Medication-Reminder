@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 
-
 const buttonStyle = require('./ButtonStyle')
 const NextButton = (props) => {
     return (

@@ -9,7 +9,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.topScreen}>
-        <AddButton/>
+        <AddButton onPress={() => navigation.navigate("AddPillTypeScreen")}/>
       </View>
       <View style={styles.bottomScreen}>
         <Text>Bottom screen!</Text>
