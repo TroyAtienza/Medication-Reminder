@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { PillList } from '../model/PillList';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Button, Text, Alert, View } from 'react-native';
 import AddButton from '../components/AddButton';
 import { useNavigation } from "@react-navigation/native";
 
@@ -25,7 +25,7 @@ const PillListScreen = (props) => {
           </View>
         </View>
 
-        <AddButton onPress={() => navigation.navigate("AddPillTypeScreen")}/>
+        <AddButton onPress={() => navigation.navigate("PillType")}/>
       </View>
       <View style={styles.bottomScreen}>
         <Text>Bottom screen!</Text>

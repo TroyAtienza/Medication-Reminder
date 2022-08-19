@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Text, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
-import Pill from "./Pill";
+import Pill from "./pill";
 
 const temp = new Pill();
 temp.pillName = "hi";
