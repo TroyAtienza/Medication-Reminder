@@ -8,6 +8,5 @@ export default class Pill {
         this.pillRepeats = [0, 0, 0, 0, 0, 0, 0];
         this.pillFrequency = 0;
         this.pillTimes = [];
-        this.isTaken = false;
     }
 }
