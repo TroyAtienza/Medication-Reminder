@@ -1,52 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { startTransition } from 'react';
-import { PillList } from './src/model/list';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./src/screens/00_HomeScreen";
+import PillListScreen from "./src/screens/01_PillListScreen";
+import AddPillTypeScreen from "./src/screens/02_AddPillTypeScreen";
+import AddPillColourScreen from "./src/screens/03_AddPillColourScreen";
+import AddPillDetailsScreen from "./src/screens/04_AddPillDetailsScreen";
+import AddPillTimesScreen from "./src/screens/05_AddPillTimesScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // TODO: When Home screen is completed change home component to actual home screen.
   return (
-    <View style={styles.container}>
-      <View style={styles.topScreen}>
-        <Text>Top Screen!</Text>
-      </View>
-      <View style={styles.bottomScreen}>
-        <Text>Bottom screen!</Text>
-      </View>
-      <PillList day={"Monday"}/>
-      <StatusBar style="auto" />
-    </View>  
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name="Home" component={PillListScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="PillType" component={AddPillTypeScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="PillColour" component={AddPillColourScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="PillDetails" component={AddPillDetailsScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="PillTimes" component={AddPillTimesScreen} options ={{headerShown:false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const widthProportion = '100%';
-const heightProportion = '50%';
-const paddingTopBottom = 40;
-const paddingLeftRight = 20;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: paddingTopBottom,
-  },
-  topScreen:{
-    backgroundColor: '#fff',
-    width: widthProportion,
-    height: heightProportion,  
-    paddingTop: paddingTopBottom,
-    paddingLeft: paddingLeftRight,
-    paddingBottom: paddingTopBottom,
-    paddingRight: paddingLeftRight,
-  },
-    bottomScreen:{
-    backgroundColor: '#808080',
-    width: widthProportion,
-    height: heightProportion,
-    paddingTop: paddingTopBottom,
-    paddingLeft: paddingLeftRight,
-    paddingBottom: paddingTopBottom,
-    paddingRight: paddingLeftRight,
-  },  
-});
