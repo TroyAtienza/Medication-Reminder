@@ -1,20 +1,45 @@
-import React, { useState, useRef } from "react";
-import { View, StyleSheet, FlatList, Animated } from "react-native";
+import React, {useState, useRef} from "react";
+import {View, StyleSheet, FlatList, Animated, Dimensions, Text} from "react-native";
 
 import data from "../CarouselData";
-import PillboxCarouselItem from "./PillboxCarouselItem";
+
+const WINDOW_WIDTH = Dimensions.get("window").width;
+const BOX_WIDTH = WINDOW_WIDTH * 0.6;
+const SPACING = WINDOW_WIDTH * 0.02;
+const SNAP_TO_WIDTH = BOX_WIDTH + SPACING;
 
 
+// Individual Pillbox Item
+function PillboxCarouselItem({item}) {
+    return (
+        <View style={
+            [styles.box, {
+                marginLeft: item.id === 1 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
+                marginRight: item.id === 7 ? (WINDOW_WIDTH-BOX_WIDTH) / 2-SPACING : 0,
+            }]
+        }>
+            {/*Unused code to use images if needed!*/}
+            {/*<Image source={item.image} style={{width: '100%' , height:'100%', resizeMode:'contain'}}/>*/}
+            <View style={styles.imageInfo}>
+                <Text style={styles.title}>{item.day}</Text>
+            </View>
+        </View>
+    );
+}
+
+
+// Renders the Carousel of Individual Pillbox Items
 export default function PillboxCarousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const horizontalScroll = useRef(new Animated.Value(0)).current;
+    const scrollX = useRef(new Animated.Value(0)).current;
     const pillboxRef = useRef(null);
 
-    const viewableItemsChanged = useRef( ({viewableItems}) => {
-        setCurrentIndex(viewableItems[0].index);
-    }).current;
+    // TODO currently throwing errors
+    // const viewableItemsChanged = useRef(({viewableItems}) => {
+    //     setCurrentIndex(viewableItems[0].index);
+    // }).current;
 
-    const viewConfig = useRef( {viewAreaCoveragePercentThreshold: 50}).current
+    const viewConfig = useRef({viewAreaCoveragePercentThreshold: 95}).current;
 
     return (
         <View style={styles.container}>
@@ -23,16 +48,17 @@ export default function PillboxCarousel() {
                     data={data}
                     renderItem={({item}) => <PillboxCarouselItem item={item}/> }
                     horizontal={true}
-                    showsHorizontalScrollIndicator={true}
+                    showsHorizontalScrollIndicator={false}
                     pagingEnabled={true}
+                    snapToInterval={SNAP_TO_WIDTH}
                     bounces={false}
                     keyExtractor={(item) => item.id}
                     onScroll={Animated.event([
-                        {nativeEvent: {contentOffset : {x : horizontalScroll}}}
+                        {nativeEvent: {contentOffset : {x : scrollX}}}
                     ],
-                        {useNativeDriver: false,}
+                        {useNativeDriver: false}
                     )}
-                    onViewableItemsChanged={viewableItemsChanged}
+                    // onViewableItemsChanged={viewableItemsChanged}
                     viewabilityConfig={viewConfig}
                     scrollEventThrottle={32}
                     ref={pillboxRef}
@@ -49,9 +75,26 @@ const styles = StyleSheet.create({
         flex: 0.3,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
     },
     carouselView:  {
-        flex: 3,
+        flex: 1,
+    },
+    box : {
+        backgroundColor: 'gray',
+        width: BOX_WIDTH,
+        overflow: "hidden",
+        borderColor: 'black',
+        borderRadius: 10,
+        borderWidth: 4,
+    },
+    imageInfo: {
+        flex: 0.3,
+    },
+    title: {
+        fontWeight: '800',
+        fontSize: 28,
+        marginBottom: 10,
+        textAlign: "center"
     },
 });
