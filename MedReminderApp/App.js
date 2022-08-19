@@ -1,27 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { startTransition } from 'react';
 import { PillList } from './src/model/list';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View } from 'react-native';
+import Pill from './src/model/pill';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.topScreen}>
-        <Text>Top Screen!</Text>
       </View>
       <View style={styles.bottomScreen}>
-        <Text>Bottom screen!</Text>
+        <PillList day={"Monday"}/>
       </View>
-      <PillList day={"Monday"}/>
       <StatusBar style="auto" />
-    </View>  
+    </SafeAreaView>  
   );
 }
 
 const widthProportion = '100%';
 const heightProportion = '50%';
-const paddingTopBottom = 40;
-const paddingLeftRight = 20;
+const paddingTopBottom = 10;
+const paddingLeftRight = 10;
 
 const styles = StyleSheet.create({
   container: {
@@ -32,16 +31,15 @@ const styles = StyleSheet.create({
     paddingTop: paddingTopBottom,
   },
   topScreen:{
-    backgroundColor: '#fff',
+    backgroundColor: '#808080',
     width: widthProportion,
     height: heightProportion,  
-    paddingTop: paddingTopBottom,
     paddingLeft: paddingLeftRight,
     paddingBottom: paddingTopBottom,
     paddingRight: paddingLeftRight,
   },
     bottomScreen:{
-    backgroundColor: '#808080',
+    backgroundColor: '#fff',
     width: widthProportion,
     height: heightProportion,
     paddingTop: paddingTopBottom,
@@ -50,3 +48,5 @@ const styles = StyleSheet.create({
     paddingRight: paddingLeftRight,
   },  
 });
+
+export {styles};
