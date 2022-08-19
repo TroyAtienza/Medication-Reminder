@@ -9,11 +9,9 @@ const PillListScreen = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topScreen}>
-        <Text>Top Screen!</Text>
-        
-        {/* Top Nav */}
-        <View style={{backgroundColor : "#A3CEF1", height : "10%", width: "100%"}}>
+
+      {/* Top Nav */}
+      <View style={{backgroundColor : "#A3CEF1", height : "15%", width: "100%"}}>
           <View style={styles.fixToText}>
             <Button
             title="Profile"
@@ -24,12 +22,16 @@ const PillListScreen = (props) => {
             onPress={() => Alert.alert("You are now signed out")}/>
           </View>
         </View>
-
+      
+      <View style={styles.topScreen}>
+        <Text>Top Screen!</Text>
         <AddButton onPress={() => navigation.navigate("PillType")}/>
       </View>
+
       <View style={styles.bottomScreen}>
         <Text>Bottom screen!</Text>
       </View>
+
       <PillList day={"Monday"}/>
       <StatusBar style="auto" />
     </View>  
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
   fixToText: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    top: "10%",
+    top: "15%",
   },
 });
 
