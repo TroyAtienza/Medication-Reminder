@@ -81,20 +81,23 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     box : {
-        backgroundColor: 'gray',
         width: BOX_WIDTH,
+        backgroundColor: '#8DB2CE',
         overflow: "hidden",
-        borderColor: 'black',
+        borderColor: '#1E3E5C',
         borderRadius: 10,
-        borderWidth: 4,
+        borderWidth: 3,
+        elevation: 5, //needs Android 5.0+
     },
     imageInfo: {
         flex: 0.3,
     },
     title: {
-        fontWeight: '800',
-        fontSize: 28,
+        fontWeight: '600',
+        fontSize: 24,
         marginBottom: 10,
-        textAlign: "center"
+        textAlign: "center",
+        color: '#343432',
+        paddingTop: 6,
     },
 });
