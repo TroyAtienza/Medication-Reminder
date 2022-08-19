@@ -8,4 +8,8 @@ const AddPillColourScreen = (props) => {
   );
 }
 
+const styles = StyleSheet.create({
+
+});
+
 export default AddPillColourScreen;
