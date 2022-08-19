@@ -14,7 +14,9 @@ Thumbs.db
 
 # React Native
 MedReminderApp/node_modules/
-.expo/
+*.expo/
+*.expo/
+*.expo-shared/
 npm-debug.*
 *.jks
 *.p8

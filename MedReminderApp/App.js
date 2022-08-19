@@ -1,33 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import CarouselController, {CarouselItem} from "./src/components/Pillbox";
+import {StyleSheet, SafeAreaView, View, Text, Dimensions, useWindowDimensions} from 'react-native';
+import PillboxCarousel from "./src/components/PillboxCarousel";
 
 export default function App() {
+  const {width} = useWindowDimensions();
+  const {height} = useWindowDimensions();
   return (
-    // <View style={styles.container}>
-    //   <Text>HELLO WORLD!</Text>
-    //   <StatusBar style="auto" />
-    //   <CarouselController>
-    //     <CarouselItem>1</CarouselItem>
-    //     <CarouselItem>2</CarouselItem>
-    //     <CarouselItem>3</CarouselItem>
-    //   </CarouselController>
-    // </View>
-    <div className="App">
-      <CarouselController>
-        <CarouselItem>Item 1</CarouselItem>
-        <CarouselItem>Item 2</CarouselItem>
-        <CarouselItem>Item 3</CarouselItem>
-      </CarouselController>
-    </div>
+    <SafeAreaView style={styles.container}>
+      <View style={[styles.masthead, {width}]}>
+        <Text>MASTHEAD GOES HERE!</Text>
+      </View>
+        <PillboxCarousel />
+      <View style={[styles.options, {width}, {height}]}>
+        <Text>Rest of options go here!</Text>
+      </View>
+        <StatusBar style= "auto" />
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 22,
+    flexDirection: "column",
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+  },
+  masthead: {
+    backgroundColor: 'grey',
+    flex: 0.08,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  options: {
+    backgroundColor: 'grey',
+    flex: 0.7,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 });
