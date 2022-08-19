@@ -1,8 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { PillList } from '../model/List';
+import { PillList } from '../model/PillList';
 import { StyleSheet, Text, View } from 'react-native';
+import AddButton from '../components/AddButton';
+import { useNavigation } from "@react-navigation/native";
 
 const PillListScreen = (props) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.topScreen}>

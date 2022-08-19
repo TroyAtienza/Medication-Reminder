@@ -8,4 +8,8 @@ const AddPillTypeScreen = (props) => {
   );
 }
 
+const styles = StyleSheet.create({
+
+});
+
 export default AddPillTypeScreen;
