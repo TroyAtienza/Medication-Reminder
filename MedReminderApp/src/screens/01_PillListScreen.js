@@ -29,10 +29,8 @@ const PillListScreen = (props) => {
       </View>
 
       <View style={styles.bottomScreen}>
-        <Text>Bottom screen!</Text>
+        <PillList day={"Monday"}/>
       </View>
-
-      <PillList day={"Monday"}/>
       <StatusBar style="auto" />
     </View>  
   );
