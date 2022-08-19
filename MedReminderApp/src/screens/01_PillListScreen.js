@@ -10,8 +10,6 @@ const PillListScreen = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.topScreen}>
-        <Text>Top Screen!</Text>
-        
         {/* Top Nav */}
         <View style={{backgroundColor : "#A3CEF1", height : "10%", width: "100%"}}>
           <View style={styles.fixToText}>
