@@ -4,6 +4,8 @@ import { PillList } from './src/model/PillList';
 import { StyleSheet, Text, View } from 'react-native';
 import BackButton from './src/components/BackButton';
 import AddButton from './src/components/AddButton';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function App() {
   return (
