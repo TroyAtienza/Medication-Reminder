@@ -15,13 +15,28 @@ function PillboxCarouselItem({item}) {
         <View style={
             [styles.box, {
                 marginLeft: item.id === 1 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
-                marginRight: item.id === 7 ? (WINDOW_WIDTH-BOX_WIDTH) / 2-SPACING : 0,
+                marginRight: item.id === 7 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
             }]
         }>
-            {/*Unused code to use images if needed!*/}
+            {/* TODO Unused code to use images if needed!*/}
             {/*<Image source={item.image} style={{width: '100%' , height:'100%', resizeMode:'contain'}}/>*/}
-            <View style={styles.imageInfo}>
+            <View style={styles.pillsWrapper}>
                 <Text style={styles.title}>{item.day}</Text>
+                <View style={styles.pillView}>
+                    {/*TODO need way to store unique pill Components (separate JS file) data for each pillbox */}
+                    <View style={styles.pillItem}>
+                        <View style={styles.singlePill}></View>
+                        <Text style={styles.pillCount}>2x</Text>
+                    </View>
+                    <View style={styles.singlePill}></View>
+                    <View style={styles.pillItem}>
+                        <View style={styles.singlePill}></View>
+                        <Text style={styles.pillCount}>3x</Text>
+                    </View>
+                    <View style={styles.singlePill}></View>
+                    <View style={styles.singlePill}></View>
+                    <View style={styles.singlePill}></View>
+                </View>
             </View>
         </View>
     );
@@ -72,7 +87,7 @@ export default function PillboxCarousel() {
 const styles = StyleSheet.create({
     container: {
         paddingTop: 60,
-        flex: 0.3,
+        flex: 0.35,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
@@ -84,20 +99,47 @@ const styles = StyleSheet.create({
         width: BOX_WIDTH,
         backgroundColor: '#8DB2CE',
         overflow: "hidden",
-        borderColor: '#1E3E5C',
+        borderColor: '#6295BC',
         borderRadius: 10,
         borderWidth: 3,
         elevation: 5, //needs Android 5.0+
-    },
-    imageInfo: {
-        flex: 0.3,
     },
     title: {
         fontWeight: '600',
         fontSize: 24,
         marginBottom: 10,
         textAlign: "center",
-        color: '#343432',
+        color: '#43769D',
         paddingTop: 6,
     },
+    pillsWrapper: {
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    pillView: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    pillItem: {
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "flex-start"
+    },
+    singlePill: {
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: 'grey',
+        margin: 5,
+        width: 30,
+        height: 60,
+        backgroundColor: "white"
+    },
+    pillCount: {
+        fontWeight: "600",
+        fontSize: 16,
+        textAlign: "left",
+        color: '#343432',
+    }
 });
