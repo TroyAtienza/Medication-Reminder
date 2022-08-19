@@ -7,6 +7,20 @@ const PillListScreen = (props) => {
     <View style={styles.container}>
       <View style={styles.topScreen}>
         <Text>Top Screen!</Text>
+        
+        {/* Top Nav */}
+        <View style={{backgroundColor : "#A3CEF1", height : "10%", width: "100%"}}>
+          <View style={styles.fixToText}>
+            <Button
+            title="Profile"
+            onPress={() => Alert.alert("insert profile link here")}/>
+            <Text style={{color : "#6096BA", fontSize : 30, fontWeight : "bold", textAlign : "center"}}> MedApp </Text>
+            <Button
+            title="Sign out"
+            onPress={() => Alert.alert("You are now signed out")}/>
+          </View>
+        </View>
+
         <AddButton onPress={() => navigation.navigate("AddPillTypeScreen")}/>
       </View>
       <View style={styles.bottomScreen}>
@@ -49,6 +63,11 @@ const styles = StyleSheet.create({
     paddingBottom: paddingTopBottom,
     paddingRight: paddingLeftRight,
   },  
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    top: "10%",
+  },
 });
 
 export default PillListScreen;
