@@ -4,6 +4,8 @@ import Pill from "./pill";
 
 const temp = new Pill();
 temp.pillName = "hi";
+const temp1 = new Pill();
+temp1.pillName = "hello";
 
 export const data = [
     {
@@ -41,7 +43,8 @@ export const data = [
  * @param {day} props 
  * @returns The list.
  */
-const PillList = (props) => {
+
+const PillList = (props, deleteItem) => {
     const index = data.findIndex(e => e.day === props.day);   // Finds the index of the provided day.
     return (
     <ScrollView>
@@ -69,8 +72,22 @@ const styles = StyleSheet.create({
     notTaken: {
         backgroundColor: "white",
     },
-    listItem: {
-        
+    item: {
+        margin: 10,
+    },
+    deleteButton: {
+        height: 40,
+        left: '85%',
+        top: '20%',
+        width: '30%',
+        float: "right",
+    },
+    text: {
+        fontSize: 12,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'red',
     },
 })
 
