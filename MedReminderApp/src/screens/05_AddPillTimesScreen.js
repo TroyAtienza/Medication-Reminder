@@ -8,4 +8,8 @@ const AddPillTimesScreen = (props) => {
   );
 }
 
+const styles = StyleSheet.create({
+
+});
+
 export default AddPillTimesScreen;
