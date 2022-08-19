@@ -13,19 +13,18 @@ const PillListScreen = (props) => {
       {/* Top Nav */}
       <View style={{backgroundColor : "#A3CEF1", height : "15%", width: "100%"}}>
           <View style={styles.fixToText}>
-            <Button
-            title="Profile"
+            <Button title="Profile"
             onPress={() => Alert.alert("insert profile link here")}/>
             <Text style={{color : "#6096BA", fontSize : 30, fontWeight : "bold", textAlign : "center"}}> MedApp </Text>
-            <Button
-            title="Sign out"
+            <Button title="Sign out"
             onPress={() => Alert.alert("You are now signed out")}/>
           </View>
-        </View>
+      </View>
       
       <View style={styles.topScreen}>
         <Text>Top Screen!</Text>
         <AddButton onPress={() => navigation.navigate("PillType")}/>
+        <Button title="Select Pill Color" onPress={() => navigation.navigate("PillColour")}/>
       </View>
 
       <View style={styles.bottomScreen}>
