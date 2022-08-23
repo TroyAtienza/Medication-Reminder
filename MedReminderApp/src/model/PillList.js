@@ -51,14 +51,13 @@ const PillList = (props, deleteItem) => {
         {data[index].items.map((pill, index) => {
             const [taken, setTaken] = useState(false);
         return (
-            <View style={styles.container}>
+            <View style={styles.container} key={index}>
                 <TouchableOpacity
-                    key={index}
                     onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
                     //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
                     style = {[(taken) ? styles.taken : styles.notTaken, styles.listItem]}
                 >
-                    <Text> Name </Text>
+                <Text> Name </Text>
                 </TouchableOpacity>
                 <Button style={styles.deleteButton} title="Delete" onPress={() => Alert.alert('Are you sure you want to delete?','You cannot undo...',[
                     {text: 'OK', onPress: this.onDelete},
