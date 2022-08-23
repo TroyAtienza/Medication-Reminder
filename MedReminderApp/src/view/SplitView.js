@@ -33,11 +33,9 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#fff',
     width: widthProportion,
-    height: heightProportion,  
+    height: heightProportion,
     paddingTop: paddingTopBottom,
-    paddingLeft: paddingLeftRight,
     paddingBottom: paddingTopBottom,
-    paddingRight: paddingLeftRight,
   },
     bottomScreen:{   
     backgroundColor: '#808080',

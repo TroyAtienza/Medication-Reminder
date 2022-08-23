@@ -1,7 +1,7 @@
 import React, {useState, useRef} from "react";
 import {View, StyleSheet, FlatList, Animated, Dimensions, Text} from "react-native";
 
-import {data} from "MedReminderApp/src/model/PillList.js";
+import {data} from "../model/PillList";
 
 const WINDOW_WIDTH = Dimensions.get("window").width;
 const BOX_WIDTH = WINDOW_WIDTH * 0.6;
@@ -14,8 +14,8 @@ function PillboxCarouselItem({item}) {
     return (
         <View style={
             [styles.box, {
-                marginLeft: item.id === 1 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
-                marginRight: item.id === 7 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
+                marginLeft: item.id === 0 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
+                marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
             }]
         }>
             {/* TODO Unused code to use images if needed!*/}
@@ -86,8 +86,8 @@ export default function PillboxCarousel() {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 60,
-        flex: 0.35,
+        paddingTop: 50,
+        flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',

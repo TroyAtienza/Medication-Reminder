@@ -4,6 +4,7 @@ import AddButton from '../components/AddButton';
 import { View } from 'react-native';
 import createStyles from '../view/SplitView'
 import TopNav from '../view/TopNav'
+import PillboxCarousel from "../components/PillboxCarousel";
 
 const styles = createStyles()
 
@@ -14,6 +15,7 @@ export default class PillListScreen extends Component {
         <TopNav/>
         <View style={styles.topScreen}>
           <AddButton onPress={() => navigation.navigate("PillType")}/>
+            <PillboxCarousel/>
         </View>
         <View style={styles.bottomScreen}>
           <PillList day={"Monday"}/>
