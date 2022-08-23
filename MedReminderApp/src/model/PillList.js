@@ -8,7 +8,7 @@ temp.pillName = "hi";
 const temp1 = new Pill();
 temp1.pillName = "hello";
 
-export const data = [
+const data = [
     {
         id: 0,
         day: "Monday",
@@ -115,4 +115,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export {PillList}
+export {PillList, data}
