@@ -75,5 +75,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     backgroundColor: "green",
-  }
+  },
+  option: {
+    backgroundColor: '#859a9b',
+    borderRadius: 20,
+    padding: 10,
+    marginBottom: 20,
+    shadowColor: '#303838',
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    shadowOpacity: 0.35,
+    width: 80,
+    height: 80,
+  },
+  image: {
+    width: 100,
+    height: 100,
+  },
 });

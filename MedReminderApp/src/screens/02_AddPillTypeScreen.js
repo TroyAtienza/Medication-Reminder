@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import TopNav from '../view/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import createStyles from '../view/SplitView'
@@ -20,7 +20,9 @@ const AddPillTypeScreen = (props) => {
             <Text style={styles.titleText}>Pick Pill Type</Text>
           </View>
           <View style={styles.shapeSelect}>
-
+            <TouchableOpacity style={styles.option} onPress={()=>{alert("you clicked me")}}>
+              <Image source={require("../assets/Pill_Tablet.png")} style={styles.image}/>
+            </TouchableOpacity>
           </View>
           
           <View style={styles.sizeSelect}>
