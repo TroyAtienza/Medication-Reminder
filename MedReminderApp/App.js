@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { Button, createNativeStackNavigator, Alert } from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/00_HomeScreen";
 import PillListScreen from "./src/screens/01_PillListScreen";
 import AddPillTypeScreen from "./src/screens/02_AddPillTypeScreen";
@@ -22,4 +22,4 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
