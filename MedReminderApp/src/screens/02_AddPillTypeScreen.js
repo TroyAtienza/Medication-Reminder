@@ -1,22 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native';
+import TopNav from '../view/TopNav';
+import PillboxCarousel from "../components/PillboxCarousel";
+import createStyles from '../view/SplitView'
+
+const styles = createStyles()
 
 const AddPillTypeScreen = (props) => {
   return (
     <View style={styles.container}>
         <TopNav/>
         <View style={styles.topScreen}>
-          <AddButton onPress={() => navigation.navigate("PillType")}/>
-            <PillboxCarousel/>
+          <PillboxCarousel/>
         </View>
         <View style={styles.bottomScreen}>
-          <PillList day={"Monday"}/>
+          
         </View>
       </View>
   );
 }
 
-const styles = StyleSheet.create({
-
-});
 
 export default AddPillTypeScreen;

@@ -20,6 +20,7 @@ const widthProportion = '100%';
 const heightProportion = '50%';
 const paddingTopBottom = 40;
 const paddingLeftRight = 20;
+const paddingBottom = 20;
 
 const styles = StyleSheet.create({
   container: {
@@ -33,14 +34,14 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#fff',
     width: widthProportion,
-    height: heightProportion,
+    height: "40%",
     paddingTop: paddingTopBottom,
-    paddingBottom: paddingTopBottom,
+    paddingBottom: paddingBottom,
   },
     bottomScreen:{   
     backgroundColor: '#808080',
     width: widthProportion,
-    height: heightProportion,
+    height: "60%",
     paddingTop: paddingTopBottom,
     paddingLeft: paddingLeftRight,
     paddingBottom: paddingTopBottom,
