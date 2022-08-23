@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: paddingTopBottom,
   },
-  topScreen:{
+  topScreen: {
     position: 'relative',
     backgroundColor: '#fff',
     width: widthProportion,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     paddingTop: paddingTopBottom,
     paddingBottom: paddingTopBottom,
   },
-  bottomScreen:{   
+  bottomScreen: {   
     backgroundColor: '#808080',
     width: widthProportion,
     height: heightProportion,
@@ -46,20 +46,29 @@ const styles = StyleSheet.create({
     paddingBottom: paddingTopBottom,
     paddingRight: paddingLeftRight,
   },
-  topAddScreen:{
+  topAddScreen: {
     position: 'relative',
     backgroundColor: '#fff',
     width: widthProportion,
     height: "30%",
     paddingVertical: 10,
   },
-  bottomAddScreen:{   
+  bottomAddScreen: {   
     backgroundColor: '#808080',
     width: widthProportion,
     height: "70%",
-    paddingTop: paddingTopBottom,
-    paddingLeft: paddingLeftRight,
     paddingBottom: paddingTopBottom,
-    paddingRight: paddingLeftRight,
-  },  
+  },
+  titleContainer: {
+    paddingVertical: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  titleText: {
+    paddingHorizontal: paddingLeftRight,
+    justifyContent: 'center',
+    alignContent: 'center',
+    textAlign: 'center',
+    backgroundColor: "red",
+  },
 });
