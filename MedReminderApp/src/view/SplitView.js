@@ -71,4 +71,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: "red",
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: "green",
+  }
 });
