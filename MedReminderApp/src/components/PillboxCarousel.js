@@ -1,5 +1,5 @@
 import React, {useState, useRef} from "react";
-import {View, StyleSheet, FlatList, Animated, Dimensions, Text} from "react-native";
+import {View, StyleSheet, FlatList, Animated, Dimensions, Text, Alert} from "react-native";
 
 import {data} from "../model/PillList";
 
@@ -18,8 +18,6 @@ function PillboxCarouselItem({item}) {
                 marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
             }]
         }>
-            {/* TODO Unused code to use images if needed!*/}
-            {/*<Image source={item.image} style={{width: '100%' , height:'100%', resizeMode:'contain'}}/>*/}
             <View style={styles.pillsWrapper}>
                 <Text style={styles.title}>{item.day}</Text>
                 <View style={styles.pillView}>
@@ -49,9 +47,22 @@ export default function PillboxCarousel() {
     const scrollX = useRef(new Animated.Value(0)).current;
     const pillboxRef = useRef(null);
 
-    // TODO currently throwing errors
+    // TODO alternative for onViewableItemsChanged
     // const viewableItemsChanged = useRef(({viewableItems}) => {
-    //     setCurrentIndex(viewableItems[0].index);
+    //     setCurrentIndex(viewableItems.index);
+    //     // setCurrentIndex(viewableItems[0].index);
+    //     Alert.alert(
+    //         "Alert Title",
+    //         ""+viewableItems[0],
+    //         [
+    //             {
+    //                 text: "Cancel",
+    //                 onPress: () => console.log("Cancel Pressed"),
+    //                 style: "cancel"
+    //             },
+    //             { text: "OK", onPress: () => console.log("OK Pressed") }
+    //         ]
+    //     );
     // }).current;
 
     const viewConfig = useRef({viewAreaCoveragePercentThreshold: 95}).current;
@@ -74,6 +85,25 @@ export default function PillboxCarousel() {
                         {useNativeDriver: false}
                     )}
                     // onViewableItemsChanged={viewableItemsChanged}
+                    onViewableItemsChanged= {
+                        ({viewableItems, changed}) => {
+                            if (viewableItems.length > 0) {
+                                // TODO the following is debugging code
+                                // Alert.alert(
+                                //     "Alert Title",
+                                //     ""+viewableItems[0].index + ":" + changed[0].index,
+                                //     [
+                                //         {
+                                //             text: "Cancel",
+                                //             onPress: () => console.log("Cancel Pressed"),
+                                //             style: "cancel"
+                                //         },
+                                //         { text: "OK", onPress: () => console.log("OK Pressed") }
+                                //     ]
+                                // );
+                            }
+                        }
+                    }
                     viewabilityConfig={viewConfig}
                     scrollEventThrottle={32}
                     ref={pillboxRef}
