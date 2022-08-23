@@ -37,10 +37,26 @@ const styles = StyleSheet.create({
     paddingTop: paddingTopBottom,
     paddingBottom: paddingTopBottom,
   },
-    bottomScreen:{   
+  bottomScreen:{   
     backgroundColor: '#808080',
     width: widthProportion,
     height: heightProportion,
+    paddingTop: paddingTopBottom,
+    paddingLeft: paddingLeftRight,
+    paddingBottom: paddingTopBottom,
+    paddingRight: paddingLeftRight,
+  },
+  topAddScreen:{
+    position: 'relative',
+    backgroundColor: '#fff',
+    width: widthProportion,
+    height: "30%",
+    paddingVertical: 10,
+  },
+  bottomAddScreen:{   
+    backgroundColor: '#808080',
+    width: widthProportion,
+    height: "70%",
     paddingTop: paddingTopBottom,
     paddingLeft: paddingLeftRight,
     paddingBottom: paddingTopBottom,

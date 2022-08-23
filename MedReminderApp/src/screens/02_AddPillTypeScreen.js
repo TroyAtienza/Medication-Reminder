@@ -10,10 +10,10 @@ const AddPillTypeScreen = (props) => {
   return (
     <View style={styles.container}>
         <TopNav/>
-        <View style={styles.topScreen}>
+        <View style={styles.topAddScreen}>
             <PillboxCarousel/>
         </View>
-        <View style={styles.bottomScreen}>
+        <View style={styles.bottomAddScreen}>
           
         </View>
       </View>
