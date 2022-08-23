@@ -22,6 +22,10 @@ const paddingTopBottom = 40;
 const paddingLeftRight = 20;
 
 const optionSize = 80;
+const tabletWidth = optionSize/2;
+const tabletHeight = optionSize/2;
+const capsuletWidth = optionSize/4;
+const capsuletHeight = optionSize*3/4;
 
 const styles = StyleSheet.create({
   container: {
@@ -61,6 +65,10 @@ const styles = StyleSheet.create({
     height: "70%",
     paddingBottom: paddingTopBottom,
   },
+  
+
+  // Pill Shape Screen
+  // Title Section
   titleContainer: {
     paddingVertical: 10,
     borderBottomColor: 'black',
@@ -73,22 +81,37 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: "red",
   },
+  // Button Section
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: "green",
+    // backgroundColor: "green",
   },
+  shapeSelect: {
+    paddingVertical: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    flexDirection: "row",
+  },
+  // Individual Buttons
   option: {
     backgroundColor: '#859a9b',
     borderRadius: 20,
-    marginBottom: 20,
     width: optionSize,
     height: optionSize,
+    marginHorizontal: 10,
   },
-  image: {
-    width: optionSize/1.5,
-    height: optionSize/1.5,
-    marginLeft: optionSize/1.5/4,
-    marginTop: optionSize/1.5/4,
+  // Image Styling
+  tablets: {
+    width: tabletWidth,
+    height: tabletHeight,
+    marginLeft: optionSize/2 - tabletWidth/2,
+    marginTop: optionSize/2 - tabletHeight/2,
   },
+  capsules: {
+    width: capsuletWidth,
+    height: capsuletHeight,
+    marginLeft: optionSize/2 - capsuletWidth/2,
+    marginTop: optionSize/2 - capsuletHeight/2,
+  }
 });

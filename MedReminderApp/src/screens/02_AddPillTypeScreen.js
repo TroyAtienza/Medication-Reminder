@@ -21,7 +21,11 @@ const AddPillTypeScreen = (props) => {
           </View>
           <View style={styles.shapeSelect}>
             <TouchableOpacity style={styles.option} onPress={()=>{alert("you clicked me")}}>
-              <Image source={require("../assets/Pill_Tablet.png")} style={styles.image} />
+              <Image source={require("../assets/Pill_Tablet.png")} style={styles.tablets} />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.option} onPress={()=>{alert("you clicked me")}}>
+              <Image source={require("../assets/Pill_Capsule.png")} style={styles.capsules} />
             </TouchableOpacity>
           </View>
           
