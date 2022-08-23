@@ -1,7 +1,7 @@
 import React, {useState, useRef} from "react";
 import {View, StyleSheet, FlatList, Animated, Dimensions, Text} from "react-native";
 
-import data from "./CarouselData";
+import {data} from "MedReminderApp/src/model/PillList.js";
 
 const WINDOW_WIDTH = Dimensions.get("window").width;
 const BOX_WIDTH = WINDOW_WIDTH * 0.6;

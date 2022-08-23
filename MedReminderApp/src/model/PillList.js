@@ -10,30 +10,37 @@ temp1.pillName = "hello";
 
 export const data = [
     {
+        id: 0,
         day: "Monday",
         items: [temp, temp1]
     },
     {
+        id: 1,
         day: "Tuesday",
         items: []
     },
     {
+        id: 2,
         day: "Wednesday",
         items: []
     },
     {
+        id: 3,
         day: "Thursday",
         items: []
     },
     {
+        id: 4,
         day: "Friday",
         items: []
     },
     {
+        id: 5,
         day: "Saturday",
         items: []
     },
     {
+        id: 6,
         day: "Sunday",
         items: []
     }
@@ -84,13 +91,6 @@ const styles = StyleSheet.create({
     item: {
         margin: 10,
     },
-    deleteButton: {
-        height: 40,
-        left: '85%',
-        top: '20%',
-        width: '30%',
-        float: "right",
-    },
     text: {
         fontSize: 12,
         lineHeight: 21,
@@ -112,13 +112,6 @@ const styles = StyleSheet.create({
         left: '10%',
         width: '30%',
         float: "right",
-    },
-    text:{
-        fontSize: 12,
-        lineHeight: 21,
-        fontWeight: 'bold',
-        letterSpacing: 0.25,
-        color: 'red',
     },
 })
 
