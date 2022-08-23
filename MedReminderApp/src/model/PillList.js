@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import { Text, ScrollView, TouchableOpacity, StyleSheet, View, Button, Alert } from "react-native";
 import Pill from "./Pill";
@@ -44,12 +45,13 @@ export const data = [
  * @returns The list.
  */
 
-const PillList = (props, deleteItem) => {
+const PillList = (props) => {
     const index = data.findIndex(e => e.day === props.day);   // Finds the index of the provided day.
+    const [items, setItems] = React.useState(data);
+    const deleteItem = (index) => () => setItems((items) => items.filter((_, i) => i !== index));
     return (
     <ScrollView contentContainerStyle={styles.listContainer}>
-        {data[index].items.map((pill, index) => {
-            const [taken, setTaken] = useState(false);
+        {data[index].items.map((pill, index) => { const [taken, setTaken] = useState(false);
         return (
             <View style={styles.container}>
                 <TouchableOpacity
@@ -58,21 +60,19 @@ const PillList = (props, deleteItem) => {
                     //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
                     style = {[(taken) ? styles.taken : styles.notTaken, styles.listItem]}
                 >
-                    <Text> Name </Text>
+                <Text> Name </Text>
                 </TouchableOpacity>
-                <Button style={styles.deleteButton} title="Delete" onPress={() => Alert.alert('Are you sure you want to delete?','You cannot undo...',[
-                    {text: 'OK', onPress: this.onDelete},
-                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                ],{cancelable: false})}
+                <Button style={styles.deleteButton} title="Delete" onPress={() => 
+                    Alert.alert('Are you sure you want to delete?','You cannot undo...',[
+                        {text: 'OK', onPress: deleteItem(index)},
+                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+                    ],{cancelable: false})}
                 />
             </View>
         );
         })}
     </ScrollView>
     )
-}
-
-function onDelete(){
 }
 
 const styles = StyleSheet.create({
