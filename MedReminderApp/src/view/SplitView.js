@@ -21,6 +21,8 @@ const heightProportion = '50%';
 const paddingTopBottom = 40;
 const paddingLeftRight = 20;
 
+const optionSize = 80;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -79,17 +81,14 @@ const styles = StyleSheet.create({
   option: {
     backgroundColor: '#859a9b',
     borderRadius: 20,
-    padding: 10,
     marginBottom: 20,
-    shadowColor: '#303838',
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
-    shadowOpacity: 0.35,
-    width: 80,
-    height: 80,
+    width: optionSize,
+    height: optionSize,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: optionSize/1.5,
+    height: optionSize/1.5,
+    marginLeft: optionSize/1.5/4,
+    marginTop: optionSize/1.5/4,
   },
 });
