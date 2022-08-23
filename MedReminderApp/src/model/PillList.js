@@ -53,9 +53,8 @@ const PillList = (props) => {
     <ScrollView contentContainerStyle={styles.listContainer}>
         {data[index].items.map((pill, index) => { const [taken, setTaken] = useState(false);
         return (
-            <View style={styles.container}>
+            <View style={styles.container} key={index}>
                 <TouchableOpacity
-                    key={index}
                     onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
                     //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
                     style = {[(taken) ? styles.taken : styles.notTaken, styles.listItem]}
