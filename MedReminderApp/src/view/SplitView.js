@@ -21,6 +21,7 @@ const heightProportion = '50%';
 const paddingTopBottom = 40;
 const paddingLeftRight = 20;
 
+// Pill Shape & Size Constants
 const optionSize = 80;
 const tabletWidth = optionSize/2;
 const tabletHeight = optionSize/2;
@@ -66,7 +67,6 @@ const styles = StyleSheet.create({
     paddingBottom: paddingTopBottom,
   },
   
-
   // Pill Shape Screen
   // Title Section
   titleContainer: {
@@ -85,13 +85,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    // backgroundColor: "green",
-  },
-  shapeSelect: {
-    paddingVertical: 10,
-    borderBottomColor: 'black',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    flexDirection: "row",
   },
   // Individual Buttons
   option: {
@@ -99,7 +92,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: optionSize,
     height: optionSize,
-    marginHorizontal: 10,
+    marginLeft: 10,
+  },
+  firstOption: {
+    marginLeft: 0,
   },
   // Image Styling
   tablets: {
