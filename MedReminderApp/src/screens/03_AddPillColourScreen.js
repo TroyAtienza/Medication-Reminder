@@ -2,14 +2,18 @@ import { StatusBar } from 'expo-status-bar';
 import { PillList } from '../model/PillList';
 import React from 'react';
 import createStyles from '../view/SplitView'
-import { StyleSheet, Button, Text, Alert, View, TouchableOpacity, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Button, Text, Alert, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
-const ColorSelectButton = ({ onPress, backgroundColor}) => (
+const ColorSelectButton = ({ onPress, backgroundColor }) => (
   <View>
-    <TouchableOpacity 
-    onPress={onPress} 
-    style={styles.button}>
+    <TouchableOpacity style={{
+      borderRadius: 15,
+      height: 60,
+      width: 60,
+      backgroundColor: backgroundColor,
+      }}
+      onPress={onPress}>
     </TouchableOpacity>
   </View>
 );
@@ -20,7 +24,7 @@ const AddPillColourScreen = (props) => {
     <View style={styles.container}>
       {/* Top Nav */}
       <View style={{backgroundColor : "#A3CEF1", height : "15%", width: "100%"}}>
-          <View style={styles.fixToText}>
+        <View style={styles.fixToText}>
           <Button title="Profile"
             onPress={() => Alert.alert("insert profile link here")}/>
           <Text style={{color : "#6096BA", fontSize : 30, fontWeight : "bold", textAlign : "center"}}> MedApp </Text>
@@ -31,12 +35,12 @@ const AddPillColourScreen = (props) => {
 
       {/* Top Screen */}
       <View style={styles.topScreen}>
-        <Text>Pill Colour!</Text>
+        <Text> Select a color </Text>
       </View>
 
       {/* Bottom Screen */}
       <View style={styles.bottomScreen}>
-
+      
         {/* Top capsule */}
         <View style={styles.colorSelect}>
           <ColorSelectButton backgroundColor="#ff0000" onPress={() => { alert("topRed") }}/>
@@ -99,16 +103,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly'
-  },
-  button: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    shadowColor: '#303838',
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
-    shadowOpacity: 0.35,
-    height: 60,
-    width: 60,
   },
 });
 
