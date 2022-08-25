@@ -2,8 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import { PillList } from '../model/PillList';
 import React from 'react';
 import createStyles from '../view/SplitView'
-import { StyleSheet, Button, Text, Alert, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Button, Text, Alert, View, TouchableOpacity, Image, TouchableWithoutFeedback } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
+
+const ColorSelectButton = ({ onPress, backgroundColor}) => (
+  <View>
+    <TouchableOpacity 
+    onPress={onPress} 
+    style={styles.button}>
+    </TouchableOpacity>
+  </View>
+);
 
 const AddPillColourScreen = (props) => {
   const navigation = useNavigation();
@@ -26,39 +35,25 @@ const AddPillColourScreen = (props) => {
       </View>
 
       {/* Bottom Screen */}
-        <View style={styles.bottomScreen}>
+      <View style={styles.bottomScreen}>
 
-          {/* Top capsule */}
-          <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("red")}} backgroundColor="#ff0000">
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("blue")}} backgroundColor="#0000FF">
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("green")}} backgroundColor="#00FF00">
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("white")}} backgroundColor="#FFFFFF">
-            </TouchableOpacity>
-          </View>
-
-          {/* Bottom capsule */}
-          <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("red")}} backgroundColor="#ff0000">
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("blue")}} backgroundColor="#0000FF">
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("green")}} backgroundColor="#00FF00">
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("white")}} backgroundColor="#FFFFFF">
-            </TouchableOpacity>
-          </View>
-
+        {/* Top capsule */}
+        <View style={styles.colorSelect}>
+          <ColorSelectButton backgroundColor="#ff0000" onPress={() => { alert("topRed") }}/>
+          <ColorSelectButton backgroundColor="#00FF00" onPress={() => { alert("topGreen") }}/>
+          <ColorSelectButton backgroundColor="#0000FF" onPress={() => { alert("topBlue") }}/>
+          <ColorSelectButton backgroundColor="#FFFFFF" onPress={() => { alert("topWhite") }}/>
         </View>
+
+        {/* Bottom capsule */}
+        <View style={styles.colorSelect}>
+          <ColorSelectButton backgroundColor="#ff0000" onPress={() => { alert("botRed") }}/>
+          <ColorSelectButton backgroundColor="#00FF00" onPress={() => { alert("botGreen") }}/>
+          <ColorSelectButton backgroundColor="#0000FF" onPress={() => { alert("botBlue") }}/>
+          <ColorSelectButton backgroundColor="#FFFFFF" onPress={() => { alert("botWhite") }}/>
+        </View>
+
+      </View>
      
     </View>
   );
@@ -100,13 +95,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     top: "15%",
   },
+  colorSelect: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
   button: {
-    width: 60,
-    height: 60,
+    backgroundColor: 'white',
+    borderRadius: 10,
     shadowColor: '#303838',
     shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
     shadowOpacity: 0.35,
+    height: 60,
+    width: 60,
   },
 });
 
