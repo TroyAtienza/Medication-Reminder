@@ -63,18 +63,18 @@ const AddPillColourScreen = (props) => {
       
         {/* Top capsule */}
         <View style={styles.colorSelect}>
-          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { topPillColor='red', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
-          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { topPillColor='green', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
-          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { topPillColor='blue', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
-          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { topPillColor='white', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { topPillColor='red', changeColorName(topPillColor, botPillColor)}}/>
+          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { topPillColor='green', changeColorName(topPillColor, botPillColor)}}/>
+          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { topPillColor='blue', changeColorName(topPillColor, botPillColor)}}/>
+          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { topPillColor='white', changeColorName(topPillColor, botPillColor)}}/>
         </View>
 
         {/* Bottom capsule */}
         <View style={styles.colorSelect}>
-          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { botPillColor='red', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
-          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { botPillColor='green', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
-          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { botPillColor='blue', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
-          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { botPillColor='white', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { botPillColor='red', changeColorName(topPillColor, botPillColor)}}/>
+          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { botPillColor='green', changeColorName(topPillColor, botPillColor)}}/>
+          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { botPillColor='blue', changeColorName(topPillColor, botPillColor)}}/>
+          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { botPillColor='white', changeColorName(topPillColor, botPillColor)}}/>
         </View>
 
         {/* Buttons */}
