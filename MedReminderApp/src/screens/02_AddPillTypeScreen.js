@@ -1,5 +1,6 @@
 import { Text, View, TouchableOpacity, Image, FlatList, StyleSheet } from 'react-native';
 import { useState } from 'react';
+import { useNavigation } from "@react-navigation/native";
 import TopNav from '../view/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import createStyles from '../view/SplitView'
@@ -7,9 +8,10 @@ import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 import { setPillType } from '../controller/PillController';
 
-const styles = createStyles()
-
 const AddPillTypeScreen = (props) => {
+  const navigation = useNavigation();
+  const styles = createStyles();
+
   /* The images used. Requires static initialization.
    See: https://gitlab.ecs.vuw.ac.nz/course-work/swen325/2022/assignment2/t11/medication-reminder/-/issues/16#note_327886 */
   const [images, setImages] = useState([
@@ -48,8 +50,8 @@ const AddPillTypeScreen = (props) => {
           </View>
 
           <View style={styles.buttonContainer}>
-            <BackButton/>
-            <NextButton/>
+            <BackButton onPress={() => navigation.navigate("Home")}/>
+            <NextButton onPress={() => navigation.navigate("PillColour")}/>
           </View>
         </View>
       </View>
