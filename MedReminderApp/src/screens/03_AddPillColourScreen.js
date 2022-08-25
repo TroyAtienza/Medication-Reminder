@@ -2,8 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { PillList } from '../model/PillList';
 import React from 'react';
 import createStyles from '../view/SplitView'
-import { StyleSheet, Button, Text, Alert, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Button, Text, Alert, View, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
+
+var topPillColor = 'topWhite'
+var botPillColor = 'botWhite'
 
 const ColorSelectButton = ({ onPress, backgroundColor }) => (
   <View>
@@ -35,7 +38,6 @@ const AddPillColourScreen = (props) => {
 
       {/* Top Screen */}
       <View style={styles.topScreen}>
-        <Text> Select a color </Text>
       </View>
 
       {/* Bottom Screen */}
@@ -43,18 +45,18 @@ const AddPillColourScreen = (props) => {
       
         {/* Top capsule */}
         <View style={styles.colorSelect}>
-          <ColorSelectButton backgroundColor="#ff0000" onPress={() => { alert("topRed") }}/>
-          <ColorSelectButton backgroundColor="#00FF00" onPress={() => { alert("topGreen") }}/>
-          <ColorSelectButton backgroundColor="#0000FF" onPress={() => { alert("topBlue") }}/>
-          <ColorSelectButton backgroundColor="#FFFFFF" onPress={() => { alert("topWhite") }}/>
+          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { topPillColor='red', console.log(topPillColor, botPillColor) }}/>
+          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { topPillColor='green', console.log(topPillColor, botPillColor) }}/>
+          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { topPillColor='blue', console.log(topPillColor, botPillColor) }}/>
+          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { topPillColor='white', console.log(topPillColor, botPillColor) }}/>
         </View>
 
         {/* Bottom capsule */}
         <View style={styles.colorSelect}>
-          <ColorSelectButton backgroundColor="#ff0000" onPress={() => { alert("botRed") }}/>
-          <ColorSelectButton backgroundColor="#00FF00" onPress={() => { alert("botGreen") }}/>
-          <ColorSelectButton backgroundColor="#0000FF" onPress={() => { alert("botBlue") }}/>
-          <ColorSelectButton backgroundColor="#FFFFFF" onPress={() => { alert("botWhite") }}/>
+          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { botPillColor='red', console.log(topPillColor, botPillColor) }}/>
+          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { botPillColor='green', console.log(topPillColor, botPillColor) }}/>
+          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { botPillColor='blue', console.log(topPillColor, botPillColor) }}/>
+          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { botPillColor='white', console.log(topPillColor, botPillColor) }}/>
         </View>
 
       </View>
@@ -102,6 +104,11 @@ const styles = StyleSheet.create({
   colorSelect: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-evenly'
+  },
+  image: {
+    height: 50,
+    width: 50,
     justifyContent: 'space-evenly'
   },
 });
