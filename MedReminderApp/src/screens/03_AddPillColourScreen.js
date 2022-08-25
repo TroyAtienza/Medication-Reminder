@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { PillList } from '../model/PillList';
 import React from 'react';
+import createStyles from '../view/SplitView'
 import { StyleSheet, Button, Text, Alert, View, TouchableOpacity, Image } from 'react-native';
-import AddButton from '../components/AddButton';
 import { useNavigation } from "@react-navigation/native";
 
 const AddPillColourScreen = (props) => {
@@ -27,9 +27,37 @@ const AddPillColourScreen = (props) => {
 
       {/* Bottom Screen */}
         <View style={styles.bottomScreen}>
-          <TouchableOpacity style={styles.button} onPress={()=>{alert("you clicked me")}}>
-            <Image source={require("../assets/Pill Capsule.png")}/>
-          </TouchableOpacity>
+
+          {/* Top capsule */}
+          <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+            <TouchableOpacity style={styles.button} onPress={()=>{alert("red")}} backgroundColor="#ff0000">
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={()=>{alert("blue")}} backgroundColor="#0000FF">
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={()=>{alert("green")}} backgroundColor="#00FF00">
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={()=>{alert("white")}} backgroundColor="#FFFFFF">
+            </TouchableOpacity>
+          </View>
+
+          {/* Bottom capsule */}
+          <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+            <TouchableOpacity style={styles.button} onPress={()=>{alert("red")}} backgroundColor="#ff0000">
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={()=>{alert("blue")}} backgroundColor="#0000FF">
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={()=>{alert("green")}} backgroundColor="#00FF00">
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={()=>{alert("white")}} backgroundColor="#FFFFFF">
+            </TouchableOpacity>
+          </View>
+
         </View>
      
     </View>
@@ -73,7 +101,6 @@ const styles = StyleSheet.create({
     top: "15%",
   },
   button: {
-    backgroundColor: '#CAE3F7',
     width: 60,
     height: 60,
     shadowColor: '#303838',
