@@ -38,6 +38,7 @@ const AddPillColourScreen = (props) => {
 
       {/* Top Screen */}
       <View style={styles.topScreen}>
+        <Text>Select pill color!</Text>
       </View>
 
       {/* Bottom Screen */}
