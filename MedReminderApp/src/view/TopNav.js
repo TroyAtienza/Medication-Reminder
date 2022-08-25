@@ -1,8 +1,6 @@
 import { StyleSheet, View, Alert, Button, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 const TopNav = (props) => {
-    const navigation = useNavigation();
     return (
     <View style={styles.topNav}>
       <View style={styles.fixToText}>
