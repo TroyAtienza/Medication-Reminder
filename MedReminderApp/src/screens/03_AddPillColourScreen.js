@@ -1,13 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { PillList } from '../model/PillList';
-import React from 'react';
+import  React, { useState } from 'react';
 import createStyles from '../view/SplitView'
 import { StyleSheet, Button, Text, Alert, View, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
-var topPillColor = 'topWhite'
-var botPillColor = 'botWhite'
+// This page can register and return pill color. 
+// TODO:
+// - need to link chosen color to pill object
+// - change color after press
+// - live pill change (don't know how to approach without variable. maybe look into state changes?)
 
+// Pill color information
+var topPillColor = 'white'
+var botPillColor = 'white'
+var colorName = 'white-white'
+
+// Touchable opacity style
 const ColorSelectButton = ({ onPress, backgroundColor }) => (
   <View>
     <TouchableOpacity style={{
@@ -16,15 +25,22 @@ const ColorSelectButton = ({ onPress, backgroundColor }) => (
       width: 60,
       backgroundColor: backgroundColor,
       }}
-      onPress={onPress}>
+      onPress={onPress}
+      disabled={false}>
     </TouchableOpacity>
   </View>
 );
+
+// Takes top pill color and bottom pill color to update color name in 'color-color' format
+const changeColorName = ({}) => {
+  colorName = topPillColor + '-' + botPillColor;
+};
 
 const AddPillColourScreen = (props) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
+
       {/* Top Nav */}
       <View style={{backgroundColor : "#A3CEF1", height : "15%", width: "100%"}}>
         <View style={styles.fixToText}>
@@ -39,6 +55,7 @@ const AddPillColourScreen = (props) => {
       {/* Top Screen */}
       <View style={styles.topScreen}>
         <Text>Select pill color!</Text>
+        <Image style={styles.image} source={require('../assets/pillCapsule/white-white.png')}/>
       </View>
 
       {/* Bottom Screen */}
@@ -46,18 +63,28 @@ const AddPillColourScreen = (props) => {
       
         {/* Top capsule */}
         <View style={styles.colorSelect}>
-          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { topPillColor='red', console.log(topPillColor, botPillColor) }}/>
-          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { topPillColor='green', console.log(topPillColor, botPillColor) }}/>
-          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { topPillColor='blue', console.log(topPillColor, botPillColor) }}/>
-          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { topPillColor='white', console.log(topPillColor, botPillColor) }}/>
+          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { topPillColor='red', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { topPillColor='green', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { topPillColor='blue', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { topPillColor='white', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
         </View>
 
         {/* Bottom capsule */}
         <View style={styles.colorSelect}>
-          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { botPillColor='red', console.log(topPillColor, botPillColor) }}/>
-          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { botPillColor='green', console.log(topPillColor, botPillColor) }}/>
-          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { botPillColor='blue', console.log(topPillColor, botPillColor) }}/>
-          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { botPillColor='white', console.log(topPillColor, botPillColor) }}/>
+          <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { botPillColor='red', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+          <ColorSelectButton backgroundColor='#58D68D' onPress={() => { botPillColor='green', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+          <ColorSelectButton backgroundColor='#3498DB' onPress={() => { botPillColor='blue', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+          <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { botPillColor='white', changeColorName(topPillColor, botPillColor), this.changeBackground(item)}}/>
+        </View>
+
+        {/* Buttons */}
+        <View style={styles.colorSelect}>
+          <View style={styles.bottomButton}>
+            <Button style={styles.button} title="Back" onPress={() => navigation.navigate('PillType')}></Button>
+          </View>
+          <View style={styles.bottomButton}>
+            <Button style={styles.button} title="Next" onPress={() => navigation.navigate('PillDetails')}></Button>
+         </View>
         </View>
 
       </View>
@@ -108,9 +135,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   image: {
-    height: 50,
-    width: 50,
-    justifyContent: 'space-evenly'
+    height: 130,
+    width: 130,
+    justifyContent: 'center',
+  },
+  bottomButton: {
+    marginBottom: 50,
+    justifyContent: 'space-between'
   },
 });
 
