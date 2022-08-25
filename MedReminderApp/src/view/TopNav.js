@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     width: "100%",
   },
     button: {
-    backgroundColor : "#A3CEF1", 
+    backgroundColor : "#A3CEF1",
     height : "15%", 
     width: "100%",
   },
     title: {
-    color : "#6096BA", 
+    color : "#274C77", 
     fontSize : 30, 
     fontWeight : "bold", 
     textAlign : "center",

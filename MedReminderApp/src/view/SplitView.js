@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
   },
   topScreen: {
     position: 'relative',
-    backgroundColor: '#fff',
+    backgroundColor: '#E7ECEF',
     width: widthProportion,
     height: heightProportion,
     paddingTop: paddingTopBottom,
     paddingBottom: paddingTopBottom,
   },
   bottomScreen: {   
-    backgroundColor: '#808080',
+    backgroundColor: '#919DA3',
     width: widthProportion,
     height: heightProportion,
     paddingTop: paddingTopBottom,
@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
   },
   topAddScreen: {
     position: 'relative',
-    backgroundColor: '#fff',
+    backgroundColor: '#E7ECEF',
     width: widthProportion,
     height: "30%",
     paddingVertical: 10,
   },
   bottomAddScreen: {   
-    backgroundColor: '#808080',
+    backgroundColor: '#919DA3',
     width: widthProportion,
     height: "70%",
     paddingBottom: paddingTopBottom,
@@ -79,7 +79,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     textAlign: 'center',
-    backgroundColor: "red",
+    color: "#365F88",
+    fontWeight : "bold", 
+    fontSize: 20,
   },
   // Button Section
   buttonContainer: {
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
   },
   // Individual Buttons
   option: {
-    backgroundColor: '#859a9b',
+    backgroundColor: '#82B2D6',
     borderRadius: 20,
     width: optionSize,
     height: optionSize,
