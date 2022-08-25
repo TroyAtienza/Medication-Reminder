@@ -1,14 +1,32 @@
-import { data } from './src/model/list';
-import Pill from "./pill";
+import { data } from "../model/PillList";
+import Pill from "../model/Pill";
 
-// TODO: Callback functions are probably going to be useful here.
 //Builder Model
-const currentPill = new Pill();
+let pill = new Pill();
 
-const AddPill = () => {
-    data[0].push(currentPill);
+function createNewPill() {
+    pill = new Pill();
 }
 
-const addName = (name) => {
-    currentPill.name = name;
+// TODO: dynamic data indexing based off selected day in pill case.
+const addPill = () => {
+    data[0].push(this.pill);
 }
+
+export function buildPill() {
+    addPill();
+}
+
+export function setPillName(name) {
+    pill.name = name;
+}
+
+// TODO: Requires further testing because unsure whether the image can be displayed again.
+export function setPillType(type) {
+    pill.type = type;
+}
+
+export function setPillSize(size) {
+    pill.size = size;
+}
+
