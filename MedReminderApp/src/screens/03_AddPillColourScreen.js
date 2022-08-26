@@ -2,14 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import { PillList } from '../model/PillList';
 import  React, { useState } from 'react';
 import createStyles from '../view/SplitView'
-import { StyleSheet, Button, Text, Alert, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Button, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
+import TopNav from '../view/TopNav'
 
 // This page can register and return pill color. 
 // TODO:
-// - need to link chosen color to pill object
+// - need to link chosen color to pill object (can do once add pill type is done)
 // - change color of button to grey after press
 // - live pill change ? (don't know how to approach without using var. maybe look into state changes?)
+
+const splitScreenStyles = createStyles();
 
 // Pill color information
 var topPillColor = 'white'
@@ -39,27 +42,17 @@ const changeColorName = ({}) => {
 const AddPillColourScreen = (props) => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-
-      {/* Top Nav */}
-      <View style={{backgroundColor : "#A3CEF1", height : "15%", width: "100%"}}>
-        <View style={styles.fixToText}>
-          <Button title="Profile"
-            onPress={() => Alert.alert("insert profile link here")}/>
-          <Text style={{color : "#6096BA", fontSize : 30, fontWeight : "bold", textAlign : "center"}}> MedApp </Text>
-          <Button title="Sign out"
-            onPress={() => Alert.alert("You are now signed out")}/>
-        </View>
-      </View>
+    <View style={splitScreenStyles.container}>
+      <TopNav/>
 
       {/* Top Screen */}
-      <View style={styles.topScreen}>
+      <View style={splitScreenStyles.topScreen}>
         <Text>Select pill color!</Text>
         <Image style={styles.image} source={require('../assets/pillCapsule/white-white.png')}/>
       </View>
 
       {/* Bottom Screen */}
-      <View style={styles.bottomScreen}>
+      <View style={splitScreenStyles.bottomScreen}>
       
         {/* Top capsule */}
         <View style={styles.colorSelect}>
@@ -93,42 +86,7 @@ const AddPillColourScreen = (props) => {
   );
 }
 
-const widthProportion = '100%';
-const heightProportion = '50%';
-const paddingTopBottom = 40;
-const paddingLeftRight = 20;
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: paddingTopBottom,
-  },
-  topScreen:{
-    backgroundColor: '#fff',
-    width: widthProportion,
-    height: heightProportion,  
-    paddingTop: paddingTopBottom,
-    paddingLeft: paddingLeftRight,
-    paddingBottom: paddingTopBottom,
-    paddingRight: paddingLeftRight,
-  },
-    bottomScreen:{
-    backgroundColor: '#9A9A98',
-    width: widthProportion,
-    height: heightProportion,
-    paddingTop: paddingTopBottom,
-    paddingLeft: paddingLeftRight,
-    paddingBottom: paddingTopBottom,
-    paddingRight: paddingLeftRight,
-  },
-  fixToText: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    top: "15%",
-  },
   colorSelect: {
     flex: 1,
     flexDirection: 'row',
@@ -142,6 +100,9 @@ const styles = StyleSheet.create({
   bottomButton: {
     marginBottom: 50,
     justifyContent: 'space-between'
+  },
+  button : {
+    
   },
 });
 
