@@ -6,11 +6,12 @@ import { StyleSheet, Button, Text, View, TouchableOpacity, Image } from 'react-n
 import { useNavigation } from "@react-navigation/native";
 import TopNav from '../view/TopNav'
 
-// This page can register and return pill color. 
+// This page can register the top and bottom pill colors selected in 'color-color' var. 
 // TODO:
 // - need to link chosen color to pill object (can do once add pill type is done)
 // - change color of button to grey after press
 // - live pill change ? (don't know how to approach without using var. maybe look into state changes?)
+// - add back and next button from ../components once completed.
 
 const splitScreenStyles = createStyles();
 
