@@ -8,8 +8,8 @@ import { useNavigation } from "@react-navigation/native";
 // This page can register and return pill color. 
 // TODO:
 // - need to link chosen color to pill object
-// - change color after press
-// - live pill change (don't know how to approach without variable. maybe look into state changes?)
+// - change color of button to grey after press
+// - live pill change ? (don't know how to approach without using var. maybe look into state changes?)
 
 // Pill color information
 var topPillColor = 'white'

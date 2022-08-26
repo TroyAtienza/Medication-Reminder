@@ -6,6 +6,7 @@ import AddPillTypeScreen from "./src/screens/02_AddPillTypeScreen";
 import AddPillColourScreen from "./src/screens/03_AddPillColourScreen";
 import AddPillDetailsScreen from "./src/screens/04_AddPillDetailsScreen";
 import AddPillTimesScreen from "./src/screens/05_AddPillTimesScreen";
+import ProfileScreen from "./src/screens/06_ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="PillColour" component={AddPillColourScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillDetails" component={AddPillDetailsScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillTimes" component={AddPillTimesScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="Profile" component={ProfileScreen} options ={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

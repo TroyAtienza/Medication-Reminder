@@ -1,10 +1,12 @@
 import { StyleSheet, View, Alert, Button, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const TopNav = (props) => {
+  const navigation = useNavigation();
     return (
     <View style={styles.topNav}>
       <View style={styles.fixToText}>
-        <Button title = "Profile" style={styles.button} onPress={() => Alert.alert("insert profile link here")}/>
+        <Button title = "Profile" style={styles.button} onPress={() => navigation.navigate("Profile")}/>
         <Text style={styles.title}> MedApp </Text>
         <Button title="Sign out" style={styles.button} onPress={() => Alert.alert("You are now signed out")}/>
       </View>
