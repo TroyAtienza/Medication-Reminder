@@ -3,8 +3,6 @@ import { useNavigation } from "@react-navigation/native";
 import createStyles from '../view/SplitView';
 
 //TODO:
-// - user can select image from phone file
-// - make the default image an empty icon
 // - line everything up...
 // - Signup/Login page
 
