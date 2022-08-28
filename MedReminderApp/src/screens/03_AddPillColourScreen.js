@@ -1,16 +1,16 @@
-import Images from '../model/Images';
 import createStyles from '../view/SplitView'
 import { StyleSheet, Button, Text, View, TouchableOpacity, Image, TouchableHighlightBase } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import TopNav from '../view/TopNav'
 import { Component, useEffect } from 'react';
+import imageList from '../assets/ImageList';
+import indexes from '../assets/ImageIndex';
 
 // TODO:
 // - need to link chosen color to pill object (can do once add pill type is done)
 // - change color of button to grey after press
 // - live pill change - 1 state behind
 // - need to implement for other pill types
-// - implement mvc architecture
 
 const splitScreenStyles = createStyles();
 
@@ -18,18 +18,6 @@ const splitScreenStyles = createStyles();
 const pillType = 'PC'; // replace id with this infront to differentiate the pill types
 const { topColor, bottomColor } = 'w';
 const color = 'ww';
-
-// index and images (can add to models)
-const indexes = [{id : 'rr', index : 0}, {id : 'rg', index : 1}, {id : 'rb', index : 2}, {id : 'rw', index : 3},
-  {id : 'gr', index : 4}, {id : 'gg', index : 5}, {id : 'gb', index : 6}, {id : 'gw', index : 7},
-  {id : 'br', index : 8}, {id : 'bg', index : 9}, {id : 'bb', index : 10}, {id : 'bw', index : 11},
-  {id : 'wr', index : 12}, {id : 'wg', index : 13}, {id : 'wb', index : 14}, {id : 'ww', index : 15},];
-
-const images = [Images.PCRedRed, Images.PCRedGreen, Images.PCRedBlue, Images.PCRedWhite,
-  Images.PCGreenRed, Images.PCGreenGreen, Images.PCGreenBlue, Images.PCGreenWhite,
-  Images.PCBlueRed, Images.PCBlueGreen, Images.PCBlueBlue, Images.PCBlueWhite,
-  Images.PCWhiteRed, Images.PCWhiteGreen, Images.PCWhiteBlue, Images.PCWhiteWhite,];
-
 
 // Touchable opacity style
 const ColorSelectButton = ({ onPress, backgroundColor}) => (
@@ -55,6 +43,7 @@ class AddPillColourScreen extends Component {
     }
   }
 
+  // explore this
   static navigationOptions = {
     header: null,
   };
@@ -71,7 +60,7 @@ class AddPillColourScreen extends Component {
         {/* Top Screen */}
         <View style={splitScreenStyles.topScreen}>
           <Text>Select pill color!</Text>
-          { searchIndex.map(item => <Image style={styles.image} source={images[item.index]}/> )}
+          { searchIndex.map(item => <Image style={styles.image} source={imageList[item.index]}/> )}
         </View>
 
         {/* Bottom Screen */}

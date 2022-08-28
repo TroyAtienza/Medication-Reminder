@@ -1,6 +1,7 @@
-// images used for live pill change feature for add pill color screen.
+/* images used for live pill change feature for the add pill color screen.*/
 
 const images = {
+
     // pillCapsule
 	PCRedRed: require("../assets/pillCapsule/red-red.png"),
 	PCRedGreen: require("../assets/pillCapsule/red-green.png"),
