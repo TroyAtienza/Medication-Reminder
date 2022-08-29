@@ -1,5 +1,5 @@
 import createStyles from '../view/SplitView'
-import { StyleSheet, Button, Text, View, TouchableOpacity, Image, TouchableHighlightBase } from 'react-native';
+import { StyleSheet, Button, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import TopNav from '../view/TopNav'
 import { Component } from 'react';
@@ -10,17 +10,17 @@ import indexes from '../assets/ImageIndex';
 // - need to link chosen color to new pill object (can do once add pill type is done)
 // - change color of button to grey after press
 // - navigation
-// - implement for different pills
+// - implement for single coloured pills
 
 const splitScreenStyles = createStyles();
 
 // selected pill color information
-const pillType = 'PC'; // replace id with this infront to differentiate the pill types
+const pillType = 'PT'; // replace id with this infront to differentiate the pill types
 const { topColor, bottomColor } = 'w';
 const color = 'ww';
 
 // Touchable opacity style
-const ColorSelectButton = ({ onPress, backgroundColor}) => (
+const ColorSelectButton = ({ onPress, backgroundColor }) => (
   <View>
     <TouchableOpacity style={{
       borderRadius: 15,
@@ -39,7 +39,7 @@ class AddPillColourScreen extends Component {
     this.state = { 
       topColor: 'w',
       bottomColor: 'w',
-      color: 'ww',
+      color: pillType + 'ww',
     }
   }
 
@@ -69,18 +69,18 @@ class AddPillColourScreen extends Component {
         
           {/* Top capsule */}
           <View style={styles.colorSelect}>
-            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: 'r' + bottomColor, topColor: 'r'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: 'g' + bottomColor, topColor: 'g'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: 'b' + bottomColor, topColor: 'b'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: 'w' + bottomColor, topColor: 'w'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + 'r' + bottomColor, topColor: 'r'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + 'g' + bottomColor, topColor: 'g'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: pillType + 'b' + bottomColor, topColor: 'b'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: pillType + 'w' + bottomColor, topColor: 'w'}), renderImage }}/>
           </View>
 
           {/* Bottom capsule */}
           <View style={styles.colorSelect}>
-            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: topColor + 'r', bottomColor: 'r'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: topColor + 'g', bottomColor: 'g'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: topColor + 'b', bottomColor: 'b'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: topColor + 'w', bottomColor: 'w'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + topColor + 'r', bottomColor: 'r'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + topColor + 'g', bottomColor: 'g'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: pillType + topColor + 'b', bottomColor: 'b'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: pillType + topColor + 'w', bottomColor: 'w'}), renderImage }}/>
           </View>
 
           {/* Buttons */}
@@ -107,10 +107,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   image: {
-    height: 80,
-    width: 80,
+    height: 100,
+    width: 100,
     flex: 1,
-    left: '40%', // im not sure why its at the middle at 40%
+    left: '38%', // im not sure why its at the middle at 40%
   },
   bottomButtons: {
     marginBottom: 50,

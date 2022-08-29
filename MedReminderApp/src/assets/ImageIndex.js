@@ -3,28 +3,48 @@
 const indexes = [
 
     // pillCapsule
-    {id : 'rr', index : 0},
-    {id : 'rg', index : 1},
-    {id : 'rb', index : 2},
-    {id : 'rw', index : 3},
+    {id : 'PCrr', index : 0},
+    {id : 'PCrg', index : 1},
+    {id : 'PCrb', index : 2},
+    {id : 'PCrw', index : 3},
 
-    {id : 'gr', index : 4},
-    {id : 'gg', index : 5},
-    {id : 'gb', index : 6},
-    {id : 'gw', index : 7},
+    {id : 'PCgr', index : 4},
+    {id : 'PCgg', index : 5},
+    {id : 'PCgb', index : 6},
+    {id : 'PCgw', index : 7},
     
-    {id : 'br', index : 8},
-    {id : 'bg', index : 9},
-    {id : 'bb', index : 10},
-    {id : 'bw', index : 11},
+    {id : 'PCbr', index : 8},
+    {id : 'PCbg', index : 9},
+    {id : 'PCbb', index : 10},
+    {id : 'PCbw', index : 11},
 
-    {id : 'wr', index : 12},
-    {id : 'wg', index : 13},
-    {id : 'wb', index : 14},
-    {id : 'ww', index : 15},
+    {id : 'PCwr', index : 12},
+    {id : 'PCwg', index : 13},
+    {id : 'PCwb', index : 14},
+    {id : 'PCww', index : 15},
 
-    // TODO:
     // pillTablet
+    {id : 'PTrr', index : 16},
+    {id : 'PTrg', index : 17},
+    {id : 'PTrb', index : 18},
+    {id : 'PTrw', index : 19},
+
+    {id : 'PTgr', index : 20},
+    {id : 'PTgg', index : 21},
+    {id : 'PTgb', index : 22},
+    {id : 'PTgw', index : 23},
+    
+    {id : 'PTbr', index : 24},
+    {id : 'PTbg', index : 25},
+    {id : 'PTbb', index : 26},
+    {id : 'PTbw', index : 27},
+
+    {id : 'PTwr', index : 28},
+    {id : 'PTwg', index : 29},
+    {id : 'PTwb', index : 30},
+    {id : 'PTww', index : 31},
+
+    // TODO: implement for single color
     // pillTabletNoLine
     // pillTabletOval
     // pillTabletTriangle

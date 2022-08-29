@@ -25,11 +25,44 @@ const imageList = [
     Images.PCWhiteBlue,
     Images.PCWhiteWhite,
 
-    // TODO:
     // pillTablet
+    Images.PTRedRed,
+    Images.PTRedGreen,
+    Images.PTRedBlue,
+    Images.PTRedWhite,
+
+    Images.PTGreenRed,
+    Images.PTGreenGreen,
+    Images.PTGreenBlue,
+    Images.PTGreenWhite,
+
+    Images.PTBlueRed,
+    Images.PTBlueGreen,
+    Images.PTBlueBlue,
+    Images.PTBlueWhite,
+
+    Images.PTWhiteRed,
+    Images.PTWhiteGreen,
+    Images.PTWhiteBlue,
+    Images.PTWhiteWhite,
+
     // pillTabletNoLine
+    Images.PTNLRed,
+    Images.PTNLGreen,
+    Images.PTNLBlue,
+    Images.PTNLWhite,
+
     // pillTabletOval
+    Images.PTNLRed,
+    Images.PTNLGreen,
+    Images.PTNLBlue,
+    Images.PTNLWhite,
+
     // pillTabletTriangle
+    Images.PTTRed,
+    Images.PTTGreen,
+    Images.PTTBlue,
+    Images.PTTWhite,
 
 ];
 
