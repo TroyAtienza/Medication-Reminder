@@ -2,15 +2,15 @@ import createStyles from '../view/SplitView'
 import { StyleSheet, Button, Text, View, TouchableOpacity, Image, TouchableHighlightBase } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import TopNav from '../view/TopNav'
-import { Component, useEffect } from 'react';
+import { Component } from 'react';
 import imageList from '../assets/ImageList';
 import indexes from '../assets/ImageIndex';
 
 // TODO:
-// - need to link chosen color to pill object (can do once add pill type is done)
+// - need to link chosen color to new pill object (can do once add pill type is done)
 // - change color of button to grey after press
-// - live pill change - 1 state behind
-// - need to implement for other pill types
+// - navigation
+// - implement for different pills
 
 const splitScreenStyles = createStyles();
 
@@ -49,8 +49,9 @@ class AddPillColourScreen extends Component {
   };
 
   render() {
-    const {topColor, bottomColor, color} = this.state;
-    const searchIndex = indexes.filter( imageID => imageID.id.includes(color));
+    const {topColor, bottomColor, color} = this.state; // keeps track of the current states' color
+    const searchIndex = indexes.filter( imageID => imageID.id.includes(color)); // searches the index map for a given color id
+    const renderImage = searchIndex.map( item => <Image style={styles.image} source={imageList[item.index]}/>) // renders the image on click
 
     return (
 
@@ -59,8 +60,8 @@ class AddPillColourScreen extends Component {
 
         {/* Top Screen */}
         <View style={splitScreenStyles.topScreen}>
-          <Text>Select pill color!</Text>
-          { searchIndex.map(item => <Image style={styles.image} source={imageList[item.index]}/> )}
+          <Text style={styles.bodyText}> Select Pill Colors Below:</Text>
+          { renderImage }
         </View>
 
         {/* Bottom Screen */}
@@ -68,26 +69,26 @@ class AddPillColourScreen extends Component {
         
           {/* Top capsule */}
           <View style={styles.colorSelect}>
-            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({topColor: 'r', color: topColor + bottomColor}) }}/>
-            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({topColor: 'g', color: topColor + bottomColor}) }}/>
-            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({topColor: 'b', color: topColor + bottomColor}) }}/>
-            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({topColor: 'w', color: topColor + bottomColor}) }}/>
+            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: 'r' + bottomColor, topColor: 'r'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: 'g' + bottomColor, topColor: 'g'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: 'b' + bottomColor, topColor: 'b'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: 'w' + bottomColor, topColor: 'w'}), renderImage }}/>
           </View>
 
           {/* Bottom capsule */}
           <View style={styles.colorSelect}>
-            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({bottomColor: 'r', color: topColor + bottomColor}) }}/>
-            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({bottomColor: 'g', color: topColor + bottomColor}) }}/>
-            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({bottomColor: 'b', color: topColor + bottomColor}) }}/>
-            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({bottomColor: 'w', color: topColor + bottomColor}) }}/>
+            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: topColor + 'r', bottomColor: 'r'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: topColor + 'g', bottomColor: 'g'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: topColor + 'b', bottomColor: 'b'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: topColor + 'w', bottomColor: 'b'}), renderImage }}/>
           </View>
 
           {/* Buttons */}
           <View style={styles.colorSelect}>
-            <View style={styles.bottomButton}>
+            <View style={styles.bottomButtons}>
               <Button style={styles.button} title="Back" onPress={() => navigation.navigate('PillType')}></Button>
             </View>
-            <View style={styles.bottomButton}>
+            <View style={styles.bottomButtons}>
               <Button style={styles.button} title="Next" onPress={() => navigation.navigate('PillDetails')}></Button>
           </View>
           </View>
@@ -106,16 +107,23 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   image: {
-    height: 130,
-    width: 130,
-    justifyContent: 'center',
+    height: 80,
+    width: 80,
+    flex: 1,
+    left: '40%', // im not sure why its at the middle at 40%
   },
-  bottomButton: {
+  bottomButtons: {
     marginBottom: 50,
     justifyContent: 'space-between'
   },
   button : {
     
+  },
+  bodyText : {
+    textAlign: 'center',
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#274C77',
   },
 });
 
