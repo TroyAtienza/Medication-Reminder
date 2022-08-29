@@ -80,7 +80,7 @@ class AddPillColourScreen extends Component {
             <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: topColor + 'r', bottomColor: 'r'}), renderImage }}/>
             <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: topColor + 'g', bottomColor: 'g'}), renderImage }}/>
             <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: topColor + 'b', bottomColor: 'b'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: topColor + 'w', bottomColor: 'b'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: topColor + 'w', bottomColor: 'w'}), renderImage }}/>
           </View>
 
           {/* Buttons */}
