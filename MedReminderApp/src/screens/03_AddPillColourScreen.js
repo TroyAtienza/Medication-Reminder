@@ -8,6 +8,7 @@ import indexes from '../assets/ImageIndex';
 // TODO:
 // - need to link chosen color to new pill object (can do once add pill type is done)
 // - change color of button to grey after press
+// - add styling to buttons
 
 const splitScreenStyles = createStyles();
 
