@@ -60,7 +60,7 @@ const AddPillTypeScreen = (props) => {
               style={[styles.option, styles.largeOption, styles.firstOption]}
               onPress={()=>{setPillSize("Small")}}
             >
-              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.small]}/>
+              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.smallTablet]}/>
             </TouchableOpacity>
 
             {/* Medium Option */}
@@ -68,7 +68,7 @@ const AddPillTypeScreen = (props) => {
               style={[styles.option, styles.largeOption]}
               onPress={()=>{setPillSize("Medium")}}
             >
-              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.medium]}/>
+              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.mediumTablet]}/>
             </TouchableOpacity>
 
             {/* Large Option */}
@@ -76,7 +76,7 @@ const AddPillTypeScreen = (props) => {
               style={[styles.option, styles.largeOption]}
               onPress={()=>{setPillSize("Large")}}
             >
-              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.large]}/>
+              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.largeTablet]}/>
             </TouchableOpacity>
           </View>
 
@@ -93,13 +93,15 @@ const AddPillTypeScreen = (props) => {
 
 const pillTypeStyles = createStyles({
   shapeSelect: {
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
     borderBottomColor: 'black',
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: "row",
   },
   sizeSelect: {
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
     borderBottomColor: 'black',
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: "row",

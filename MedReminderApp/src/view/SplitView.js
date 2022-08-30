@@ -116,5 +116,33 @@ const styles = StyleSheet.create({
     height: capsuletHeight,
     marginLeft: optionSize/2 - capsuletWidth/2,
     marginTop: optionSize/2 - capsuletHeight/2,
-  }
+  },
+  // Size Styling
+  smallCapsule: {
+    width: largeOptionSize/5.5,
+    height: largeOptionSize*3/5.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/5.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/5.5/2,
+  },
+  smallTablet:{
+
+  },
+  mediumCapsule: {
+    width: largeOptionSize/4.5,
+    height: largeOptionSize*3/4.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/4.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/4.5/2,
+  },
+  mediumTablet:{
+
+  },
+  largeCapsule: {
+    width: largeOptionSize/3.5,
+    height: largeOptionSize*3/3.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/3.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/3.5/2,
+  },
+  largeTablet:{
+
+  },
 });
