@@ -9,7 +9,6 @@ import indexes from '../assets/ImageIndex';
 // TODO:
 // - need to link chosen color to new pill object (can do once add pill type is done)
 // - change color of button to grey after press
-// - navigation
 // - implement for single coloured pills
 
 const splitScreenStyles = createStyles();
@@ -43,11 +42,6 @@ class AddPillColourScreen extends Component {
     }
   }
 
-  // explore this
-  static navigationOptions = {
-    header: null,
-  };
-
   render() {
     const {topColor, bottomColor, color} = this.state; // keeps track of the current states' color
     const searchIndex = indexes.filter( imageID => imageID.id.includes(color)); // searches the index map for a given color id
@@ -68,6 +62,7 @@ class AddPillColourScreen extends Component {
         <View style={splitScreenStyles.bottomScreen}>
         
           {/* Top capsule */}
+          <Text style={styles.colorText}> Top Color: </Text>
           <View style={styles.colorSelect}>
             <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + 'r' + bottomColor, topColor: 'r'}), renderImage }}/>
             <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + 'g' + bottomColor, topColor: 'g'}), renderImage }}/>
@@ -76,6 +71,7 @@ class AddPillColourScreen extends Component {
           </View>
 
           {/* Bottom capsule */}
+          <Text style={styles.colorText}> Bottom Color: </Text>
           <View style={styles.colorSelect}>
             <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + topColor + 'r', bottomColor: 'r'}), renderImage }}/>
             <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + topColor + 'g', bottomColor: 'g'}), renderImage }}/>
@@ -86,10 +82,10 @@ class AddPillColourScreen extends Component {
           {/* Buttons */}
           <View style={styles.colorSelect}>
             <View style={styles.bottomButtons}>
-              <Button style={styles.button} title="Back" onPress={() => navigation.navigate('PillType')}></Button>
+              <Button style={styles.button} title="Back" onPress={() =>  this.props.navigation.navigate('PillType')}></Button>
             </View>
             <View style={styles.bottomButtons}>
-              <Button style={styles.button} title="Next" onPress={() => navigation.navigate('PillDetails')}></Button>
+              <Button style={styles.button} title="Next" onPress={() =>  this.props.navigation.navigate('PillDetails')}></Button>
           </View>
           </View>
 
@@ -113,11 +109,9 @@ const styles = StyleSheet.create({
     left: '38%', // im not sure why its at the middle at 40%
   },
   bottomButtons: {
-    marginBottom: 50,
     justifyContent: 'space-between'
   },
   button : {
-    
   },
   bodyText : {
     textAlign: 'center',
@@ -125,6 +119,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#274C77',
   },
+  colorText : {
+    color: 'white',
+    marginBottom: 10,
+    marginLeft: 10,
+  }
 });
 
 export default AddPillColourScreen;
