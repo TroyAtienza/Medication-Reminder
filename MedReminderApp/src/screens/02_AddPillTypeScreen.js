@@ -22,6 +22,10 @@ const AddPillTypeScreen = (props) => {
     {src: require("../assets/Pill_Tablet_Triangle.png"), optionStyle: styles.option , pillStyle: styles.tablets}
   ]);
 
+  const [chosen, setChosen] = useState(
+    {src: require("../assets/Pill_Capsule.png"), optionStyle: styles.option, pillStyle: styles.capsules},
+  );
+
   return (
     <View style={styles.container}>
         <TopNav/>
@@ -45,8 +49,16 @@ const AddPillTypeScreen = (props) => {
             />            
           </View>
           
-          <View style={styles.sizeSelect}>
-            
+          <View style={pillTypeStyles.sizeSelect}>
+            <TouchableOpacity style={chosen.optionStyle} onPress={()=>{setPillType(item.src)}}>
+              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.small]}/>
+            </TouchableOpacity>
+            <TouchableOpacity style={chosen.optionStyle} onPress={()=>{setPillType(item.src)}}>
+              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.medium]}/>
+            </TouchableOpacity>
+            <TouchableOpacity style={chosen.optionStyle} onPress={()=>{setPillType(item.src)}}>
+              <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.large]}/>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.buttonContainer}>
@@ -58,8 +70,16 @@ const AddPillTypeScreen = (props) => {
   );
 }
 
+
+
 const pillTypeStyles = createStyles({
   shapeSelect: {
+    padding: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    flexDirection: "row",
+  },
+  sizeSelect: {
     padding: 10,
     borderBottomColor: 'black',
     borderBottomWidth: StyleSheet.hairlineWidth,
