@@ -44,10 +44,23 @@ const indexes = [
     {id : 'PTwb', index : 30},
     {id : 'PTww', index : 31},
 
-    // TODO: implement for single color
     // pillTabletNoLine
+    {id : 'PTNLr', index : 32},
+    {id : 'PTNLg', index : 33},
+    {id : 'PTNLb', index : 34},
+    {id : 'PTNLw', index : 35},
+
     // pillTabletOval
+    {id : 'PTOr', index : 36},
+    {id : 'PTOg', index : 37},
+    {id : 'PTOb', index : 38},
+    {id : 'PTOw', index : 39},
+
     // pillTabletTriangle
+    {id : 'PTTr', index : 40},
+    {id : 'PTTg', index : 41},
+    {id : 'PTTb', index : 42},
+    {id : 'PTTw', index : 43},
 
 ];
 

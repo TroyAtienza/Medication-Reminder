@@ -12,8 +12,9 @@ import indexes from '../assets/ImageIndex';
 const splitScreenStyles = createStyles();
 
 // selected pill color information
-const pillType = 'PTT'; // replace id with this infront to differentiate the pill types
-const color = 'w';
+const pillType = 'PT'; // replace id with this infront to differentiate the pill types
+const { topColor, bottomColor } = 'w';
+const color = 'ww';
 
 // Touchable opacity style
 const ColorSelectButton = ({ onPress, backgroundColor }) => (
@@ -29,16 +30,18 @@ const ColorSelectButton = ({ onPress, backgroundColor }) => (
   </View>
 );
 
-class AddPillColourScreen extends Component {
+class AddPillTwoColoursScreen extends Component {
   constructor() {
     super();
-    this.state = {
-      color: pillType + 'w',
+    this.state = { 
+      topColor: 'w',
+      bottomColor: 'w',
+      color: pillType + 'ww',
     }
   }
 
   render() {
-    const {color} = this.state; // keeps track of the current states' color
+    const {topColor, bottomColor, color} = this.state; // keeps track of the current states' color
     const searchIndex = indexes.filter( imageID => imageID.id.includes(color)); // searches the index map for a given color id
     const renderImage = searchIndex.map( item => <Image style={styles.image} source={imageList[item.index]}/>) // renders the image on click
 
@@ -57,12 +60,21 @@ class AddPillColourScreen extends Component {
         <View style={splitScreenStyles.bottomScreen}>
         
           {/* Top capsule */}
-          <Text style={styles.colorText}> Colour: </Text>
+          <Text style={styles.colorText}> Top Colour: </Text>
           <View style={styles.colorSelect}>
-            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + 'r'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + 'g'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: pillType + 'b'}), renderImage }}/>
-            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: pillType + 'w'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + 'r' + bottomColor, topColor: 'r'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + 'g' + bottomColor, topColor: 'g'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: pillType + 'b' + bottomColor, topColor: 'b'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: pillType + 'w' + bottomColor, topColor: 'w'}), renderImage }}/>
+          </View>
+
+          {/* Bottom capsule */}
+          <Text style={styles.colorText}> Bottom Colour: </Text>
+          <View style={styles.colorSelect}>
+            <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + topColor + 'r', bottomColor: 'r'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + topColor + 'g', bottomColor: 'g'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#3498DB' onPress={() => { this.setState({color: pillType + topColor + 'b', bottomColor: 'b'}), renderImage }}/>
+            <ColorSelectButton backgroundColor='#FFFFFF' onPress={() => { this.setState({color: pillType + topColor + 'w', bottomColor: 'w'}), renderImage }}/>
           </View>
 
           {/* Buttons */}
@@ -112,4 +124,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddPillColourScreen;
+export default AddPillTwoColoursScreen;
