@@ -22,8 +22,8 @@ const paddingTopBottom = 40;
 const paddingLeftRight = 20;
 
 // Pill Shape & Size Constants
-const optionSize = 80;
-const largeOptionSize = 100;
+const optionSize = dimensions.fullWidth/5;
+const largeOptionSize = dimensions.fullWidth/4;
 const tabletWidth = optionSize/2;
 const tabletHeight = optionSize/2;
 const capsuletWidth = optionSize/4;
