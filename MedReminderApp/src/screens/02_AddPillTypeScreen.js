@@ -26,7 +26,7 @@ const AddPillTypeScreen = (props) => {
     {src: require("../assets/Pill_Capsule.png"), pillStyle: styles.capsules},
   );
 
-  function onPressShape(item) {
+  const onPressShape = (item) => {
     setPillType(item.src);
     setChosen({src: item.src, pillStyle: item.pillStyle});
   }
