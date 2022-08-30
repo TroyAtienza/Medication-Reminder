@@ -6,7 +6,7 @@ import PillboxCarousel from "../components/PillboxCarousel";
 import createStyles from '../view/SplitView'
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
-import { setPillType } from '../controller/PillController';
+import { setPillType, setPillSize } from '../controller/PillController';
 
 const AddPillTypeScreen = (props) => {
   const navigation = useNavigation();
@@ -55,13 +55,27 @@ const AddPillTypeScreen = (props) => {
           </View>
           
           <View style={pillTypeStyles.sizeSelect}>
-            <TouchableOpacity style={[styles.option, styles.firstOption]} onPress={()=>{setPillType(item.src)}}>
+            {/* Small Option */}
+            <TouchableOpacity
+              style={[styles.option, styles.largeOption, styles.firstOption]}
+              onPress={()=>{setPillSize("Small")}}
+            >
               <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.small]}/>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.option} onPress={()=>{setPillType(item.src)}}>
+
+            {/* Medium Option */}
+            <TouchableOpacity
+              style={[styles.option, styles.largeOption]}
+              onPress={()=>{setPillSize("Medium")}}
+            >
               <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.medium]}/>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.option} onPress={()=>{setPillType(item.src)}}>
+
+            {/* Large Option */}
+            <TouchableOpacity
+              style={[styles.option, styles.largeOption]}
+              onPress={()=>{setPillSize("Large")}}
+            >
               <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.large]}/>
             </TouchableOpacity>
           </View>
@@ -89,6 +103,7 @@ const pillTypeStyles = createStyles({
     borderBottomColor: 'black',
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: "row",
+    justifyContent: "space-evenly",
   },
 });
 

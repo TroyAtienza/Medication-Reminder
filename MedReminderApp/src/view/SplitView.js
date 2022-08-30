@@ -23,6 +23,7 @@ const paddingLeftRight = 20;
 
 // Pill Shape & Size Constants
 const optionSize = 80;
+const largeOptionSize = 100;
 const tabletWidth = optionSize/2;
 const tabletHeight = optionSize/2;
 const capsuletWidth = optionSize/4;
@@ -95,6 +96,10 @@ const styles = StyleSheet.create({
     width: optionSize,
     height: optionSize,
     marginLeft: 10,
+  },
+  largeOption: {
+    width: largeOptionSize,
+    height: largeOptionSize,
   },
   firstOption: {
     marginLeft: 0,
