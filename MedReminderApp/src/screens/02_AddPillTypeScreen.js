@@ -23,8 +23,13 @@ const AddPillTypeScreen = (props) => {
   ]);
 
   const [chosen, setChosen] = useState(
-    {src: require("../assets/Pill_Capsule.png"), optionStyle: styles.option, pillStyle: styles.capsules},
+    {src: require("../assets/Pill_Capsule.png"), pillStyle: styles.capsules},
   );
+
+  function onPressShape(item) {
+    setPillType(item.src);
+    setChosen({src: item.src, pillStyle: item.pillStyle});
+  }
 
   return (
     <View style={styles.container}>
@@ -42,7 +47,7 @@ const AddPillTypeScreen = (props) => {
               showsHorizontalScrollIndicator={false}
               data={images}
               renderItem={ ({item, index}) => (
-                <TouchableOpacity style={item.optionStyle} onPress={()=>{setPillType(item.src)}}>
+                <TouchableOpacity style={item.optionStyle} onPress={()=>{onPressShape(item)}}>
                   <Image source={item.src} style={item.pillStyle} key={index}/>
                 </TouchableOpacity>
               )}
@@ -50,13 +55,13 @@ const AddPillTypeScreen = (props) => {
           </View>
           
           <View style={pillTypeStyles.sizeSelect}>
-            <TouchableOpacity style={chosen.optionStyle} onPress={()=>{setPillType(item.src)}}>
+            <TouchableOpacity style={[styles.option, styles.firstOption]} onPress={()=>{setPillType(item.src)}}>
               <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.small]}/>
             </TouchableOpacity>
-            <TouchableOpacity style={chosen.optionStyle} onPress={()=>{setPillType(item.src)}}>
+            <TouchableOpacity style={styles.option} onPress={()=>{setPillType(item.src)}}>
               <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.medium]}/>
             </TouchableOpacity>
-            <TouchableOpacity style={chosen.optionStyle} onPress={()=>{setPillType(item.src)}}>
+            <TouchableOpacity style={styles.option} onPress={()=>{setPillType(item.src)}}>
               <Image source={chosen.src} style={[chosen.pillStyle, pillTypeStyles.large]}/>
             </TouchableOpacity>
           </View>
