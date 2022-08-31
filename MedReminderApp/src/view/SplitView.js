@@ -23,7 +23,8 @@ const paddingLeftRight = 20;
 const paddingBottom = 20;
 
 // Pill Shape & Size Constants
-const optionSize = 80;
+const optionSize = dimensions.fullWidth/5;
+const largeOptionSize = dimensions.fullWidth/4;
 const tabletWidth = optionSize/2;
 const tabletHeight = optionSize/2;
 const capsuletWidth = optionSize/4;
@@ -97,6 +98,10 @@ const styles = StyleSheet.create({
     height: optionSize,
     marginLeft: 10,
   },
+  largeOption: {
+    width: largeOptionSize,
+    height: largeOptionSize,
+  },
   firstOption: {
     marginLeft: 0,
   },
@@ -112,5 +117,42 @@ const styles = StyleSheet.create({
     height: capsuletHeight,
     marginLeft: optionSize/2 - capsuletWidth/2,
     marginTop: optionSize/2 - capsuletHeight/2,
-  }
+  },
+  // Size Styling
+  smallCapsule: {
+    width: largeOptionSize/5.5,
+    height: largeOptionSize*3/5.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/5.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/5.5/2,
+  },
+  smallTablet:{
+    width: largeOptionSize/2.5,
+    height: largeOptionSize/2.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/2.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize/2.5/2,
+  },
+  mediumCapsule: {
+    width: largeOptionSize/4.5,
+    height: largeOptionSize*3/4.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/4.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/4.5/2,
+  },
+  mediumTablet:{
+    width: largeOptionSize/2,
+    height: largeOptionSize/2,
+    marginLeft: largeOptionSize/2 - largeOptionSize/2/2,
+    marginTop: largeOptionSize/2 - largeOptionSize/2/2,
+  },
+  largeCapsule: {
+    width: largeOptionSize/3.5,
+    height: largeOptionSize*3/3.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/3.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/3.5/2,
+  },
+  largeTablet:{
+    width: largeOptionSize/1.5,
+    height: largeOptionSize/1.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/1.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize/1.5/2,
+  },
 });
