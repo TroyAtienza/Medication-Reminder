@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
+import { useState } from 'react';
 import TopNav from '../view/TopNav';
 import PillboxCarousel from "../components/PillboxCarousel";
 import createStyles from '../view/SplitView'
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 import { setPillType, setPillSize } from '../controller/PillController';
+import { useNavigation } from "@react-navigation/native";
 
 const styles = createStyles()
 
@@ -49,8 +51,8 @@ const AddPillTypeScreen = (props) => {
   return (
     <View style={styles.container}>
         <TopNav/>
-        <View style={styles.topAddScreen}>
-          {/* <PillboxCarousel/> */}
+        <View style={styles.topScreen}>
+          <PillboxCarousel/>
         </View>
         <View style={styles.bottomAddScreen}>
           <View style={styles.titleContainer}>
