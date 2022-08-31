@@ -69,6 +69,8 @@ const AddPillDetailsScreen = (props) => {
     <View style={styles.container}>
       <TopNav/>
       <View style={styles.topScreen}>
+        <AddButton/>
+        <PillboxCarousel/>
       </View>
       <View style={styles.bottomScreen}>
         <ScrollView contentContainerStyle={styles.listContainer}> 
