@@ -1,7 +1,9 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
+import { useNavigation } from "@react-navigation/native";
 
 const RegistrationScreen = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,7 +28,7 @@ const RegistrationScreen = () => {
           style={styles.input}
           secureTextEntry
         />
-         <TextInput
+        <TextInput
           placeholder="Confirm Password"
           value={confirmPassword}
           onChangeText={text => setConfirmPassword(text)}
@@ -36,17 +38,19 @@ const RegistrationScreen = () => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => {}}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {}}
+          onPress={() => { }}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          Already have an account?
+          <Text style={styles.footerLink} onPress={() => { navigation.navigate("Login") }}>
+            Log in
+          </Text>
+        </Text>
       </View>
     </KeyboardAvoidingView>
   )
