@@ -22,6 +22,13 @@ const paddingTopBottom = 40;
 const paddingLeftRight = 20;
 const paddingBottom = 20;
 
+// Pill Shape & Size Constants
+const optionSize = 80;
+const tabletWidth = optionSize/2;
+const tabletHeight = optionSize/2;
+const capsuletWidth = optionSize/4;
+const capsuletHeight = optionSize*3/4;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -30,21 +37,80 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: paddingTopBottom,
   },
-  topScreen:{
+  topScreen: {
     position: 'relative',
-    backgroundColor: '#fff',
+    backgroundColor: '#E7ECEF',
     width: widthProportion,
     height: "40%",
     paddingTop: paddingTopBottom,
     paddingBottom: paddingBottom,
   },
-    bottomScreen:{   
-    backgroundColor: '#808080',
+  bottomScreen: {   
+    backgroundColor: '#919DA3',
     width: widthProportion,
     height: "60%",
     paddingTop: paddingTopBottom,
     paddingLeft: paddingLeftRight,
     paddingBottom: paddingTopBottom,
     paddingRight: paddingLeftRight,
-  },  
+  },
+  topAddScreen: {
+    position: 'relative',
+    backgroundColor: '#E7ECEF',
+    width: widthProportion,
+    height: "30%",
+    paddingVertical: 10,
+  },
+  bottomAddScreen: {   
+    backgroundColor: '#919DA3',
+    width: widthProportion,
+    height: "70%",
+    paddingBottom: paddingTopBottom,
+  },
+  
+  // Pill Shape Screen
+  // Title Section
+  titleContainer: {
+    paddingVertical: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  titleText: {
+    paddingHorizontal: paddingLeftRight,
+    justifyContent: 'center',
+    alignContent: 'center',
+    textAlign: 'center',
+    color: "#365F88",
+    fontWeight : "bold", 
+    fontSize: 20,
+  },
+  // Button Section
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  // Individual Buttons
+  option: {
+    backgroundColor: '#82B2D6',
+    borderRadius: 20,
+    width: optionSize,
+    height: optionSize,
+    marginLeft: 10,
+  },
+  firstOption: {
+    marginLeft: 0,
+  },
+  // Image Styling
+  tablets: {
+    width: tabletWidth,
+    height: tabletHeight,
+    marginLeft: optionSize/2 - tabletWidth/2,
+    marginTop: optionSize/2 - tabletHeight/2,
+  },
+  capsules: {
+    width: capsuletWidth,
+    height: capsuletHeight,
+    marginLeft: optionSize/2 - capsuletWidth/2,
+    marginTop: optionSize/2 - capsuletHeight/2,
+  }
 });
