@@ -53,7 +53,7 @@ class AddPillTwoColoursScreen extends Component {
 
         {/* Top Screen */}
         <View style={splitScreenStyles.topScreen}>
-          <Text style={styles.bodyText}> Select Pill Colours Below:</Text>
+          <Text style={styles.topText}> Select Pill Colours Below:</Text>
           { renderImage }
         </View>
 
@@ -61,7 +61,7 @@ class AddPillTwoColoursScreen extends Component {
         <View style={splitScreenStyles.bottomScreen}>
         
           {/* Top capsule */}
-          <Text style={styles.colorText}> Top Colour: </Text>
+          <Text style={styles.bottomText}> Top Pill Colour: </Text>
           <View style={styles.colorSelect}>
             <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + 'r' + bottomColor, topColor: 'r'}), renderImage }}/>
             <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + 'g' + bottomColor, topColor: 'g'}), renderImage }}/>
@@ -70,7 +70,7 @@ class AddPillTwoColoursScreen extends Component {
           </View>
 
           {/* Bottom capsule */}
-          <Text style={styles.colorText}> Bottom Colour: </Text>
+          <Text style={styles.bottomText}> Bottom Pill Colour: </Text>
           <View style={styles.colorSelect}>
             <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + topColor + 'r', bottomColor: 'r'}), renderImage }}/>
             <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + topColor + 'g', bottomColor: 'g'}), renderImage }}/>
@@ -112,16 +112,17 @@ const styles = StyleSheet.create({
   },
   button : {
   },
-  bodyText : {
+  topText : {
     textAlign: 'center',
     fontSize: 25,
     fontWeight: 'bold',
     color: '#274C77',
   },
-  colorText : {
+  bottomText : {
     color: 'white',
     marginBottom: 10,
     marginLeft: 10,
+    fontSize: 16,
   }
 });
 
