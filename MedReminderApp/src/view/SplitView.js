@@ -20,6 +20,7 @@ const widthProportion = '100%';
 const heightProportion = '50%';
 const paddingTopBottom = 40;
 const paddingLeftRight = 20;
+const paddingBottom = 20;
 
 // Pill Shape & Size Constants
 const optionSize = 80;
@@ -40,14 +41,14 @@ const styles = StyleSheet.create({
     position: 'relative',
     backgroundColor: '#E7ECEF',
     width: widthProportion,
-    height: heightProportion,
+    height: "40%",
     paddingTop: paddingTopBottom,
-    paddingBottom: paddingTopBottom,
+    paddingBottom: paddingBottom,
   },
   bottomScreen: {   
     backgroundColor: '#919DA3',
     width: widthProportion,
-    height: heightProportion,
+    height: "60%",
     paddingTop: paddingTopBottom,
     paddingLeft: paddingLeftRight,
     paddingBottom: paddingTopBottom,
