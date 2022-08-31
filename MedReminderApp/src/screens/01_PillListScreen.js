@@ -16,7 +16,7 @@ const PillListScreen = (props) => {
       <TopNav/>
       <View style={styles.topScreen}>
         <AddButton onPress={() => navigation.navigate("PillType")}/>
-        {/* <PillboxCarousel/> */}
+         <PillboxCarousel/>
       </View>
       <View style={styles.bottomScreen}>
         <PillList day={"Monday"}/>
