@@ -13,48 +13,56 @@ const styles = createStyles()
 
 const AddPillDetailsScreen = (props) => {
   const navigation = useNavigation();
+  
   const [name, onChangeName] = useState('');
   const [description, onChangeDescription] = useState(null);
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
+  const [modeEnd, setModeEnd] = useState('date');
+  const [showEnd, setShowEnd] = useState(false);
+
+  const [modeStart, setModeStart] = useState('date');
+  const [showStart, setShowStart] = useState(false);
+
   const [textStart, setTextStart] = useState("Select a start date!");
   const [textEnd, setTextEnd] = useState("Select an end date!");
 
   const onChangeStartDate = (event, selectedDate) => {
     if (event.type == 'set') {
-    const currentDate = selectedDate || startDate;
-    setShow(Platform.OS === 'android');
-    setStartDate(currentDate);
+      const currentDate = selectedDate || startDate;
+      setShowStart(Platform.OS === 'android');
+      setStartDate(currentDate);
 
-    let tempDate = new Date(currentDate);
-    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth()+1) + '/' + tempDate.getFullYear();
-    setTextStart(fDate);
-    console.log(textStart);
+      let tempDate = new Date(currentDate);
+      let fDate = tempDate.getDate() + '/' + (tempDate.getMonth()+1) + '/' + tempDate.getFullYear();
+      setTextStart(fDate);
     }
-
-    setShow(false);
+    setShowStart(false);
   }
 
   const onChangeEndDate = (event, selectedDate) => {
     if (event.type == 'set') {
       const currentDate = selectedDate || endDate;
-      setShow(Platform.OS === 'android');
+      setShowEnd(Platform.OS === 'android');
       setEndDate(currentDate);
 
       let tempDate = new Date(currentDate);
       let fDate = tempDate.getDate() + '/' + (tempDate.getMonth()+1) + '/' + tempDate.getFullYear();
       setTextEnd(fDate);
     }
-    setShow(false);
+    setShowEnd(false);
   }
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
+  const showModeStart = (currentMode) => {
+    setShowStart(true);
+    setModeStart(currentMode);
+  }
+
+  const showModeEnd= (currentMode) => {
+    setShowEnd(true);
+    setModeEnd(currentMode);
   }
  
   function sendValues(enteredName, enteredDescription, startDate, endDate) {
@@ -70,7 +78,6 @@ const AddPillDetailsScreen = (props) => {
       <TopNav/>
       <View style={styles.topScreen}>
         <AddButton/>
-        <PillboxCarousel/>
       </View>
       <View style={styles.bottomScreen}>
         <ScrollView contentContainerStyle={styles.listContainer}> 
@@ -87,21 +94,21 @@ const AddPillDetailsScreen = (props) => {
           </View>
           
           <View style={detailsStyles.rowContainer}>
-           <Button title="Start Date:" onPress={()=> showMode('date')}/>
+           <Button title="Start Date:" onPress={()=> showModeStart('date')}/>
            <Text style={detailsStyles.inputText}> {textStart} </Text>
           </View>
 
-          {show && (
-              <DateTimePicker testID='startDatePicker' value={startDate} mode={mode} is24Hour={true} display='default' onChange={onChangeStartDate}/>
+          {showStart && (
+              <DateTimePicker testID='startDatePicker' value={startDate} mode={modeStart} is24Hour={true} display='default' onChange={onChangeStartDate}/>
           )}
 
           <View style={detailsStyles.rowContainer}>
-           <Button title="End Date:" onPress={()=> showMode('date')}/>
+           <Button title="End Date:" onPress={()=> showModeEnd('date')}/>
            <Text style={detailsStyles.inputText}> {textEnd} </Text>
           </View>
 
-          {show && (
-              <DateTimePicker testID='endDatePicker' value={endDate} mode={mode} is24Hour={true} display='default' onChange={onChangeEndDate}/>
+          {showEnd && (
+              <DateTimePicker testID='endDatePicker' value={endDate} mode={modeEnd} is24Hour={true} display='default' onChange={onChangeEndDate}/>
           )}
 
           <View style={{alignItems: 'flex-end'}}>
