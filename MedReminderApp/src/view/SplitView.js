@@ -20,6 +20,15 @@ const widthProportion = '100%';
 const heightProportion = '50%';
 const paddingTopBottom = 40;
 const paddingLeftRight = 20;
+const paddingBottom = 20;
+
+// Pill Shape & Size Constants
+const optionSize = dimensions.fullWidth/5;
+const largeOptionSize = dimensions.fullWidth/4;
+const tabletWidth = optionSize/2;
+const tabletHeight = optionSize/2;
+const capsuletWidth = optionSize/4;
+const capsuletHeight = optionSize*3/4;
 
 const styles = StyleSheet.create({
   container: {
@@ -29,21 +38,114 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: paddingTopBottom,
   },
-  topScreen:{
+  topScreen: {
     position: 'relative',
-    backgroundColor: '#fff',
+    backgroundColor: '#E7ECEF',
     width: widthProportion,
-    height: heightProportion,
+    height: "40%",
     paddingTop: paddingTopBottom,
-    paddingBottom: paddingTopBottom,
+    paddingBottom: paddingBottom,
   },
-    bottomScreen:{   
-    backgroundColor: '#808080',
+  bottomScreen: {   
+    backgroundColor: '#919DA3',
     width: widthProportion,
-    height: heightProportion,
+    height: "60%",
     paddingTop: paddingTopBottom,
     paddingLeft: paddingLeftRight,
     paddingBottom: paddingTopBottom,
     paddingRight: paddingLeftRight,
-  },  
+  },
+  bottomAddScreen: {   
+    backgroundColor: '#919DA3',
+    width: widthProportion,
+    height: "60%",
+    paddingBottom: paddingTopBottom,
+  },
+  
+  // Pill Shape Screen
+  // Title Section
+  titleContainer: {
+    paddingVertical: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  titleText: {
+    paddingHorizontal: paddingLeftRight,
+    justifyContent: 'center',
+    alignContent: 'center',
+    textAlign: 'center',
+    color: "#365F88",
+    fontWeight : "bold", 
+    fontSize: 20,
+  },
+  // Button Section
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  // Individual Buttons
+  option: {
+    backgroundColor: '#82B2D6',
+    borderRadius: 20,
+    width: optionSize,
+    height: optionSize,
+    marginLeft: 10,
+  },
+  largeOption: {
+    width: largeOptionSize,
+    height: largeOptionSize,
+  },
+  firstOption: {
+    marginLeft: 0,
+  },
+  // Image Styling
+  tablets: {
+    width: tabletWidth,
+    height: tabletHeight,
+    marginLeft: optionSize/2 - tabletWidth/2,
+    marginTop: optionSize/2 - tabletHeight/2,
+  },
+  capsules: {
+    width: capsuletWidth,
+    height: capsuletHeight,
+    marginLeft: optionSize/2 - capsuletWidth/2,
+    marginTop: optionSize/2 - capsuletHeight/2,
+  },
+  // Size Styling
+  smallCapsule: {
+    width: largeOptionSize/5.5,
+    height: largeOptionSize*3/5.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/5.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/5.5/2,
+  },
+  smallTablet:{
+    width: largeOptionSize/2.5,
+    height: largeOptionSize/2.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/2.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize/2.5/2,
+  },
+  mediumCapsule: {
+    width: largeOptionSize/4.5,
+    height: largeOptionSize*3/4.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/4.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/4.5/2,
+  },
+  mediumTablet:{
+    width: largeOptionSize/2,
+    height: largeOptionSize/2,
+    marginLeft: largeOptionSize/2 - largeOptionSize/2/2,
+    marginTop: largeOptionSize/2 - largeOptionSize/2/2,
+  },
+  largeCapsule: {
+    width: largeOptionSize/3.5,
+    height: largeOptionSize*3/3.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/3.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize*3/3.5/2,
+  },
+  largeTablet:{
+    width: largeOptionSize/1.5,
+    height: largeOptionSize/1.5,
+    marginLeft: largeOptionSize/2 - largeOptionSize/1.5/2,
+    marginTop: largeOptionSize/2 - largeOptionSize/1.5/2,
+  },
 });
