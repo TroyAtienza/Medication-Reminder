@@ -100,7 +100,8 @@ const AddPillTypeScreen = (props) => {
 
           <View style={styles.buttonContainer}>
             <BackButton onPress={() => navigation.navigate("Home")}/>
-            <NextButton onPress={() => navigation.navigate("PillColour")}/>
+            {/* need to add a check to navigate into 1 or 2 pill colors */}
+            <NextButton onPress={() => navigation.navigate("PillTwoColours")}/>
           </View>
         </View>
       </View>
