@@ -16,7 +16,7 @@ export default function App() {
   // TODO: When Home screen is completed change home component to actual home screen.
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
+      <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name="Home" component={PillListScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillType" component={AddPillTypeScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillOneColour" component={AddPillColourScreen} options ={{headerShown:false}}/>
