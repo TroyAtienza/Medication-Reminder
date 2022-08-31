@@ -9,6 +9,7 @@ import AddPillDetailsScreen from "./src/screens/04_AddPillDetailsScreen";
 import AddPillTimesScreen from "./src/screens/05_AddPillTimesScreen";
 import ProfileScreen from "./src/screens/06_ProfileScreen";
 import LoginScreen from "./src/screens/LoginScreen";
+import RegistrationScreen from "./src/screens/RegistrationScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen name="PillTimes" component={AddPillTimesScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="Profile" component={ProfileScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="Login" component={LoginScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="Register" component={RegistrationScreen} options ={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

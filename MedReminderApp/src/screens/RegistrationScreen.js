@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
-const LoginScreen = () => {
+const RegistrationScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -52,7 +52,7 @@ const LoginScreen = () => {
   )
 }
 
-export default LoginScreen
+export default RegistrationScreen
 
 const styles = StyleSheet.create({
   container: {
