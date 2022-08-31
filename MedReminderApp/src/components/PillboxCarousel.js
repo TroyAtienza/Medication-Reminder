@@ -116,7 +116,7 @@ export default function PillboxCarousel() {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 50,
+        paddingTop: 30,
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
