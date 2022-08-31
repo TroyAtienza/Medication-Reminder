@@ -18,8 +18,8 @@ export const dimensions = {
 
 const widthProportion = '100%';
 const heightProportion = '50%';
-const paddingTopBottom = 40;
-const paddingLeftRight = 20;
+const paddingTopBottom = 15;
+const paddingLeftRight = 10;
 
 const styles = StyleSheet.create({
   container: {

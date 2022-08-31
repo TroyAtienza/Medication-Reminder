@@ -1,12 +1,16 @@
 import React from 'react';
 import { useState } from "react";
-import { Text, ScrollView, TouchableOpacity, StyleSheet, View, Button, Alert } from "react-native";
+import { Text, ScrollView, TouchableOpacity, StyleSheet, View, Button} from "react-native";
 import Pill from "./Pill";
 
 const temp = new Pill();
-temp.pillName = "hi";
+temp.pillName = "Panadol";
+temp.pillRepeats = 5;
+temp.pillInformation = "Take 2 every 8 hours.";
 const temp1 = new Pill();
-temp1.pillName = "hello";
+temp1.pillName = "Pill";
+temp1.pillRepeats = 3;
+temp1.pillInformation = "Take twice a day with food.";
 
 const data = [
     {
@@ -53,12 +57,14 @@ const data = [
  */
 
 const PillList = (props) => {
-    const index = data.findIndex(e => e.day === props.day);   // Finds the index of the provided day.
-    const [items, setItems] = React.useState(data);
-    const deleteItem = (index) => () => setItems((items) => items.filter((_, i) => i !== index));
+    const[list]=useState(data);    
+    const index = list.findIndex(e => e.day === props.day); // Finds the index of the provided day.
+    function removeHandler() {
+        list[index].items.splice(index,1);
+    }
     return (
     <ScrollView contentContainerStyle={styles.listContainer}>
-        {data[index].items.map((pill, index) => { const [taken, setTaken] = useState(false);
+        {list[index].items.map((pill, index) => { const [taken, setTaken] = useState(false);
         return (
             <View style={styles.container} key={index}>
                 <TouchableOpacity
@@ -66,14 +72,11 @@ const PillList = (props) => {
                     //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
                     style = {[(taken) ? styles.taken : styles.notTaken, styles.listItem]}
                 >
-                <Text> Name </Text>
-                </TouchableOpacity>
-                <Button style={styles.deleteButton} title="Delete" onPress={() => 
-                    Alert.alert('Are you sure you want to delete?','You cannot undo...',[
-                        {text: 'OK', onPress: deleteItem(index)},
-                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-                    ],{cancelable: false})}
-                />
+                </TouchableOpacity>   
+                <Text style={styles.text}>{pill.pillName}</Text>
+                <Text>{pill.pillRepeats}</Text>
+                <Text>{pill.pillInformation}</Text>
+                <Button removePill = {pill.pillName} style={styles.deleteButton} title="removePill" onPress ={removeHandler}/>
             </View>
         );
         })}
@@ -92,11 +95,11 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     text: {
-        fontSize: 12,
+        fontSize: 13,
         lineHeight: 21,
         fontWeight: 'bold',
         letterSpacing: 0.25,
-        color: 'red',
+        color: 'black',
     },
     container: {
         flex: 1,

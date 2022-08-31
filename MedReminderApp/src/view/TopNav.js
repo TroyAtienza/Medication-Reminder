@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
     topNav:{
     backgroundColor : "#A3CEF1", 
+    paddingTop: 7,
     height : "15%", 
     width: "100%",
   },
