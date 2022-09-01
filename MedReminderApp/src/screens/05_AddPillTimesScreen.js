@@ -1,8 +1,7 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, TextInput, StyleSheet, Text, View } from 'react-native';
 import createStyles from '../view/SplitView';
 import TopNav from '../view/TopNav';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { useState } from 'react';
+import React from 'react';
 
 // TODO:
 // - add time picker dependency
@@ -13,16 +12,28 @@ import { useState } from 'react';
 
 const splitScreenStyles = createStyles();
 
+const ColorSelectButton = ({ onPress, backgroundColor }) => (
+  <View>
+    <TouchableOpacity style={{
+      borderRadius: 15,
+      height: 60,
+      width: 60,
+      backgroundColor: backgroundColor,
+      }}
+      onPress={onPress}>
+    </TouchableOpacity>
+  </View>
+);
+
+const PillTime = ({}) => (
+  <View style={styles.listText}>
+  
+  </View>
+);
+
 const AddPillTimesScreen = (props) => {
-  const [open, setOpen] = useState(false);
-  const [dosageAmount, setValue] = useState(null);
-  const [dosageItems, setItems] = useState([
-    { label: 'Once a day', value: '1' }, 
-    { label: 'Twice a day', value: '2' },
-    { label: 'Three times a day', value: '3' }, 
-    { label: 'Four times a day', value: '4' },
-    { label: 'Five times a day', value: '5' }, 
-  ]);
+  const [text, onChangeText] = React.useState("Useless Text");
+  const [number, onChangeNumber] = React.useState(null);
 
   return (
     <View style={splitScreenStyles.container}>
@@ -37,21 +48,19 @@ const AddPillTimesScreen = (props) => {
       <View style={splitScreenStyles.bottomScreen}>
 
         {/* Frequency Input */}
-        <View style={styles.dropdown}>
-          <Text style={styles.bottomScreenText}> Select Dosage Amount per day: </Text>
-          <DropDownPicker 
-          open={open}
-          value={dosageAmount}
-          items={dosageItems}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}>
-          </DropDownPicker>
+        <View style={styles.row}>
+          <Text style={styles.bottomScreenText}> Pill dosage per day: </Text>
+          <TextInput 
+          onChangeText={onChangeText}
+          value={number} 
+          placeholder="Enter dosage amount" style={styles.bottomScreenText}
+          keyboardType="numeric"/>
         </View>
 
         {/* Live Dosage List */}
         <View style={styles.row}>
           <Text style={styles.bottomScreenText}> Select Dosage Times: </Text>
+          <PillTime></PillTime>
           <FlatList
           data={[
           {key: 'Pill 1:'},
@@ -80,9 +89,6 @@ const AddPillTimesScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-  dropdown: {
-    flex: 1,
-  },
   row: {
     flex: 1,
   },
