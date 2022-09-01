@@ -1,5 +1,5 @@
-import { data } from './src/model/list';
-import Pill from "./pill";
+import { data } from "../model/PillList";
+import Pill from "../model/Pill";
 
 // TODO: Callback functions are probably going to be useful here.
 //Builder Model
