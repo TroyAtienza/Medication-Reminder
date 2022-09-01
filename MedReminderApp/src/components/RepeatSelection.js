@@ -1,10 +1,19 @@
 import { React, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const RepeatSelection = () => {
+const selectedDays = []
+
+const RepeatSelection = () => {  
     const [selected, setSelected] = useState(null);
     const handleSelected = (value) => {
-      setSelected(value);
+      if (selectedDays.includes(value)){
+         selectedDays.splice(selectedDays.indexOf(value),1);
+         console.log(selectedDays);
+      }
+      else {
+         setSelected(value);
+         selectedDays.push(value);
+      }
     };
     return(
      <View style ={detailsStyles.rowContainer}>
