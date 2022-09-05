@@ -1,40 +1,80 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const selectedDays = []
-
 const RepeatSelection = () => {  
-    const [selected, setSelected] = useState(null);
-    const handleSelected = (value) => {
-      if (selectedDays.includes(value)){
-         selectedDays.splice(selectedDays.indexOf(value),1);
-         console.log(selectedDays);
-      }
-      else {
-         setSelected(value);
-         selectedDays.push(value);
-      }
-    };
-    return(
-     <View style ={detailsStyles.rowContainer}>
-        <HighlightAndSelectDay title={'Monday'} onPress={handleSelected} value={selected} id={'M'}/>
-        <HighlightAndSelectDay title={'Tuesday'} onPress={handleSelected} value={selected} id={'T'}/>
-        <HighlightAndSelectDay title={'Wednesday'} onPress={handleSelected} value={selected} id={'W'}/>
-        <HighlightAndSelectDay title={'Thursday'} onPress={handleSelected} value={selected} id={'T'}/>
-        <HighlightAndSelectDay title={'Friday'} onPress={handleSelected} value={selected} id={'F'}/>
-        <HighlightAndSelectDay title={'Saturday'} onPress={handleSelected} value={selected} id={'S'}/>
-        <HighlightAndSelectDay title={'Sunday'} onPress={handleSelected} value={selected} id={'S'}/>
-    </View>
-    );
-}
+    const [state, setState] = useState({
+        selectedIndex: [],
+        index: 0,
+    });
+    const {selectedIndex, index} = state;
 
-function HighlightAndSelectDay({ title, onPress, value, id }) {
-    return (
-      <TouchableOpacity style={[detailsStyles.dayBox, { backgroundColor: value === title?"lightblue":"white" }]} onPress={()=>onPress(title)}>
-        <Text style={detailsStyles.dayBoxText}> {id} </Text>
-      </TouchableOpacity>
-    );
-  }
+    const Days = ({item, id, callBack}) => {
+        var color = "grey"
+        if(selectedIndex[1] && selectedIndex.includes(id)){
+          color ="lightblue"
+        } 
+        else if(selectedIndex[0] === id){
+          color = "lightblue"
+        }
+        return (
+            <TouchableOpacity key={id} onPress={() => { callBack(id); }} style={{ backgroundColor:color, 
+                borderTopLeftRadius:10,
+                borderTopRightRadius: 10,
+                borderBottomLeftRadius: 10,
+                borderBottomRightRadius: 10,}}>
+                <Text style={detailsStyles.dayBoxText}> {item.day} </Text>
+            </TouchableOpacity>
+        );
+    };
+    const selectedDays = [
+        {
+            id: 1,
+            day: "M",
+        },
+        {
+            id: 2,
+            day: "T",
+        },
+        {
+            id: 3,
+            day: "W",
+        },
+        {
+            id: 4,
+            day: "T",
+        },
+        {
+            id: 5,
+            day: "F",
+        },
+        {
+            id: 6,
+            day: "S",
+        },
+        {
+            id: 7,
+            day: "S",
+        },
+    ];
+
+    const selectedItem = (id) => { 
+        if (selectedIndex == 0) {
+          setState({selectedIndex:[ id], index: 1});         
+        } 
+        else {
+          if(selectedIndex.includes(id) === false){
+            setState({selectedIndex: [...selectedIndex, id], index: index + 1});          
+          }
+        }
+      };  
+      return (
+        <View style={detailsStyles.rowContainer}>
+              {selectedDays.map((data, id) => (
+                <Days item={data} id={data.id.toString()} callBack={(id) => {selectedItem(id);}}/>         
+              ))}
+        </View>
+      );
+}
 
 const detailsStyles = StyleSheet.create({
     dayBox:{
