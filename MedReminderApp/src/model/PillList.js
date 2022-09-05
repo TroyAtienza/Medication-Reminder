@@ -61,6 +61,7 @@ const PillList = (props) => {
     const index = list.findIndex(e => e.day === props.day); // Finds the index of the provided day.
     function removeHandler() {
         list[index].items.splice(index,1);
+        console.log(list);
     }
     return (
     <ScrollView contentContainerStyle={styles.listContainer}>

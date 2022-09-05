@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Button, ScrollView, Text, View, TextInput, Platform } from 'react-native';
 import createStyles from '../view/SplitView'
 import TopNav from '../view/TopNav'
@@ -70,13 +70,14 @@ const AddPillDetailsScreen = (props) => {
     console.log(enteredDescription);
     console.log(startDate);
     console.log(endDate);
-    new Pill();
+    new Pill(enteredName, enteredDescription);
   };
   
   return (
     <View style={styles.container}>
       <TopNav/>
       <View style={styles.topScreen}>
+        <PillboxCarousel/>
         <AddButton/>
       </View>
       <View style={styles.bottomScreen}>
@@ -114,7 +115,6 @@ const AddPillDetailsScreen = (props) => {
           <View style={{alignItems: 'flex-end'}}>
             <Button title="Create Pill" fontWeightm='bold' onPress={() => sendValues(name, description, startDate, endDate)}/> 
           </View>
-
         </ScrollView>
       </View>
     </View>

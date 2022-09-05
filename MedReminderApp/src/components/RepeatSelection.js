@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 
 const RepeatSelection = () => {  
     const [state, setState] = useState({
@@ -62,7 +62,6 @@ const RepeatSelection = () => {
         if(selectedIndex.includes(id) === true){ //if item is already selected, remove from list.
             selectedIndex.splice(selectedIndex.indexOf(id),1);
             setState({selectedIndex: [...selectedIndex], index: index+1}); 
-            console.log(selectedIndex);   
         }
         else if(selectedIndex.includes(id) === false){
           setState({selectedIndex: [...selectedIndex, id], index: index+1}); //add newly selected item to list.   
