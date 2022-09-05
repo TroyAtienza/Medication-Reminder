@@ -20,7 +20,6 @@ const RegistrationScreen = () => {
           onChangeText={text => setEmail(text)}
           style={styles.input}
         />
-
         <TextInput
           placeholder="Password"
           value={password}
