@@ -8,7 +8,7 @@ const RepeatSelection = () => {
     });
     const {selectedIndex, index} = state;
 
-    const Days = ({item, id, callBack}) => {
+    const SelectDays = ({item, id, callBack}) => {
         var color = "grey"
         if(selectedIndex[1] && selectedIndex.includes(id)){
           color ="lightblue"
@@ -17,7 +17,7 @@ const RepeatSelection = () => {
           color = "lightblue"
         }
         return (
-            <TouchableOpacity key={id} onPress={() => { callBack(id); }} style={{ backgroundColor:color, 
+            <TouchableOpacity onPress={() => { callBack(id); }} style={{ backgroundColor:color, 
                 borderTopLeftRadius:10,
                 borderTopRightRadius: 10,
                 borderBottomLeftRadius: 10,
@@ -26,69 +26,58 @@ const RepeatSelection = () => {
             </TouchableOpacity>
         );
     };
+
     const selectedDays = [
         {
-            id: 1,
+            id: 0,
             day: "M",
         },
         {
-            id: 2,
+            id: 1,
             day: "T",
         },
         {
-            id: 3,
+            id: 2,
             day: "W",
         },
         {
-            id: 4,
+            id: 3,
             day: "T",
         },
         {
-            id: 5,
+            id: 4,
             day: "F",
+        },
+        {
+            id: 5,
+            day: "S",
         },
         {
             id: 6,
             day: "S",
         },
-        {
-            id: 7,
-            day: "S",
-        },
     ];
 
     const selectedItem = (id) => { 
-        if (selectedIndex == 0) {
-          setState({selectedIndex:[ id], index: 1});         
-        } 
-        else {
-          if(selectedIndex.includes(id) === false){
-            setState({selectedIndex: [...selectedIndex, id], index: index + 1});          
-          }
+        if(selectedIndex.includes(id) === true){ //if item is already selected, remove from list.
+            selectedIndex.splice(selectedIndex.indexOf(id),1);
+            setState({selectedIndex: [...selectedIndex], index: index+1}); 
+            console.log(selectedIndex);   
+        }
+        else if(selectedIndex.includes(id) === false){
+          setState({selectedIndex: [...selectedIndex, id], index: index+1}); //add newly selected item to list.   
         }
       };  
       return (
         <View style={detailsStyles.rowContainer}>
-              {selectedDays.map((data, id) => (
-                <Days item={data} id={data.id.toString()} callBack={(id) => {selectedItem(id);}}/>         
+              {selectedDays.map((data, key={id}) => (
+                <SelectDays item={data} id={data.id.toString()} callBack={(id) => {selectedItem(id);}}/>         
               ))}
         </View>
       );
 }
 
 const detailsStyles = StyleSheet.create({
-    dayBox:{
-      backgroundColor: '#A9A9A9',
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10,
-      borderBottomLeftRadius: 10,
-      borderBottomRightRadius: 10,
-      paddingLeft: '1%',
-      paddingRight: '1%',
-      position: 'relative',
-      borderWidth: 1,
-      borderRadius: 8,
-    },
     dayBoxText:{
       fontSize: 30,
       fontWeight: 'bold',

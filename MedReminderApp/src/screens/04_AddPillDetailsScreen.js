@@ -13,7 +13,7 @@ const styles = createStyles()
 
 const AddPillDetailsScreen = (props) => {
   const navigation = useNavigation();
-  
+
   const [name, onChangeName] = useState('');
   const [description, onChangeDescription] = useState(null);
 
