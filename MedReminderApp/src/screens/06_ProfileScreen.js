@@ -1,10 +1,6 @@
-import {StyleSheet, Text, View, Button, Alert, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Button, Image, TouchableOpacity} from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import createStyles from '../view/SplitView';
-
-//TODO:
-// - line everything up...
-// - Signup/Login page
 
 const splitScreenStyles = createStyles();
 
@@ -67,10 +63,10 @@ const ProfileScreen = (props) => {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor : "#A3CEF1",
         flex: 1,
         height : "100%",
         width : "100%",
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: "column",
@@ -144,15 +140,15 @@ const styles = StyleSheet.create({
     },
     option: {
         flexDirection: "row",
-        backgroundColor : "#A3CEF1",
         alignItems: "center",
         padding: 10,
         borderRadius: 20,
         width: "90%",
+        backgroundColor: '#fff',
     },
     optionLogout: {
         flexDirection: "row",
-        backgroundColor : "#A3CEF1",
+        backgroundColor: '#fff',
         alignItems: "center",
         padding: 10,
         marginTop: 25,
