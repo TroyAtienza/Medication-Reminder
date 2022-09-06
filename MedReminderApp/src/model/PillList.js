@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState, useEffect } from "react";
-import { Text, TouchableOpacity, SectionList, ScrollView, StyleSheet, View, Button} from "react-native";
+import { useState } from "react";
+import { Text, TouchableOpacity, SectionList, StyleSheet, View, Button} from "react-native";
 import Pill from "./Pill";
 
 const temp = new Pill();
@@ -79,31 +79,20 @@ const data = [
     };
   
     const Item = ({ item, section }) => {
-      const [taken, setTaken] = useState(false);
       return (
         <View style={styles.row}>
           <Text> {item.pillName} </Text>
           <Text> {item.pillInformation} </Text>
-          <Button title={'Delete'} onPress={() => { removePill(section.id, item); }}/>
-          <TouchableOpacity
-            onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
-            //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
-            style = {[(taken) ? styles.taken : styles.notTaken, styles.listItem]}
-            >
-          </TouchableOpacity>   
+          <Button title={'Delete'} onPress={() => { removePill(section.id, item); }}/> 
         </View>
       );
     };
     return (
-      <ScrollView contentContainerStyle={styles.listContainer}>
-        <View style={styles.container} key={index}>
-            <SectionList 
-                sections={state} 
-                keyExtractor={(item, index) => item + index} 
-                renderItem={Item}
-            />
-        </View>
-      </ScrollView>
+        <SectionList 
+            sections={state} 
+            keyExtractor={(item, index) => item + index} 
+            renderItem={Item}
+        />
     );
   }
   
