@@ -1,7 +1,7 @@
 import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
 import createStyles from '../view/SplitView';
 import TopNav from '../view/TopNav';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 // TODO:
 // - add time picker dependency
@@ -9,37 +9,24 @@ import React, { Component } from 'react';
 // - wrap bottom screen in a flat list.
 
 const splitScreenStyles = createStyles();
-const dosage = [];
-const isValid = false;
+var dosage = [];
+var isValid = false;
 
-const PillRow = ({isValid}) => (
-  <View>
-    <Text> </Text> 
-  </View>
-);
-
-class AddPillTimesScreen extends Component {
-  constructor() {
-    super();
-    this.state = {
-      dosage: [],
-      number: '',
-      isValid: false,
-    };
-  }
+const AddPillTimesScreen = (props) => {
+  const [text, setText] = useState('');
 
   /*
   * Checks if the text input value is valid. 
   * If it is, the pill dosage list can be updated, otherwise the user must input again.
   */
-  checkInput() {
-    if (isNaN(this.state.number)) {
+  const checkInput = () => {
+    if (isNaN(text)) {
       Alert.alert("Please enter a valid number.");
       // need to make the text input box clear
-      this.state.isValid = false;
+      isValid = false;
     } else {
-      this.state.isValid = true;
-      this.newDosage();
+      isValid = true;
+      newDosage();
     }
   }
 
@@ -47,18 +34,12 @@ class AddPillTimesScreen extends Component {
   * Updates the dosage list to match users input 
   * 
   */
-  newDosage() {
-    this.state.dosage = [];
-    for (let i = 0; i < this.state.number; i++) {
-      var temp = 'Pill ' + (i + 1) + ': ';
-      this.state.dosage[i] = temp;
-      <Text> {this.state.dosage[i]} </Text>
+  const newDosage = () => {
+    dosage = [];
+    for (let i = 0; i < text; i++) {
+      dosage.push(<Text style={styles.listText}> {'Pill ' + (i + 1) + ': '} </Text>);
     }
-    console.log(this.state.dosage);
   }
-
-  render() {
-    const { dosage, number, isValid } = this.state; 
 
     return (
       <View style={splitScreenStyles.container}>
@@ -75,10 +56,9 @@ class AddPillTimesScreen extends Component {
           {/* Frequency Input */}
           <View style={styles.row}>
             <Text style={styles.bottomScreenText}> Pill dosage per day: </Text>
-            <TextInput 
-            ref={input => { this.textInput = input }}
-            onChangeText={(number) => this.setState({number})}
-            value={number}
+            <TextInput
+            value={text}
+            onChangeText={(newText) => setText(newText)}
             placeholder="Enter dosage amount" 
             style={styles.bottomScreenText}
             keyboardType="numeric"/>
@@ -86,11 +66,9 @@ class AddPillTimesScreen extends Component {
 
           {/* Dosage List */}
           <View style={styles.row}>
-            <Text style={styles.bottomScreenText}> Select Dosage Times: </Text>           
-            <Text style={styles.bottomScreenText}>
-              {}
-            </Text>
-            { this.checkInput() }
+            <Text style={styles.bottomScreenText}> Select Dosage Times: </Text>
+            { checkInput() }
+            { dosage }
           </View>
 
           {/* Buttons */}
@@ -106,7 +84,7 @@ class AddPillTimesScreen extends Component {
       </View>
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   row: {
@@ -134,7 +112,6 @@ const styles = StyleSheet.create({
   listText: {
     fontSize: 20,
     color: 'white',
-    marginLeft: 10,
   },
 });
 
