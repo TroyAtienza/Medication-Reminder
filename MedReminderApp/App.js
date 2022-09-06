@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./src/screens/00_HomeScreen";
 import PillListScreen from "./src/screens/01_PillListScreen";
 import AddPillTypeScreen from "./src/screens/02_AddPillTypeScreen";
 import AddPillColourScreen from "./src/screens/03_AddPillColourScreen";
@@ -18,6 +17,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen name="Login" component={LoginScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="Register" component={RegistrationScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="Home" component={PillListScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillType" component={AddPillTypeScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillOneColour" component={AddPillColourScreen} options ={{headerShown:false}}/>
@@ -25,8 +26,6 @@ export default function App() {
         <Stack.Screen name="PillDetails" component={AddPillDetailsScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillTimes" component={AddPillTimesScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="Profile" component={ProfileScreen} options ={{headerShown:false}}/>
-        <Stack.Screen name="Login" component={LoginScreen} options ={{headerShown:false}}/>
-        <Stack.Screen name="Register" component={RegistrationScreen} options ={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
