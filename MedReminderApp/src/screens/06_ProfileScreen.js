@@ -1,16 +1,21 @@
-import {StyleSheet, Text, View, Button, Image, TouchableOpacity} from 'react-native';
-import { useNavigation } from "@react-navigation/native";
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from "@react-navigation/native";
 import createStyles from '../view/SplitView';
+
 
 const splitScreenStyles = createStyles();
 
-const ProfileScreen = (props) => {
+const ProfileScreen = (profile) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.topNav}>
-                <Button title='Back' style={styles.button} onPress={() => navigation.navigate('Home')}></Button>
-                <Text style={styles.title}> Profile </Text>
+                {/*<Button title='Back' style={styles.button} onPress={() => navigation.navigate('Home')}></Button>*/}
+                <TouchableOpacity style={styles.navBackButton} onPress={() => navigation.navigate('Home')}>
+                    <Image
+                        source={require('../assets/buttons/back.png')}
+                    />
+                </TouchableOpacity>
                 <View></View>
             </View>
             <View style={styles.userWrapper}>
@@ -26,37 +31,38 @@ const ProfileScreen = (props) => {
                     </View>
                 </View>
             </View>
-            <View style={styles.options}>
-                <TouchableOpacity
-                    style={styles.option}
-                    onPress={() => {console.log("Put function here")}}
-                >
-                    <Image source={require("../assets/profile/lock.png")} style={{ tintColor: "black"}}/>
-                    <Text style={styles.optionText}>Change Password</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.option}
-                    onPress={() => {console.log("Put function here")}}
-                >
-                    <Image source={require("../assets/profile/edit.png")} style={{ tintColor: "black"}}/>
-                    <Text style={styles.optionText}>Update Picture</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.option}
-                    onPress={() => {console.log("Put function here")}}
-                >
-                    <Image source={require("../assets/profile/settings.png")} style={{ tintColor: "black"}}/>
-                    <Text style={styles.optionText}>Settings</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.optionLogout}
-                    onPress={() => {console.log("Put function here")}}
-                >
-                    <Image source={require("../assets/profile/log-out.png")} style={{ tintColor: "red"}}/>
-                    <Text style={styles.logoutText}>Sign out</Text>
-                </TouchableOpacity>
+            <View style={styles.body}>
+                <View style={styles.options}>
+                    <TouchableOpacity
+                        style={styles.option}
+                        onPress={() => {console.log("Put function here")}}
+                    >
+                        <Image source={require("../assets/profile/lock.png")} style={{ tintColor: "black"}}/>
+                        <Text style={styles.optionText}>Change Password</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.option}
+                        onPress={() => {console.log("Put function here")}}
+                    >
+                        <Image source={require("../assets/profile/edit.png")} style={{ tintColor: "black"}}/>
+                        <Text style={styles.optionText}>Update Picture</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.option}
+                        onPress={() => {console.log("Put function here")}}
+                    >
+                        <Image source={require("../assets/profile/settings.png")} style={{ tintColor: "black"}}/>
+                        <Text style={styles.optionText}>Settings</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.optionLogout}
+                        onPress={() => {console.log("Put function here")}}
+                    >
+                        <Image source={require("../assets/profile/log-out.png")} style={{ tintColor: "red"}}/>
+                        <Text style={styles.logoutText}>Sign out</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={styles.finalPadding}/>
         </View>
     );
 }
@@ -74,16 +80,14 @@ const styles = StyleSheet.create({
     topNav: { 
         backgroundColor : "#A3CEF1",
         width: "100%",
-        flex: 0.1,
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingTop: 40,
     },
-    button: {
-        backgroundColor : "#A3CEF1",
-        height : "15%",
-        width: "10%",
+    //TODO MAKE GLOBAL
+    navBackButton: {
+        marginLeft: 10,
     },
     title: {
         color : "#274C77", 
@@ -92,32 +96,31 @@ const styles = StyleSheet.create({
         marginRight: 50,
     },
     body: {
+        marginTop: 20,
+        backgroundColor : "white",
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
         width:'100%',
-        flex:0.3,
-        paddingTop: 40,
-        paddingBottom: 40,
+        flex: 1,
         alignItems: 'center'
     },
     userWrapper: {
-        flexDirection: "row",
+        flexDirection: "column",
         width:'100%',
         flex: 0.2,
-        paddingTop: 40,
-        paddingBottom: 40,
-        marginLeft: 40,
+        paddingTop: 25,
+        paddingBottom: 60,
         alignItems: 'center'
     },
     userInfo: {
         flexDirection: "column",
-        alignItems: "flex-start",
+        alignItems: "center",
     },
     username: {
-        marginLeft: 20,
         fontWeight: "bold",
         fontSize: 25,
     },
     mailWrapper: {
-        marginLeft: 20,
         flexDirection: "row",
     },
     mailImage: {
@@ -130,13 +133,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     options: {
-        marginTop: 10,
+        marginTop: 30,
         width:'100%',
-        flex: 0.55,
+        flex: 0.6,
         alignItems: 'flex-start',
         marginLeft: 40,
-        justifyContent: "space-around",
-
+        justifyContent: "space-between",
     },
     option: {
         flexDirection: "row",
@@ -144,11 +146,11 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 20,
         width: "90%",
-        backgroundColor: '#fff',
+        backgroundColor : "#A3CEF1",
     },
     optionLogout: {
         flexDirection: "row",
-        backgroundColor: '#fff',
+        backgroundColor : "#A3CEF1",
         alignItems: "center",
         padding: 10,
         marginTop: 25,
@@ -173,9 +175,6 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         justifyContent: "flex-start",
     },
-    finalPadding: {
-        flex: 0.25,
-    }
 });
 
 export default ProfileScreen;
