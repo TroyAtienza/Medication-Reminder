@@ -1,7 +1,8 @@
-import { FlatList, TextInput, StyleSheet, Text, View } from 'react-native';
+import {ScrollView, Button, TextInput, StyleSheet, Text, View } from 'react-native';
 import createStyles from '../view/SplitView';
 import TopNav from '../view/TopNav';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 // TODO:
 // - add time picker dependency
@@ -32,7 +33,9 @@ const PillTime = ({}) => (
 );
 
 const AddPillTimesScreen = (props) => {
-  const [text, onChangeText] = React.useState("Useless Text");
+  const navigation = useNavigation();
+
+  const [text, onChangeText] = React.useState("");
   const [number, onChangeNumber] = React.useState(null);
 
   return (
@@ -45,7 +48,7 @@ const AddPillTimesScreen = (props) => {
       </View>
 
       {/* Bottom Screen */}
-      <View style={splitScreenStyles.bottomScreen}>
+      <ScrollView style={splitScreenStyles.bottomScreen}>
 
         {/* Frequency Input */}
         <View style={styles.row}>
@@ -57,33 +60,22 @@ const AddPillTimesScreen = (props) => {
           keyboardType="numeric"/>
         </View>
 
-        {/* Live Dosage List */}
+        {/* Dosage List */}
         <View style={styles.row}>
           <Text style={styles.bottomScreenText}> Select Dosage Times: </Text>
           <PillTime></PillTime>
-          <FlatList
-          data={[
-          {key: 'Pill 1:'},
-          {key: 'Pill 2:'},
-          {key: 'Pill 3:'},
-          {key: 'Pill 4:'},
-          {key: 'Pill 5:'},
-          {key: 'Pill 6:'},
-        ]}
-        renderItem={({item}) => <Text style={styles.listText}>{item.key}</Text>}
-        />
         </View>
 
         {/* Buttons */}
-        {/*<View style={styles.row}>
-          <View style={styles.bottomButtons}>
-            <Button style={styles.button} title="Back" onPress={() =>  this.props.navigation.navigate('PillType')}></Button>
+        <View style={styles.buttonRow}>
+          <View style={styles.buttons}>
+            <Button title="Back" onPress={() =>  navigation.navigate('PillDetails')}></Button>
           </View>
-          <View style={styles.bottomButtons}>
-            <Button style={styles.button} title="Finish" onPress={() =>  this.props.navigation.navigate('Home')}></Button>
-        </View> */}
-
-      </View>
+          <View style={styles.buttons}>
+            <Button title="Finish" onPress={() =>  navigation.navigate('Home')}></Button>
+          </View> 
+        </View> 
+      </ScrollView>
     </View>
   );
 }
@@ -103,8 +95,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 16,
   },
-  bottomButtons: {
-    justifyContent: 'space-between'
+  buttonRow: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  buttons: {
+    justifyContent: 'space-between',
   },
   listText: {
     fontSize: 20,
