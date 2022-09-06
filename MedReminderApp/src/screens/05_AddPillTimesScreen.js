@@ -2,42 +2,43 @@ import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
 import createStyles from '../view/SplitView';
 import TopNav from '../view/TopNav';
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 // TODO:
 // - add time picker dependency
-// - render list dependant on dosage amount
 // - wrap bottom screen in a flat list.
+// - add a check for input
+// - link chosen times to pill object
 
 const splitScreenStyles = createStyles();
-var dosage = [];
-var isValid = false;
 
 const AddPillTimesScreen = (props) => {
+  const navigation = useNavigation();
   const [text, setText] = useState('');
+  var pillTimes = [];
 
   /*
   * Checks if the text input value is valid. 
   * If it is, the pill dosage list can be updated, otherwise the user must input again.
   */
   const checkInput = () => {
-    if (isNaN(text)) {
+    if (isNaN(text)) { // need to check for non-ints, empty spaces, add limit, non zero
       Alert.alert("Please enter a valid number.");
       // need to make the text input box clear
-      isValid = false;
     } else {
-      isValid = true;
-      newDosage();
+      renderPillTimes();
     }
   }
 
   /*
-  * Updates the dosage list to match users input 
+  * Updates the length of the dosage time list to render the amount of
+  * dosages from the users input 
   * 
   */
-  const newDosage = () => {
-    dosage = [];
+  const renderPillTimes = () => {
+    pillTimes = [];
     for (let i = 0; i < text; i++) {
-      dosage.push(<Text style={styles.listText}> {'Pill ' + (i + 1) + ': '} </Text>);
+      pillTimes.push(<Text style={styles.listText}> {'Pill ' + (i + 1) + ': '} </Text>);
     }
   }
 
@@ -64,11 +65,11 @@ const AddPillTimesScreen = (props) => {
             keyboardType="numeric"/>
           </View>
 
-          {/* Dosage List */}
+          {/* Live Dosage List */}
           <View style={styles.row}>
             <Text style={styles.bottomScreenText}> Select Dosage Times: </Text>
             { checkInput() }
-            { dosage }
+            { pillTimes }
           </View>
 
           {/* Buttons */}
