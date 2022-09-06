@@ -66,10 +66,6 @@ const AddPillDetailsScreen = (props) => {
   }
  
   function sendValues(enteredName, enteredDescription, startDate, endDate) {
-    console.log(enteredName);
-    console.log(enteredDescription);
-    console.log(startDate);
-    console.log(endDate);
     new Pill(enteredName, enteredDescription);
   };
   

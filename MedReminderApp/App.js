@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={AddPillDetailsScreen} options ={{headerShown:false}}/>
+        <Stack.Screen name="Home" component={PillListScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillType" component={AddPillTypeScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillColour" component={AddPillColourScreen} options ={{headerShown:false}}/>
         <Stack.Screen name="PillDetails" component={AddPillDetailsScreen} options ={{headerShown:false}}/>

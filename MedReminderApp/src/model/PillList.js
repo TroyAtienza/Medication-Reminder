@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState } from "react";
-import { Text, ScrollView, TouchableOpacity, StyleSheet, View, Button} from "react-native";
+import { useState, useEffect } from "react";
+import { Text, TouchableOpacity, SectionList, ScrollView, StyleSheet, View, Button} from "react-native";
 import Pill from "./Pill";
 
 const temp = new Pill();
@@ -14,93 +14,119 @@ temp1.pillInformation = "Take twice a day with food.";
 
 const data = [
     {
-        id: 0,
-        day: "Monday",
-        items: [temp, temp1]
+      title: 'Monday',
+      data: [temp, temp1],
+      id: 0,
     },
     {
-        id: 1,
-        day: "Tuesday",
-        items: []
+      title: 'Tuesday',
+      data: [temp, temp1],
+      id: 1,
     },
     {
-        id: 2,
-        day: "Wednesday",
-        items: []
+      title: 'Wednesday',
+      data: [temp, temp1],
+      id: 2,
     },
     {
-        id: 3,
-        day: "Thursday",
-        items: []
+      title: 'Thursday',
+      data: [temp, temp1],
+      id: 3,
     },
     {
-        id: 4,
-        day: "Friday",
-        items: []
+      title: 'Friday',
+      data: [temp, temp1],
+      id: 4,
     },
     {
-        id: 5,
-        day: "Saturday",
-        items: []
+      title: 'Saturday',
+      data: [temp, temp1],
+      id: 5,
     },
     {
-        id: 6,
-        day: "Sunday",
-        items: []
-    }
-];
-
+      title: 'Sunday',
+      data: [temp, temp1],
+      id: 6,
+    },
+    
+  ];
+  
 /**
  * Renders a touchable, dynamic list.
  * @param {day} props 
  * @returns The list.
  */
 
-const PillList = (props) => {
-    const[list]=useState(data);    
-    const index = list.findIndex(e => e.day === props.day); // Finds the index of the provided day.
-    function removeHandler() {
-        list[index].items.splice(index,1);
-        console.log(list);
-    }
+  const PillList = (props) => {
+    const [state, setState] = useState(data);
+    const index = state.findIndex(e => e.day === props.day); // Finds the index of the provided day.
+    
+    const editItem = (itemId, newValue) => {
+      let newState = [...state];
+      let itemIndex = newState.find((item) => item.id == itemId);
+      if (itemIndex < 0) return;
+      newState[itemIndex] = {
+        ...newState[itemIndex],
+        ...newValue,
+      };
+      setState(newState);
+    };
+  
+    const removePill = (itemId, pill) => {
+      let currentItem = state.find((item) => item.id == itemId);
+      currentItem.data = currentItem.data.filter((item) => item != pill);
+      editItem(itemId, currentItem);
+    };
+  
+    const Item = ({ item, section }) => {
+      const [taken, setTaken] = useState(false);
+      return (
+        <View style={styles.row}>
+          <Text> {item.pillName} </Text>
+          <Text> {item.pillInformation} </Text>
+          <Button title={'Delete'} onPress={() => { removePill(section.id, item); }}/>
+          <TouchableOpacity
+            onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
+            //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
+            style = {[(taken) ? styles.taken : styles.notTaken, styles.listItem]}
+            >
+          </TouchableOpacity>   
+        </View>
+      );
+    };
     return (
-    <ScrollView contentContainerStyle={styles.listContainer}>
-        {list[index].items.map((pill, index) => { const [taken, setTaken] = useState(false);
-        return (
-            <View style={styles.container} key={index}>
-                <TouchableOpacity
-                    onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
-                    //style = {[{backgroundColor: pill.isTaken ? "grey" : "white"}, styles.listItem]}
-                    style = {[(taken) ? styles.taken : styles.notTaken, styles.listItem]}
-                >
-                </TouchableOpacity>   
-                <Text style={styles.text}>{pill.pillName}</Text>
-                <Text>{pill.pillRepeats}</Text>
-                <Text>{pill.pillInformation}</Text>
-                <Button removePill = {pill.pillName} style={styles.deleteButton} title="removePill" onPress ={removeHandler}/>
-            </View>
-        );
-        })}
-    </ScrollView>
-    )
-}
-
-const styles = StyleSheet.create({
-    taken: {
-        backgroundColor: "grey",
+      <ScrollView contentContainerStyle={styles.listContainer}>
+        <View style={styles.container} key={index}>
+            <SectionList 
+                sections={state} 
+                keyExtractor={(item, index) => item + index} 
+                renderItem={Item}
+            />
+        </View>
+      </ScrollView>
+    );
+  }
+  
+  const styles = StyleSheet.create({
+    row: {
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'space-between',
+      padding: 5,
+      alignItems: 'center',
     },
-    notTaken: {
-        backgroundColor: "white",
+    header: {
+      flexDirection: 'row',
+      paddingVertical: 5,
+      width: '100%',
+      borderBottomWidth: 1,
     },
-    item: {
-        margin: 10,
+    inputWrapper: {
+      paddingVertical: 15,
+      marginBottom: 10,
     },
-    text: {
-        fontSize: 13,
-        lineHeight: 21,
-        fontWeight: 'bold',
-        letterSpacing: 0.25,
-        color: 'black',
+    sectionListWrapper: {
+      padding: 5,
     },
     container: {
         flex: 1,
@@ -110,13 +136,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    deleteButton: {
-        height: 40,
-        top: '2%',
-        left: '10%',
-        width: '30%',
-        float: "right",
+    taken: {
+        backgroundColor: "grey",
+        width: '20',
+        height: '20',
     },
-})
+    notTaken: {
+        backgroundColor: "red",
+        width: '20',
+        height: '20',
+    },
+  });
 
 export {PillList, data}
