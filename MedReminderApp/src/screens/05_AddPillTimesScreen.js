@@ -1,83 +1,111 @@
-import {ScrollView, Button, TextInput, StyleSheet, Text, View } from 'react-native';
+import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
 import createStyles from '../view/SplitView';
 import TopNav from '../view/TopNav';
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { Component } from 'react';
 
 // TODO:
 // - add time picker dependency
 // - render list dependant on dosage amount
-// - make this a class?
 // - wrap bottom screen in a flat list.
-// - finish button
 
 const splitScreenStyles = createStyles();
+const dosage = [];
+const isValid = false;
 
-const ColorSelectButton = ({ onPress, backgroundColor }) => (
+const PillRow = ({isValid}) => (
   <View>
-    <TouchableOpacity style={{
-      borderRadius: 15,
-      height: 60,
-      width: 60,
-      backgroundColor: backgroundColor,
-      }}
-      onPress={onPress}>
-    </TouchableOpacity>
+    <Text> </Text> 
   </View>
 );
 
-const PillTime = ({}) => (
-  <View style={styles.listText}>
-  
-  </View>
-);
+class AddPillTimesScreen extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dosage: [],
+      number: '',
+      isValid: false,
+    };
+  }
 
-const AddPillTimesScreen = (props) => {
-  const navigation = useNavigation();
+  /*
+  * Checks if the text input value is valid. 
+  * If it is, the pill dosage list can be updated, otherwise the user must input again.
+  */
+  checkInput() {
+    if (isNaN(this.state.number)) {
+      Alert.alert("Please enter a valid number.");
+      // need to make the text input box clear
+      this.state.isValid = false;
+    } else {
+      this.state.isValid = true;
+      this.newDosage();
+    }
+  }
 
-  const [text, onChangeText] = React.useState("");
-  const [number, onChangeNumber] = React.useState(null);
+  /*
+  * Updates the dosage list to match users input 
+  * 
+  */
+  newDosage() {
+    this.state.dosage = [];
+    for (let i = 0; i < this.state.number; i++) {
+      var temp = 'Pill ' + (i + 1) + ': ';
+      this.state.dosage[i] = temp;
+      <Text> {this.state.dosage[i]} </Text>
+    }
+    console.log(this.state.dosage);
+  }
 
-  return (
-    <View style={splitScreenStyles.container}>
-      <TopNav/>
+  render() {
+    const { dosage, number, isValid } = this.state; 
 
-      {/* Top Screen */}
-      <View style={splitScreenStyles.topScreen}>  
-        <Text style={styles.topText}>Set a Time to Take Your Pill:</Text>
-      </View>
+    return (
+      <View style={splitScreenStyles.container}>
+        <TopNav/>
 
-      {/* Bottom Screen */}
-      <ScrollView style={splitScreenStyles.bottomScreen}>
-
-        {/* Frequency Input */}
-        <View style={styles.row}>
-          <Text style={styles.bottomScreenText}> Pill dosage per day: </Text>
-          <TextInput 
-          onChangeText={onChangeText}
-          value={number} 
-          placeholder="Enter dosage amount" style={styles.bottomScreenText}
-          keyboardType="numeric"/>
+        {/* Top Screen */}
+        <View style={splitScreenStyles.topScreen}>  
+          <Text style={styles.topText}>Set a Time to Take Your Pill:</Text>
         </View>
 
-        {/* Dosage List */}
-        <View style={styles.row}>
-          <Text style={styles.bottomScreenText}> Select Dosage Times: </Text>
-          <PillTime></PillTime>
-        </View>
+        {/* Bottom Screen */}
+        <View style={splitScreenStyles.bottomScreen}>
 
-        {/* Buttons */}
-        <View style={styles.buttonRow}>
-          <View style={styles.buttons}>
-            <Button title="Back" onPress={() =>  navigation.navigate('PillDetails')}></Button>
+          {/* Frequency Input */}
+          <View style={styles.row}>
+            <Text style={styles.bottomScreenText}> Pill dosage per day: </Text>
+            <TextInput 
+            ref={input => { this.textInput = input }}
+            onChangeText={(number) => this.setState({number})}
+            value={number}
+            placeholder="Enter dosage amount" 
+            style={styles.bottomScreenText}
+            keyboardType="numeric"/>
           </View>
-          <View style={styles.buttons}>
-            <Button title="Finish" onPress={() =>  navigation.navigate('Home')}></Button>
+
+          {/* Dosage List */}
+          <View style={styles.row}>
+            <Text style={styles.bottomScreenText}> Select Dosage Times: </Text>           
+            <Text style={styles.bottomScreenText}>
+              {}
+            </Text>
+            { this.checkInput() }
+          </View>
+
+          {/* Buttons */}
+          <View style={styles.buttonRow}>
+            <View style={styles.buttons}>
+              <Button title="Back" onPress={() =>  navigation.navigate('PillDetails')}></Button>
+            </View>
+            <View style={styles.buttons}>
+              <Button title="Finish" onPress={() =>  navigation.navigate('Home')}></Button>
+            </View> 
           </View> 
-        </View> 
-      </ScrollView>
-    </View>
-  );
+        </View>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
