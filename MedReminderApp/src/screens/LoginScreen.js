@@ -2,11 +2,25 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
 
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../Firebase';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredentials) => {
+      console.log("Signed in");
+      const user = userCredentials.user;
+      console.log(user);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
 
   return (
     <KeyboardAvoidingView
@@ -30,7 +44,7 @@ const LoginScreen = () => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={handleSignIn}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Login</Text>

@@ -2,11 +2,26 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
 
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../Firebase';
+
 const RegistrationScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredentials) => {
+      console.log('Account created');
+      const user = userCredentials.user;
+      console.log(user);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
 
   return (
     <KeyboardAvoidingView
@@ -37,7 +52,7 @@ const RegistrationScreen = () => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          onPress={() => { }}
+          onPress={handleSignUp}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Register</Text>
