@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import { Text, TouchableOpacity, SafeAreaView, SectionList, StyleSheet, View, Button } from "react-native";
 import Pill from "./Pill";
+import Item from '../components/Item';
 
 const temp = new Pill();
 temp.pillName = "Panadol";
@@ -73,52 +74,29 @@ const data = [
     // const index = state.findIndex(e => e.day === props.day); // Finds the index of the provided day.
     const index = props.index;
 
-    console.log(index);
-
-    // const editItem = (itemId, newValue) => {
-    //   let newState = [...state];
-    //   let itemIndex = newState.find((item) => item.id == itemId);
-    //   if (itemIndex < 0) return;
-    //   newState[itemIndex] = {
-    //     ...newState[itemIndex],
-    //     ...newValue,
-    //   };
-    //   setState(newState);
-    // };
+    const editItem = (itemId, newValue) => {
+      let newState = [...state];
+      let itemIndex = newState.find((item) => item.id == itemId);
+      if (itemIndex < 0) return;
+      newState[itemIndex] = {
+        ...newState[itemIndex],
+        ...newValue,
+      };
+      setState(newState);
+    };
   
-    // const removePill = (itemId, pill) => {
-    //   let currentItem = state.find((item) => item.id == itemId);
-    //   currentItem.data = currentItem.data.filter((item) => item != pill);
-    //   editItem(itemId, currentItem);
-    // };
+    const removePill = (itemId, pill) => {
+      let currentItem = state.find((item) => item.id == itemId);
+      currentItem.data = currentItem.data.filter((item) => item != pill);
+      editItem(itemId, currentItem);
+    };
 
-    // const Item = ({ item, section }) => {
-    //     if (section.id != props.index){
-    //         return null;
-    //     }
-    //     const [taken, setTaken] = useState(false);
-    //     return (
-    //         <TouchableOpacity 
-    //             onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
-    //             style = {[(taken) ? styles.taken : styles.notTaken, styles.row]}>
-    //             <View style={{flex:2,flexDirection:"row",justifyContent:'space-between',padding:10}}>
-    //                 <Text style={styles.textStyle}> {item.pillName} </Text>
-    //                 <Text style={styles.textStyle}> {item.pillInformation} </Text>
-    //                 <TouchableOpacity onPress={() => removePill(section.id, item)}> 
-    //                     <View style={styles.circle2}/>
-    //                 </TouchableOpacity>
-    //             </View>
-    //         </TouchableOpacity>
-    //     );
-    // };
-    
     return (
-    //     <SectionList 
-    //         sections={state} 
-    //         keyExtractor={(item, index) => item + index} 
-    //         renderItem={Item}
-    //     />
-    <View></View>
+        <SectionList 
+            sections={state} 
+            keyExtractor={(item, index) => item + index} 
+            renderItem={({item, section}) => <Item index={index} section={section} item={item} removePill={removePill}/>}
+        />
     );
   }
   
@@ -152,18 +130,6 @@ const data = [
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-    },
-    taken: {
-        backgroundColor: "grey",
-    },
-    notTaken: {
-        backgroundColor: "lightgrey",
-    },
-    circle2: {
-        width: 15,
-        height: 15,
-        borderRadius: 44/2,
-        backgroundColor: 'red',
     },
   });
 
