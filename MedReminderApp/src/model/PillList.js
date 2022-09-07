@@ -70,51 +70,55 @@ const data = [
 
   const PillList = (props) => {
     const [state, setState] = useState(data);
-    const index = state.findIndex(e => e.day === props.day); // Finds the index of the provided day.
-    
-    const editItem = (itemId, newValue) => {
-      let newState = [...state];
-      let itemIndex = newState.find((item) => item.id == itemId);
-      if (itemIndex < 0) return;
-      newState[itemIndex] = {
-        ...newState[itemIndex],
-        ...newValue,
-      };
-      setState(newState);
-    };
-  
-    const removePill = (itemId, pill) => {
-      let currentItem = state.find((item) => item.id == itemId);
-      currentItem.data = currentItem.data.filter((item) => item != pill);
-      editItem(itemId, currentItem);
-    };
+    // const index = state.findIndex(e => e.day === props.day); // Finds the index of the provided day.
+    const index = props.index;
 
-    const Item = ({ item, section }) => {
-        if (section.id != index){
-            return null;
-        }
-        const [taken, setTaken] = useState(false);
-        return (
-            <TouchableOpacity 
-                onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
-                style = {[(taken) ? styles.taken : styles.notTaken, styles.row]}>
-                <View style={{flex:2,flexDirection:"row",justifyContent:'space-between',padding:10}}>
-                    <Text style={styles.textStyle}> {item.pillName} </Text>
-                    <Text style={styles.textStyle}> {item.pillInformation} </Text>
-                    <TouchableOpacity onPress={() => removePill(section.id, item)}> 
-                        <View style={styles.circle2}/>
-                    </TouchableOpacity>
-                </View>
-            </TouchableOpacity>
-        );
-    };
+    console.log(index);
+
+    // const editItem = (itemId, newValue) => {
+    //   let newState = [...state];
+    //   let itemIndex = newState.find((item) => item.id == itemId);
+    //   if (itemIndex < 0) return;
+    //   newState[itemIndex] = {
+    //     ...newState[itemIndex],
+    //     ...newValue,
+    //   };
+    //   setState(newState);
+    // };
+  
+    // const removePill = (itemId, pill) => {
+    //   let currentItem = state.find((item) => item.id == itemId);
+    //   currentItem.data = currentItem.data.filter((item) => item != pill);
+    //   editItem(itemId, currentItem);
+    // };
+
+    // const Item = ({ item, section }) => {
+    //     if (section.id != props.index){
+    //         return null;
+    //     }
+    //     const [taken, setTaken] = useState(false);
+    //     return (
+    //         <TouchableOpacity 
+    //             onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
+    //             style = {[(taken) ? styles.taken : styles.notTaken, styles.row]}>
+    //             <View style={{flex:2,flexDirection:"row",justifyContent:'space-between',padding:10}}>
+    //                 <Text style={styles.textStyle}> {item.pillName} </Text>
+    //                 <Text style={styles.textStyle}> {item.pillInformation} </Text>
+    //                 <TouchableOpacity onPress={() => removePill(section.id, item)}> 
+    //                     <View style={styles.circle2}/>
+    //                 </TouchableOpacity>
+    //             </View>
+    //         </TouchableOpacity>
+    //     );
+    // };
     
     return (
-        <SectionList 
-            sections={state} 
-            keyExtractor={(item, index) => item + index} 
-            renderItem={Item}
-        />
+    //     <SectionList 
+    //         sections={state} 
+    //         keyExtractor={(item, index) => item + index} 
+    //         renderItem={Item}
+    //     />
+    <View></View>
     );
   }
   

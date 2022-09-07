@@ -41,7 +41,7 @@ function PillboxCarouselItem({item, isHighlighted}) {
 
 
 // Renders the Carousel of Individual Pillbox Items
-export default function PillboxCarousel() {
+export default function PillboxCarousel( {setIndex} ) {
     const scrollX = useRef(new Animated.Value(0)).current;
     const pillboxRef = useRef(null);
     let [currentIndex, setCurrentIndex] = useState(0);
@@ -61,6 +61,7 @@ export default function PillboxCarousel() {
     const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
         if (changed && viewableItems.length > 0) {
             setCurrentIndex(viewableItems[0].index);
+            setIndex(viewableItems[0].index);
         }
     }, []);
     const viewConfig = useRef({viewAreaCoveragePercentThreshold: 95});
