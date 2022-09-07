@@ -95,7 +95,7 @@ const data = [
         <SectionList 
             sections={state} 
             keyExtractor={(item, index) => item + index} 
-            renderItem={({item, section}) => <Item index={index} section={section} item={item}/>}
+            renderItem={({item, section}) => <Item index={index} section={section} item={item} removePill={removePill}/>}
         />
     );
   }

@@ -1,8 +1,9 @@
 import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useState } from "react";
 
-const Item = ({ item, section, index }) => {
+const Item = ({ item, section, index, removePill }) => {
   const [taken, setTaken] = useState(false);
+  
   if (section.id != index){
       return null;
   }
