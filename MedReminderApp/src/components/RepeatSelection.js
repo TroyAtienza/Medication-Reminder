@@ -70,7 +70,7 @@ const RepeatSelection = () => {
       return (
         <View style={detailsStyles.rowContainer}>
               {selectedDays.map((data, key={id}) => (
-                <SelectDays item={data} id={data.id.toString()} callBack={(id) => {selectedItem(id);}}/>         
+                <SelectDays item={data} id={key.toString()} callBack={(key) => {selectedItem(key);}}/>         
               ))}
         </View>
       );

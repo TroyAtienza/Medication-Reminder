@@ -5,6 +5,7 @@ import { Text, StyleSheet, View } from "react-native";
 export default class Pill extends Component{
   constructor(props){
     super(props);
+    this.id = 0;
     this.pillName = "";
     this.pillSize = "";
     this.pillColour = ["", ""];
@@ -12,13 +13,6 @@ export default class Pill extends Component{
     this.pillRepeats = [0, 0, 0, 0, 0, 0, 0];
     this.pillFrequency = 0;
     this.pillTimes = [];
-  }
-  render(){
-    return(
-      <View>
-        <Text> Name Information Repeats </Text>
-      </View>
-    );
   }
 }
 
