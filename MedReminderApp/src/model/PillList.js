@@ -27,7 +27,7 @@ const data = [
     {
       id: 0,
       day: 'Monday',
-      data: [temp, temp1],
+      data: [temp, temp1, temp2, temp3],
     },
     {
       id: 1,
@@ -82,14 +82,6 @@ const data = [
       };
       setState(newState);
     };
-
-    const SectionHeader = ({ day }) => {
-        return (
-          <View style={styles.header}>
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}> {day} </Text>
-          </View>
-        );
-    };
   
     const removePill = (itemId, pill) => {
       let currentItem = state.find((item) => item.id == itemId);
@@ -97,35 +89,32 @@ const data = [
       editItem(itemId, currentItem);
     };
 
-    const Item = ({ item, section, onPress, backgroundColor }) => {
+    const Item = ({ item, section }) => {
         if (section.id != index){
             return null;
         }
+        const [taken, setTaken] = useState(false);
         return (
-        <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-          <View style={styles.row}>
-              <Text style={styles.textStyle}> {item.pillDay} </Text>
-              <Text style={styles.textStyle}> {item.pillInformation} </Text>
-            <Button title={'Delete'} onPress={() => { removePill(section.id, item); }}/> 
-          </View>
-         </TouchableOpacity>
+            <TouchableOpacity 
+                onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
+                style = {[(taken) ? styles.taken : styles.notTaken, styles.row]}>
+                <View style={{flex:2,flexDirection:"row",justifyContent:'space-between',padding:10}}>
+                    <Text style={styles.textStyle}> {item.pillName} </Text>
+                    <Text style={styles.textStyle}> {item.pillInformation} </Text>
+                    <TouchableOpacity onPress={() => removePill(section.id, item)}> 
+                        <View style={styles.circle2}/>
+                    </TouchableOpacity>
+                </View>
+            </TouchableOpacity>
         );
     };
     
     return (
-        <SafeAreaView style={styles.container}>
-            <SectionList 
-                sections={state} 
-                keyExtractor={(item, index) => item + index} 
-                renderItem={Item}
-                renderSectionHeader={({ section }) => {
-                    if (section.id === index){
-                        return <SectionHeader {...section} />
-                    }
-                  }    
-                }
-            />
-        </SafeAreaView>
+        <SectionList 
+            sections={state} 
+            keyExtractor={(item, index) => item + index} 
+            renderItem={Item}
+        />
     );
   }
   
@@ -139,7 +128,6 @@ const data = [
         justifyContent: 'space-between',
         padding: 5,
         alignItems: 'center',
-        backgroundColor: 'lightgrey',
     },
     header: {
         paddingVertical: 5,
@@ -160,6 +148,18 @@ const data = [
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+    },
+    taken: {
+        backgroundColor: "grey",
+    },
+    notTaken: {
+        backgroundColor: "lightgrey",
+    },
+    circle2: {
+        width: 15,
+        height: 15,
+        borderRadius: 44/2,
+        backgroundColor: 'red',
     },
   });
 
