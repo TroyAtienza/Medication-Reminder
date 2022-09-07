@@ -10,27 +10,14 @@ import {
     Alert
 } from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import createStyles from '../view/SplitView';
-import Profile from "../model/Profile";
-import ProfileController from "../controller/ProfileController";
+import ProfileController, {storeProfile} from "../controller/ProfileController";
 import {useEffect, useState} from "react";
+import ProfileOperations from "../controller/ProfileController";
 
-const splitScreenStyles = createStyles();
 const { width } = Dimensions.get("window");
-
-// TODO add image picker
-// TODO link settings screen?
 
 const ProfileScreen = () => {
     const navigation = useNavigation();
-
-    //TODO needs to have read from local storage (after user login)!
-    ProfileController.profile = new Profile(
-        "#1234",
-        "Jane Doe",
-        "jane-doe@example.com",
-        require("../assets/profile/pfp-placeholder.png")
-    );
 
     const [currentProfile, setProfile] = useState(ProfileController.profile);
     const [isInputVisible, setInputVisible] = useState(false);
@@ -72,12 +59,16 @@ const ProfileScreen = () => {
         toggleInputVisibility();
         switch (buttonPressed) {
             case "Email":
-                console.log("changing email")
+                ProfileOperations.editEmail(textInput);
                 break;
             case "Name" :
-                console.log("changing name")
+                ProfileOperations.editName(textInput);
                 break;
         }
+        setProfile(ProfileOperations.profile);
+        storeProfile(ProfileOperations.profile)
+            .then(r => console.log(r));
+        setTextInput("");
     }
 
     const cancelInput = () => {
@@ -131,7 +122,7 @@ const ProfileScreen = () => {
             <View style={styles.userWrapper}>
                 <Image
                     style={styles.profilePicture}
-                    source={currentProfile.pic}>
+                    source={currentProfile.picSource}>
                 </Image>
                 <View style={styles.userInfo}>
                     <Text style={styles.username}>{currentProfile.name}</Text>
@@ -146,10 +137,10 @@ const ProfileScreen = () => {
                     <TouchableOpacity
                         style={styles.option}
                         onPress={() => {
-                            //TODO need secure way to do this!
+                            //TODO ask to enter password first!
                         }}
                     >
-                        <Image source={require("../assets/profile/lock.png")} style={{ tintColor: "black"}}/>
+                        <Image source={require("../assets/profile/lock.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Change Password</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -159,7 +150,7 @@ const ProfileScreen = () => {
                             setInputVisible(true);
                         }}
                     >
-                        <Image source={require("../assets/profile/edit.png")} style={{ tintColor: "black"}}/>
+                        <Image source={require("../assets/profile/edit.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Edit Name</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -169,7 +160,7 @@ const ProfileScreen = () => {
                             setInputVisible(true);
                         }}
                     >
-                        <Image source={require("../assets/profile/at-sign.png")} style={{ tintColor: "black"}}/>
+                        <Image source={require("../assets/profile/at-sign.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Edit Email</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -189,7 +180,7 @@ const ProfileScreen = () => {
                             console.log("Put function here")
                         }}
                     >
-                        <Image source={require("../assets/profile/settings.png")} style={{ tintColor: "black"}}/>
+                        <Image source={require("../assets/profile/settings.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Settings</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -198,7 +189,7 @@ const ProfileScreen = () => {
                             console.log("Put function here")
                         }}
                     >
-                        <Image source={require("../assets/profile/log-out.png")} style={{ tintColor: "red"}}/>
+                        <Image source={require("../assets/profile/log-out.png")} style={{ tintColor: "#fc6a6a"}}/>
                         <Text style={styles.logoutText}>Sign out</Text>
                     </TouchableOpacity>
                 </View>
@@ -225,7 +216,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingTop: 40,
     },
-    //TODO MAKE GLOBAL?
     navBackButton: {
         marginLeft: 10,
     },
@@ -237,7 +227,7 @@ const styles = StyleSheet.create({
     },
     body: {
         marginTop: 20,
-        backgroundColor : "white",
+        backgroundColor : "#E7ECEF",
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
         width:'100%',
@@ -286,11 +276,11 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 20,
         width: "90%",
-        backgroundColor : "#A3CEF1",
+        backgroundColor : "#274C77",
     },
     optionLogout: {
         flexDirection: "row",
-        backgroundColor : "#A3CEF1",
+        backgroundColor : "#274C77",
         alignItems: "center",
         padding: 10,
         marginTop: 25,
@@ -299,13 +289,13 @@ const styles = StyleSheet.create({
     },
     optionText: {
         marginLeft: 20,
-        color : "#274C77",
+        color : "#E7ECEF",
         fontWeight: "bold",
         fontSize: 20,
     },
     logoutText: {
         marginLeft: 20,
-        color: "red",
+        color: "#fc6a6a",
         fontWeight: "bold",
         fontSize: 20,
     },
