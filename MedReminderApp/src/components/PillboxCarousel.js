@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useCallback, useEffect} from "react";
 import {View, StyleSheet, FlatList, Animated, Dimensions, Text, Alert} from "react-native";
 
 import {data} from "../model/PillList";
@@ -8,9 +8,8 @@ const BOX_WIDTH = WINDOW_WIDTH * 0.6;
 const SPACING = WINDOW_WIDTH * 0.02;
 const SNAP_TO_WIDTH = BOX_WIDTH + SPACING;
 
-
 // Individual Pillbox Item
-function PillboxCarouselItem({item}) {
+function PillboxCarouselItem({item, isHighlighted}) {
     return (
         <View style={
             [styles.box, {
@@ -43,36 +42,38 @@ function PillboxCarouselItem({item}) {
 
 // Renders the Carousel of Individual Pillbox Items
 export default function PillboxCarousel() {
-    const [currentIndex, setCurrentIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
     const pillboxRef = useRef(null);
+    let [currentIndex, setCurrentIndex] = useState(0);
+    // const [Data, setData] = useState([]);
 
-    // TODO alternative for onViewableItemsChanged
-    // const viewableItemsChanged = useRef(({viewableItems}) => {
-    //     setCurrentIndex(viewableItems.index);
-    //     // setCurrentIndex(viewableItems[0].index);
-    //     Alert.alert(
-    //         "Alert Title",
-    //         ""+viewableItems[0],
-    //         [
-    //             {
-    //                 text: "Cancel",
-    //                 onPress: () => console.log("Cancel Pressed"),
-    //                 style: "cancel"
-    //             },
-    //             { text: "OK", onPress: () => console.log("OK Pressed") }
-    //         ]
-    //     );
-    // }).current;
 
-    const viewConfig = useRef({viewAreaCoveragePercentThreshold: 95}).current;
+    // Trigger on component mounting
+    // useEffect( () => {
+    //     setData(data);
+    // }, [])
+    //
+    // //TODO
+    // const reRenderFlatList = ({UpdatedData}) => {
+    //     setData(UpdatedData);
+    // }
 
+    const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
+        if (changed && viewableItems.length > 0) {
+            setCurrentIndex(viewableItems[0].index);
+        }
+    }, []);
+    const viewConfig = useRef({viewAreaCoveragePercentThreshold: 95});
+
+    // Returns FlatList containing all pillbox items and their contents
     return (
         <View style={styles.container}>
+            {/*TODO TEXT FOR DEBUGGING!*/}
+            <Text>Index: {currentIndex}</Text>
             <View style={styles.carouselView}>
                 <FlatList
                     data={data}
-                    renderItem={({item}) => <PillboxCarouselItem item={item}/> }
+                    renderItem={({item}) => <PillboxCarouselItem item={item} isHighlighted={false} /> }
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     pagingEnabled={true}
@@ -84,29 +85,11 @@ export default function PillboxCarousel() {
                     ],
                         {useNativeDriver: false}
                     )}
-                    // onViewableItemsChanged={viewableItemsChanged}
-                    onViewableItemsChanged= {
-                        ({viewableItems, changed}) => {
-                            if (viewableItems.length > 0) {
-                                // TODO the following is debugging code
-                                // Alert.alert(
-                                //     "Alert Title",
-                                //     ""+viewableItems[0].index + ":" + changed[0].index,
-                                //     [
-                                //         {
-                                //             text: "Cancel",
-                                //             onPress: () => console.log("Cancel Pressed"),
-                                //             style: "cancel"
-                                //         },
-                                //         { text: "OK", onPress: () => console.log("OK Pressed") }
-                                //     ]
-                                // );
-                            }
-                        }
-                    }
-                    viewabilityConfig={viewConfig}
+                    onViewableItemsChanged={onViewableItemsChanged}
+                    viewabilityConfig={viewConfig.current}
                     scrollEventThrottle={32}
                     ref={pillboxRef}
+                    extraData={data}
                 >
                 </FlatList>
             </View>
