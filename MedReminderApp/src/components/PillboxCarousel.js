@@ -1,15 +1,27 @@
-import React, {useState, useRef, useCallback, useEffect} from "react";
-import {View, StyleSheet, FlatList, Animated, Dimensions, Text, Alert} from "react-native";
-
+import React, {useState, useRef, useCallback} from "react";
+import {View, StyleSheet, FlatList, Animated, Dimensions, Text} from "react-native";
 import {data} from "../model/PillList";
 
 const WINDOW_WIDTH = Dimensions.get("window").width;
-const BOX_WIDTH = WINDOW_WIDTH * 0.6;
+const BOX_WIDTH = WINDOW_WIDTH * 0.5;
 const SPACING = WINDOW_WIDTH * 0.02;
 const SNAP_TO_WIDTH = BOX_WIDTH + SPACING;
 
 // Individual Pillbox Item
-function PillboxCarouselItem({item, isHighlighted}) {
+function PillboxCarouselItem({item, selectedIndex}) {
+    if (selectedIndex === item.id) {
+        return (
+            <View style={
+                [styles.boxSelected, {
+                    marginLeft: item.id === 0 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
+                    marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
+                }]}
+            >
+                <Text style={styles.titleSelected}>{item.day}</Text>
+            </View>
+        )
+    }
+
     return (
         <View style={
             [styles.box, {
@@ -17,24 +29,7 @@ function PillboxCarouselItem({item, isHighlighted}) {
                 marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
             }]
         }>
-            <View style={styles.pillsWrapper}>
-                <Text style={styles.title}>{item.day}</Text>
-                <View style={styles.pillView}>
-                    {/*TODO need way to store unique pill Components (separate JS file) data for each pillbox */}
-                    <View style={styles.pillItem}>
-                        <View style={styles.singlePill}></View>
-                        <Text style={styles.pillCount}>2x</Text>
-                    </View>
-                    <View style={styles.singlePill}></View>
-                    <View style={styles.pillItem}>
-                        <View style={styles.singlePill}></View>
-                        <Text style={styles.pillCount}>3x</Text>
-                    </View>
-                    <View style={styles.singlePill}></View>
-                    <View style={styles.singlePill}></View>
-                    <View style={styles.singlePill}></View>
-                </View>
-            </View>
+            <Text style={styles.title}>{item.day}</Text>
         </View>
     );
 }
@@ -45,18 +40,6 @@ export default function PillboxCarousel( {setIndex} ) {
     const scrollX = useRef(new Animated.Value(0)).current;
     const pillboxRef = useRef(null);
     let [currentIndex, setCurrentIndex] = useState(0);
-    // const [Data, setData] = useState([]);
-
-
-    // Trigger on component mounting
-    // useEffect( () => {
-    //     setData(data);
-    // }, [])
-    //
-    // //TODO
-    // const reRenderFlatList = ({UpdatedData}) => {
-    //     setData(UpdatedData);
-    // }
 
     const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
         if (changed && viewableItems.length > 0) {
@@ -69,12 +52,10 @@ export default function PillboxCarousel( {setIndex} ) {
     // Returns FlatList containing all pillbox items and their contents
     return (
         <View style={styles.container}>
-            {/*TODO TEXT FOR DEBUGGING!*/}
-            <Text>Index: {currentIndex}</Text>
             <View style={styles.carouselView}>
                 <FlatList
                     data={data}
-                    renderItem={({item}) => <PillboxCarouselItem item={item} isHighlighted={false} /> }
+                    renderItem={({item}) => <PillboxCarouselItem item={item} isHighlighted={true} selectedIndex={currentIndex}/> }
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     pagingEnabled={true}
@@ -111,49 +92,40 @@ const styles = StyleSheet.create({
     },
     box : {
         width: BOX_WIDTH,
-        backgroundColor: '#8DB2CE',
+        height : BOX_WIDTH * 4/5,
+        backgroundColor: '#E7ECEF',
         overflow: "hidden",
-        borderColor: '#6295BC',
-        borderRadius: 10,
+        borderColor: '#274C77',
+        borderRadius: 30,
         borderWidth: 3,
-        elevation: 5, //needs Android 5.0+
-    },
-    title: {
-        fontWeight: '600',
-        fontSize: 24,
-        marginBottom: 10,
-        textAlign: "center",
-        color: '#43769D',
-        paddingTop: 6,
-    },
-    pillsWrapper: {
-        flexDirection: "column",
-        alignItems: "center",
-    },
-    pillView: {
-        flexDirection: "row",
-        flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
     },
-    pillItem: {
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "flex-start"
+    boxSelected : {
+        width: BOX_WIDTH,
+        height : BOX_WIDTH * 4/5,
+        backgroundColor: '#274C77',
+        overflow: "hidden",
+        borderColor: '#274C77',
+        borderRadius: 30,
+        borderWidth: 3,
+        justifyContent: "center",
+        alignItems: "center",
     },
-    singlePill: {
-        borderRadius: 15,
-        borderWidth: 1,
-        borderColor: 'grey',
-        margin: 5,
-        width: 30,
-        height: 60,
-        backgroundColor: "white"
+    title: {
+        fontWeight: '400',
+        fontSize: 28,
+        marginBottom: 10,
+        textAlign: "center",
+        color: 'black',
+        paddingTop: 6,
     },
-    pillCount: {
-        fontWeight: "600",
-        fontSize: 16,
-        textAlign: "left",
-        color: '#343432',
-    }
+    titleSelected: {
+        fontWeight: '400',
+        fontSize: 28,
+        marginBottom: 10,
+        textAlign: "center",
+        color: 'white',
+        paddingTop: 6,
+    },
 });
