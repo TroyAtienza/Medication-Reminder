@@ -43,7 +43,7 @@ class AddPillTwoColoursScreen extends Component {
   render() {
     const {topColor, bottomColor, color} = this.state; // keeps track of the current states' color
     const searchIndex = indexes.filter( imageID => imageID.id.includes(color)); // searches the index map for a given color id
-    const renderImage = searchIndex.map( item => <Image style={styles.image} source={imageList[item.index]}/>) // renders the image on click
+    const renderImage = searchIndex.map( item => <Image style={styles.image} source={imageList[item.index]} key={item.index}/>) // renders the image on click
 
     return (
 

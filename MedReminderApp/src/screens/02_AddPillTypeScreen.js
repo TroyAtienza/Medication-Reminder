@@ -7,6 +7,7 @@ import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 import { setPillType, setPillSize } from '../controller/PillController';
 import { useNavigation } from "@react-navigation/native";
+import Pill from '../model/Pill';
 
 const styles = createStyles()
 
@@ -47,6 +48,31 @@ const AddPillTypeScreen = (props) => {
       setChosen({src: item.src, pillStyle: tabletSizes});
     }
   }
+
+  /*** CHECKS NAVIGATION TO COLOR SCREEN ***
+  // Boolean thqat determines if the pill can hold two colours.
+  const isTwoColors = false; 
+
+  // checks if the pill chosen can hold two colors (used for navigation).
+  const checkPillColor = () => {
+    if (Pill.name === 'Pill_Capsule' || Pill.name === 'Pill_Capsule_Oval' || Pill.name === 'Pill_Tablet') {
+      isTwoColors === true;
+    }
+    else {
+      isTwoColors === false;
+    }
+  }
+
+  // Navigates to correct colour screen
+  const navigateToColorScreen = () => {
+    checkPillColor();
+    if (isTwoColors === true) {
+      navigation.navigate("PillTwoColours")
+    }
+    else {
+      navigation.navigate("PillColour")
+    }
+  }*/
 
   return (
     <View style={styles.container}>
@@ -100,8 +126,8 @@ const AddPillTypeScreen = (props) => {
 
           <View style={styles.buttonContainer}>
             <BackButton onPress={() => navigation.navigate("Home")}/>
-            {/* need to add a check to navigate into 1 or 2 pill colors */}
-            <NextButton onPress={() => navigation.navigate("PillTwoColours")}/>
+            {/* <NextButton onPress={() => navigateToColorScreen() }/> */}
+            <NextButton onPress={() => navigation.navigate("PillTwoColours") }/>
           </View>
         </View>
       </View>
