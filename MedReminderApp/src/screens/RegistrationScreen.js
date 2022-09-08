@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
 
@@ -12,6 +12,10 @@ const RegistrationScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSignUp = () => {
+    if (password !== confirmPassword) {
+      Alert.alert("Incorrect Password: Passwords Mismatch")
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {
       console.log('Account created');
