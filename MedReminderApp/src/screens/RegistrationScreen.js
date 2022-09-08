@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native";
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -11,6 +11,15 @@ const RegistrationScreen = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        navigation.navigate("Home");
+      }
+    })
+    return unsubscribe;
+  }, [])
+
   const handleSignUp = () => {
     if (password !== confirmPassword) {
       Alert.alert("Incorrect Password: Passwords Mismatch")
@@ -18,9 +27,7 @@ const RegistrationScreen = () => {
     }
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {
-      console.log('Account created');
       const user = userCredentials.user;
-      console.log(user);
     })
     .catch(error => {
       console.log(error);
