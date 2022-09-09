@@ -8,6 +8,8 @@ import RepeatSelection from '../components/RepeatSelection';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useNavigation } from "@react-navigation/native";
 import Pill from '../model/Pill';
+import { setPillInformation, setPillName } from '../controller/PillController';
+
 
 const styles = createStyles()
 
@@ -67,7 +69,8 @@ const AddPillDetailsScreen = (props) => {
   }
  
   function sendValues(enteredName, enteredDescription, startDate, endDate) {
-    new Pill(enteredName, enteredDescription);
+    setPillName(enteredName);
+    setPillInformation(enteredDescription);
   };
   
   return (
