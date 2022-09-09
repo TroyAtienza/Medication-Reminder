@@ -9,7 +9,7 @@ import { addPill } from '../controller/PillController'
 import { setPillFrequency } from '../controller/PillController';
 
 const splitScreenStyles = createStyles();
-const buttonStyle = require('../components/ButtonStyle');
+const buttonStyle = require('../styles/ButtonStyle');
 
 const AddPillTimesScreen = (props) => {
   const navigation = useNavigation();

@@ -7,10 +7,9 @@ import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 import { setPillType, setPillSize } from '../controller/PillController';
 import { useNavigation } from "@react-navigation/native";
-import Pill from '../model/Pill';
 
 const AddPillTypeScreen = (props) => {
-  const buttonStyle = require('../components/ButtonStyle');
+  const buttonStyle = require('../styles/ButtonStyle');
   const navigation = useNavigation();
   const styles = createStyles();
 
@@ -48,88 +47,62 @@ const AddPillTypeScreen = (props) => {
     }
   }
 
-  /*** CHECKS NAVIGATION TO COLOR SCREEN ***
-  // Boolean thqat determines if the pill can hold two colours.
-  const isTwoColors = false; 
-
-  // checks if the pill chosen can hold two colors (used for navigation).
-  const checkPillColor = () => {
-    if (Pill.name === 'Pill_Capsule' || Pill.name === 'Pill_Capsule_Oval' || Pill.name === 'Pill_Tablet') {
-      isTwoColors === true;
-    }
-    else {
-      isTwoColors === false;
-    }
-  }
-
-  // Navigates to correct colour screen
-  const navigateToColorScreen = () => {
-    checkPillColor();
-    if (isTwoColors === true) {
-      navigation.navigate("PillTwoColours")
-    }
-    else {
-      navigation.navigate("PillColour")
-    }
-  }*/
-
   return (
     <View style={styles.container}>
-        <TopNav/>
-        <View style={styles.topAddScreen}>
-          <PillboxCarousel/>
+      <TopNav/>
+      <View style={styles.topAddScreen}>
+        <PillboxCarousel/>
+      </View>
+      <View style={styles.bottomAddScreen}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.titleText}>Pick Pill Type</Text>
         </View>
-        <View style={styles.bottomAddScreen}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Pick Pill Type</Text>
-          </View>
-          {/* Shape Select */}
-          <View style={pillTypeStyles.shapeSelect}>
-            <FlatList
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              data={images}
-              renderItem={ ({item, index}) => (
-                <TouchableOpacity style={item.optionStyle} onPress={()=>{onPressShape(item)}}>
-                  <Image source={item.src} style={item.pillStyle} key={index}/>
-                </TouchableOpacity>
-              )}
-            />            
-          </View>
-          {/* Size Select */}
-          <View style={pillTypeStyles.sizeSelect}>
-            {/* Small Option */}
-            <TouchableOpacity
-              style={[styles.option, styles.largeOption, styles.firstOption]}
-              onPress={()=>{setPillSize("Small")}}
-            >
-              <Image source={chosen.src} style={chosen.pillStyle[0]}/>
-            </TouchableOpacity>
+        {/* Shape Select */}
+        <View style={pillTypeStyles.shapeSelect}>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={images}
+            renderItem={ ({item, index}) => (
+              <TouchableOpacity style={item.optionStyle} onPress={()=>{onPressShape(item)}}>
+                <Image source={item.src} style={item.pillStyle} key={index}/>
+              </TouchableOpacity>
+            )}
+          />            
+        </View>
+        {/* Size Select */}
+        <View style={pillTypeStyles.sizeSelect}>
+          {/* Small Option */}
+          <TouchableOpacity
+            style={[styles.option, styles.largeOption, styles.firstOption]}
+            onPress={()=>{setPillSize("Small")}}
+          >
+            <Image source={chosen.src} style={chosen.pillStyle[0]}/>
+          </TouchableOpacity>
 
-            {/* Medium Option */}
-            <TouchableOpacity
-              style={[styles.option, styles.largeOption]}
-              onPress={()=>{setPillSize("Medium")}}
-            >
-              <Image source={chosen.src} style={chosen.pillStyle[1]}/>
-            </TouchableOpacity>
+          {/* Medium Option */}
+          <TouchableOpacity
+            style={[styles.option, styles.largeOption]}
+            onPress={()=>{setPillSize("Medium")}}
+          >
+            <Image source={chosen.src} style={chosen.pillStyle[1]}/>
+          </TouchableOpacity>
 
-            {/* Large Option */}
-            <TouchableOpacity
-              style={[styles.option, styles.largeOption]}
-              onPress={()=>{setPillSize("Large")}}
-            >
-              <Image source={chosen.src} style={chosen.pillStyle[2]}/>
-            </TouchableOpacity>
-          </View>
+          {/* Large Option */}
+          <TouchableOpacity
+            style={[styles.option, styles.largeOption]}
+            onPress={()=>{setPillSize("Large")}}
+          >
+            <Image source={chosen.src} style={chosen.pillStyle[2]}/>
+          </TouchableOpacity>
+        </View>
 
-          <View style={buttonStyle.footerContainer}>
-            <BackButton onPress={() => navigation.navigate("Home")}/>
-            {/* <NextButton onPress={() => navigateToColorScreen() }/> */}
-            <NextButton onPress={() => navigation.navigate("PillTwoColours") }/>
-          </View>
+        <View style={buttonStyle.footerContainer}>
+          <BackButton onPress={() => navigation.navigate("Home")}/>
+          <NextButton onPress={() => navigation.navigate("PillTwoColours") }/>
         </View>
       </View>
+    </View>
   );
 }
 

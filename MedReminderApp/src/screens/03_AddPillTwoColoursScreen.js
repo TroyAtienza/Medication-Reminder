@@ -9,7 +9,7 @@ import NextButton from '../components/NextButton';
 import { setPillColour } from '../controller/PillController';
 
 const splitScreenStyles = createStyles();
-const buttonStyle = require('../components/ButtonStyle');
+const buttonStyle = require('../styles/ButtonStyle');
 
 // selected pill color information
 const pillType = 'PT'; // replace id with this infront to differentiate the pill types

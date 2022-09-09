@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity } from 'react-native'
 
-const buttonStyle = require('./ButtonStyle')
+const buttonStyle = require('../styles/ButtonStyle')
 const BackButton = (props) => {
     return (
         <TouchableOpacity style={buttonStyle.footerButtons} onPress={props.onPress}>

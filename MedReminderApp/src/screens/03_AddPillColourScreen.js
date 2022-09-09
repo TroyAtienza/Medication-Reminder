@@ -8,7 +8,7 @@ import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 
 const splitScreenStyles = createStyles();
-const buttonStyle = require('../components/ButtonStyle');
+const buttonStyle = require('../styles/ButtonStyle');
 
 // selected pill color information
 const pillType = 'PTT'; // replace id with this infront to differentiate the pill types

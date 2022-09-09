@@ -13,7 +13,7 @@ import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 
 const styles = createStyles()
-const buttonStyle = require('../components/ButtonStyle');
+const buttonStyle = require('../styles/ButtonStyle');
 
 const AddPillDetailsScreen = (props) => {
   const [index, setIndex] = useState(0);
