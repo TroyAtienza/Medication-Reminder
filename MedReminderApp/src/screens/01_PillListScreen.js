@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { PillList } from '../model/PillList';
 import AddButton from '../components/AddButton';
-import { View } from 'react-native';
+import { View} from 'react-native';
 import createStyles from '../view/SplitView'
 import TopNav from '../view/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
@@ -12,7 +12,9 @@ const styles = createStyles()
 
 const PillListScreen = (props) => {
   const [index, setIndex] = useState(0);
+
   const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <TopNav/>
@@ -30,5 +32,6 @@ const PillListScreen = (props) => {
     </View>
   );
 }
+
 
 export default PillListScreen;
