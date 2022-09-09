@@ -1,4 +1,7 @@
-/*images indexes of the imageList. Used for live pill change feature for the add pill color screen. */
+/*
+* An array that holds the associated pill type and colour image to their index of the ImageList. 
+* Used to retrieve the index of a selected image in the live pill change feature for the add pill color screens. 
+*/
 
 const indexes = [
 

@@ -9,11 +9,12 @@ import NextButton from '../components/NextButton';
 import { setPillColour } from '../../controller/PillController';
 import ColorSelectButton from '../components/ColorSelectButton';
 
+// imported styles
 const splitScreenStyles = createStyles();
 const buttonStyle = require('../../styles/ButtonStyle');
 
 // selected pill color information
-const pillType = 'PT'; // replace id with this infront to differentiate the pill types
+const pillType = 'PT';
 const { topColor, bottomColor } = 'w';
 const color = 'ww';
 
@@ -28,7 +29,7 @@ class AddPillTwoColoursScreen extends Component {
   }
 
   render() {
-    const {topColor, bottomColor, color} = this.state; // keeps track of the current states' color
+    const {topColor, bottomColor, color} = this.state; // keeps track of the current states' color, gets updated as color buttons are pressed
     const searchIndex = indexes.filter( imageID => imageID.id.includes(color)); // searches the index map for a given color id
     const renderImage = searchIndex.map( item => <Image key={item} style={styles.image} source={imageList[item.index]}/>) // renders the image on click
 
@@ -68,7 +69,7 @@ class AddPillTwoColoursScreen extends Component {
           <View style={buttonStyle.footerContainer}>
             <BackButton onPress={() => this.props.navigation.navigate('PillType')}/>
             <NextButton onPress={() => {
-              setPillColour(topColor+bottomColor);
+              setPillColour(topColor+bottomColor); // updates current the new pills' colours information
               this.props.navigation.navigate('PillDetails');
             }}/>
           </View>
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     flex: 1,
-    left: '38%', // im not sure why its at the middle at 38%
+    left: '38%',
   },
   topText : {
     textAlign: 'center',

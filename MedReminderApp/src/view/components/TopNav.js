@@ -4,6 +4,10 @@ import {auth} from "../../Firebase";
 import { signOut } from "firebase/auth"
 import ProfileOperations, {updateProfile} from "../../controller/ProfileController";
 
+/*
+* Navigation bar component, fixed and displayed across all screens. Holds links to profile screen and logout 
+* functionality.
+*/
 const TopNav = (props) => {
   const navigation = useNavigation();
     return (

@@ -8,6 +8,7 @@ import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 import ColorSelectButton from '../components/ColorSelectButton';
 
+// imported styles
 const splitScreenStyles = createStyles();
 const buttonStyle = require('../../styles/ButtonStyle');
 
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     flex: 1,
-    left: '38%', // im not sure why its at the middle at 38%
+    left: '38%',
   },
   topText : {
     textAlign: 'center',

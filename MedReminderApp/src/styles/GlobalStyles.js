@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 export default function createStyles(overrides = {}) {
-  return StyleSheet.create({...styles, ...overrides})
+  return StyleSheet.create({...styles, ...overrides}) 
 }
 
 export const pos = {
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: paddingTopBottom,
   },
-  topScreen: {
+  //top and bottom screen are used for the global split view
+  topScreen: { 
     position: 'relative',
     backgroundColor: '#E7ECEF',
     width: widthProportion,
