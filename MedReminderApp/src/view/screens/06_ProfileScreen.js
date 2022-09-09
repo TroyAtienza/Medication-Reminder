@@ -31,7 +31,7 @@ const ProfileScreen = () => {
                 toggleInputVisibility();
                 setReuthInput("");
             }).catch(error => {
-            console.log("Re-authentication failed " + error)
+            console.log("Re-authentication failed")
         })
     }
 
@@ -42,7 +42,7 @@ const ProfileScreen = () => {
                 ProfileOperations.editEmail(textInput)
                 updateEmail(auth.currentUser, textInput)
                     .then(r => {
-                    console.log("Email updated: " + r);
+                    console.log("Email updated");
                 }).catch(error => {
                     console.log("error occurred updating email: ");
                 });
@@ -50,7 +50,7 @@ const ProfileScreen = () => {
             case "Password":
                 updatePassword(auth.currentUser, textInput)
                     .then(r => {
-                        console.log("Password updated: " + r);
+                        console.log("Password updated");
                     }).catch(error => {
                     console.log("error occurred updating password: ");
                 });

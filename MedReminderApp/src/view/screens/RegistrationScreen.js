@@ -46,7 +46,7 @@ const RegistrationScreen = () => {
       const user = userCredentials.user;
     })
     .catch(error => {
-      console.log(error);
+      console.log(error.code);
     });
   }
 
