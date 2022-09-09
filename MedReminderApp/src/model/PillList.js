@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import { SectionList, View } from "react-native";
 import Pill from "./Pill";
-import Item from '../components/Item';
+import Item from '../view/components/Item';
 
 const temp = new Pill();
 temp.pillName = "Panadol";

@@ -1,6 +1,6 @@
 /* image list used for live pill change feature for the add pill color screen. */
 
-import Images from '../assets/Images';
+import Images from './Images';
 
 const imageList = [
 

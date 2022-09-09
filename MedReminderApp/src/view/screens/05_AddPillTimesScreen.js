@@ -1,15 +1,15 @@
-import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
-import createStyles from '../styles/GlobalStyles';
+import { TextInput, StyleSheet, Text, View, Alert } from 'react-native';
+import createStyles from '../../styles/GlobalStyles'
 import TopNav from '../components/TopNav';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import BackButton from '../components/BackButton';
 import FinishButton from '../components/FinishButton';
-import { addPill } from '../controller/PillController'
-import { setPillFrequency } from '../controller/PillController';
+import { addPill } from '../../controller/PillController'
+import { setPillFrequency } from '../../controller/PillController';
 
 const splitScreenStyles = createStyles();
-const buttonStyle = require('../styles/ButtonStyle');
+const buttonStyle = require('../../styles/ButtonStyle');
 
 const AddPillTimesScreen = (props) => {
   const navigation = useNavigation();

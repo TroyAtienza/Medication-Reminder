@@ -1,6 +1,6 @@
 import React, {useState, useRef, useCallback} from "react";
 import {View, StyleSheet, FlatList, Animated, Dimensions, Text} from "react-native";
-import {data} from "../model/PillList";
+import {data} from "../../model/PillList";
 import { useRoute } from "@react-navigation/native";
 
 const WINDOW_WIDTH = Dimensions.get("window").width;

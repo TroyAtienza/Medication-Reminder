@@ -1,12 +1,12 @@
 import React, { Component, useState } from 'react';
-import { PillList } from '../model/PillList';
+import { PillList } from '../../model/PillList';
 import AddButton from '../components/AddButton';
 import { View } from 'react-native';
-import createStyles from '../styles/GlobalStyles'
+import createStyles from '../../styles/GlobalStyles'
 import TopNav from '../components/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import { useNavigation } from "@react-navigation/native";
-import { createNewPill } from '../controller/PillController';
+import { createNewPill } from '../../controller/PillController';
 
 const styles = createStyles()
 

@@ -10,9 +10,9 @@ import {
     Alert
 } from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import ProfileController, {storeProfile} from "../controller/ProfileController";
+import ProfileController, {storeProfile} from "../../controller/ProfileController";
 import {useEffect, useState} from "react";
-import ProfileOperations from "../controller/ProfileController";
+import ProfileOperations from "../../controller/ProfileController";
 
 const { width } = Dimensions.get("window");
 
@@ -114,7 +114,7 @@ const ProfileScreen = () => {
             <View style={styles.topNav}>
                 <TouchableOpacity style={styles.navBackButton} onPress={() => navigation.navigate('Home')}>
                     <Image
-                        source={require('../assets/buttons/back.png')}
+                        source={require('../../assets/buttons/back.png')}
                     />
                 </TouchableOpacity>
                 <View></View>
@@ -127,7 +127,7 @@ const ProfileScreen = () => {
                 <View style={styles.userInfo}>
                     <Text style={styles.username}>{currentProfile.name}</Text>
                     <View style={styles.mailWrapper}>
-                        <Image style={styles.mailImage} source={require(`../assets/profile/email.png`)}/>
+                        <Image style={styles.mailImage} source={require(`../../assets/profile/email.png`)}/>
                         <Text style={styles.mailText}>{currentProfile.email}</Text>
                     </View>
                 </View>
@@ -140,7 +140,7 @@ const ProfileScreen = () => {
                             //TODO ask to enter password first!
                         }}
                     >
-                        <Image source={require("../assets/profile/lock.png")} style={{ tintColor: "#919DA3"}}/>
+                        <Image source={require("../../assets/profile/lock.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Change Password</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -150,7 +150,7 @@ const ProfileScreen = () => {
                             setInputVisible(true);
                         }}
                     >
-                        <Image source={require("../assets/profile/edit.png")} style={{ tintColor: "#919DA3"}}/>
+                        <Image source={require("../../assets/profile/edit.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Edit Name</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -160,7 +160,7 @@ const ProfileScreen = () => {
                             setInputVisible(true);
                         }}
                     >
-                        <Image source={require("../assets/profile/at-sign.png")} style={{ tintColor: "#919DA3"}}/>
+                        <Image source={require("../../assets/profile/at-sign.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Edit Email</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -171,7 +171,7 @@ const ProfileScreen = () => {
                             setInputVisible(true);
                         }}
                     >
-                        <Image source={require("../assets/profile/avatar-small.png")}  />
+                        <Image source={require("../../assets/profile/avatar-small.png")}  />
                         <Text style={styles.optionText}>Update Picture</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -180,7 +180,7 @@ const ProfileScreen = () => {
                             console.log("Put function here")
                         }}
                     >
-                        <Image source={require("../assets/profile/settings.png")} style={{ tintColor: "#919DA3"}}/>
+                        <Image source={require("../../assets/profile/settings.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Settings</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -189,7 +189,7 @@ const ProfileScreen = () => {
                             console.log("Put function here")
                         }}
                     >
-                        <Image source={require("../assets/profile/log-out.png")} style={{ tintColor: "#fc6a6a"}}/>
+                        <Image source={require("../../assets/profile/log-out.png")} style={{ tintColor: "#fc6a6a"}}/>
                         <Text style={styles.logoutText}>Sign out</Text>
                     </TouchableOpacity>
                 </View>

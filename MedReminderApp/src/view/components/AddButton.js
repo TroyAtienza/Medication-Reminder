@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 
-const buttonStyle = require('../styles/ButtonStyle')
+const buttonStyle = require('../../styles/ButtonStyle')
 const AddButton = (props) => {
     return (
         <View style={buttonStyle.buttonContainer}>

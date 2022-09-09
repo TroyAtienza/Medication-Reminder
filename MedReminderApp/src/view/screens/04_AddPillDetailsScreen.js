@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { StyleSheet, Button, ScrollView, Text, View, TextInput, Platform } from 'react-native';
-import createStyles from '../styles/GlobalStyles'
+import createStyles from '../../styles/GlobalStyles'
 import TopNav from '../components/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import AddButton from '../components/AddButton';
 import RepeatSelection from '../components/RepeatSelection';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useNavigation } from "@react-navigation/native";
-import Pill from '../model/Pill';
-import { setPillInformation, setPillName, setPillStartingDate, setPillEndingDate, setPillRepeats } from '../controller/PillController';
+import { setPillInformation, setPillName, setPillStartingDate, setPillEndingDate, setPillRepeats } from '../../controller/PillController';
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 
 const styles = createStyles()
-const buttonStyle = require('../styles/ButtonStyle');
+const buttonStyle = require('../../styles/ButtonStyle');
 
 const AddPillDetailsScreen = (props) => {
   const [index, setIndex] = useState(0);

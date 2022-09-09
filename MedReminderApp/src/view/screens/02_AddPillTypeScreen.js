@@ -2,25 +2,25 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react
 import { useState } from 'react';
 import TopNav from '../components/TopNav';
 import PillboxCarousel from "../components/PillboxCarousel";
-import createStyles from '../styles/GlobalStyles'
+import createStyles from '../../styles/GlobalStyles'
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
-import { setPillType, setPillSize } from '../controller/PillController';
+import { setPillType, setPillSize } from '../../controller/PillController';
 import { useNavigation } from "@react-navigation/native";
 
 const AddPillTypeScreen = (props) => {
-  const buttonStyle = require('../styles/ButtonStyle');
+  const buttonStyle = require('../../styles/ButtonStyle');
   const navigation = useNavigation();
   const styles = createStyles();
 
   /* The images used. Requires static initialization.
    See: https://gitlab.ecs.vuw.ac.nz/course-work/swen325/2022/assignment2/t11/medication-reminder/-/issues/16#note_327886 */
   const images = [
-    {src: require("../assets/Pill_Capsule.png"), optionStyle: [styles.option, styles.firstOption] , pillStyle: styles.capsules, type: "capsule"},
-    {src: require("../assets/Pill_Capsule_Oval.png"), optionStyle: styles.option , pillStyle: styles.capsules, type: "capsule"},
-    {src: require("../assets/Pill_Tablet.png"), optionStyle: styles.option , pillStyle: styles.tablets, type: "tablet"},
-    {src: require("../assets/Pill_Tablet_No_Line.png"), optionStyle: styles.option , pillStyle: styles.tablets, type: "tablet"},
-    {src: require("../assets/Pill_Tablet_Triangle.png"), optionStyle: styles.option , pillStyle: styles.tablets, type: "tablet"}
+    {src: require("../..//assets/Pill_Capsule.png"), optionStyle: [styles.option, styles.firstOption] , pillStyle: styles.capsules, type: "capsule"},
+    {src: require("../../assets/Pill_Capsule_Oval.png"), optionStyle: styles.option , pillStyle: styles.capsules, type: "capsule"},
+    {src: require("../../assets/Pill_Tablet.png"), optionStyle: styles.option , pillStyle: styles.tablets, type: "tablet"},
+    {src: require("../../assets/Pill_Tablet_No_Line.png"), optionStyle: styles.option , pillStyle: styles.tablets, type: "tablet"},
+    {src: require("../../assets/Pill_Tablet_Triangle.png"), optionStyle: styles.option , pillStyle: styles.tablets, type: "tablet"}
   ];
 
   // Arrays that hold the sizes for capsule and tablets.
@@ -29,7 +29,7 @@ const AddPillTypeScreen = (props) => {
 
   // Updates the image displayed to the one chosen by user.
   const [chosen, setChosen] = useState(
-    {src: require("../assets/Pill_Capsule.png"), pillStyle: capsuleSizes},
+    {src: require("../../assets/Pill_Capsule.png"), pillStyle: capsuleSizes},
   );
 
   /**

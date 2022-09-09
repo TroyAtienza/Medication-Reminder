@@ -2,7 +2,7 @@ import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, Vi
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Firebase';
+import { auth } from '../../Firebase';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -34,7 +34,7 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/MedApp_Logo.png")} style={styles.logo}></Image>
+      <Image source={require("../../assets/MedApp_Logo.png")} style={styles.logo}></Image>
       <KeyboardAvoidingView behavior="padding" style={styles.inputContainer}>
         <View>
           <TextInput

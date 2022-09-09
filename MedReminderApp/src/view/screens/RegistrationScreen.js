@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native";
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Firebase';
+import { auth } from '../../Firebase';
 
 const RegistrationScreen = () => {
   const navigation = useNavigation();
@@ -36,7 +36,7 @@ const RegistrationScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/MedApp_Logo.png")} style={styles.logo}></Image>
+      <Image source={require("../../assets/MedApp_Logo.png")} style={styles.logo}></Image>
       <KeyboardAvoidingView
         style={styles.inputContainer}
         behavior="padding"
