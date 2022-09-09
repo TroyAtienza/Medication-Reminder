@@ -55,10 +55,18 @@ const styles = StyleSheet.create({
     paddingBottom: paddingTopBottom,
     paddingRight: paddingLeftRight,
   },
+  topAddScreen: {
+    position: 'relative',
+    backgroundColor: '#E7ECEF',
+    width: widthProportion,
+    height: "35%",
+    paddingTop: paddingTopBottom,
+    paddingBottom: paddingBottom,
+  },
   bottomAddScreen: {   
     backgroundColor: '#919DA3',
     width: widthProportion,
-    height: "60%",
+    height: "65%",
     paddingBottom: paddingTopBottom,
   },
   
