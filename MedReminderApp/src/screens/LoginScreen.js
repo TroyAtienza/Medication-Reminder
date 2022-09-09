@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -25,7 +25,10 @@ const LoginScreen = () => {
       const user = userCredentials.user;
     })
     .catch(error => {
-      console.log(error);
+      console.log(error.code);
+      if (error.code === "auth/user-not-found") {
+        Alert.alert("User not found.");
+      }
     });
   }
 
