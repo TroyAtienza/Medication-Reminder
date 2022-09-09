@@ -14,8 +14,6 @@ export const addPill = () => {
             data[i].data.push(pill);
         }
     }
-    
-    console.log(data);
 }
 
 /**

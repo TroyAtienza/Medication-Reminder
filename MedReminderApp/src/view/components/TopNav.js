@@ -1,5 +1,8 @@
 import { StyleSheet, View, Alert, Button, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import {auth} from "../../Firebase";
+import { signOut } from "firebase/auth"
+import ProfileOperations, {updateProfile} from "../../controller/ProfileController";
 
 const TopNav = (props) => {
   const navigation = useNavigation();
@@ -8,7 +11,13 @@ const TopNav = (props) => {
       <View style={styles.fixToText}>
         <Button title = "Profile" style={styles.button} onPress={() => navigation.navigate("Profile")}/>
         <Text style={styles.title}> MedApp </Text>
-        <Button title="Sign out" style={styles.button} onPress={() => Alert.alert("You are now signed out")}/>
+        <Button title="Sign out" style={styles.button} onPress={() => {
+          signOut(auth).then(r => {
+          ProfileOperations.profile = null;
+          updateProfile();
+          navigation.navigate("Login");
+        });
+        }}/>
       </View>
     </View>
     );

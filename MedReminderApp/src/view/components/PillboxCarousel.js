@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: 30,
         height: "100%",
-        backgroundColor: 'white',
+        backgroundColor: '#E7ECEF',
         alignItems: 'center',
         justifyContent: 'center',
     },
