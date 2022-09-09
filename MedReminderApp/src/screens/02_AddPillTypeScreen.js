@@ -9,9 +9,8 @@ import { setPillType, setPillSize } from '../controller/PillController';
 import { useNavigation } from "@react-navigation/native";
 import Pill from '../model/Pill';
 
-const styles = createStyles()
-
 const AddPillTypeScreen = (props) => {
+  const buttonStyle = require('../components/ButtonStyle');
   const navigation = useNavigation();
   const styles = createStyles();
 
@@ -124,7 +123,7 @@ const AddPillTypeScreen = (props) => {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.buttonContainer}>
+          <View style={buttonStyle.footerContainer}>
             <BackButton onPress={() => navigation.navigate("Home")}/>
             {/* <NextButton onPress={() => navigateToColorScreen() }/> */}
             <NextButton onPress={() => navigation.navigate("PillTwoColours") }/>

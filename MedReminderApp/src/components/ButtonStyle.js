@@ -1,30 +1,37 @@
 import { StyleSheet } from 'react-native';
 
 module.exports = StyleSheet.create({
-    Button: {
-        backgroundColor: "#0066ff",
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    addButton: {
+        backgroundColor: "#447199",
         borderRadius: 5,
         width: "20%",
         padding: 4,
     },
-    ButtonText: {
+    addButtonText: {
         color:'white',
         fontSize:20,
         fontWeight: "500",
         textAlign:"center",
     },
-    CancelButton: {
-        backgroundColor: 'white',
-        borderColor: "#0066ff",
-        borderWidth: 1,
-        borderRadius: 5,
-        width: "40%",
+    footerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        paddingVertical: 10,
     },
-    CancelButtonText: {
-        color:'#0066ff',
+    footerButtons: {
+        backgroundColor: "#447199",
+        borderRadius: 5,
+        width: "20%",
+        padding: 4,
+    },
+    footerText: {
+        color:'white',
         fontSize:20,
         fontWeight: "500",
         textAlign:"center",
-        padding: 10,
     },
 })

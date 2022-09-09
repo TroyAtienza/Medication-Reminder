@@ -18,7 +18,7 @@ export const dimensions = {
 
 const widthProportion = '100%';
 const heightProportion = '50%';
-const paddingTopBottom = 40;
+const paddingTopBottom = 20;
 const paddingLeftRight = 20;
 const paddingBottom = 20;
 
@@ -77,11 +77,6 @@ const styles = StyleSheet.create({
     color: "#365F88",
     fontWeight : "bold", 
     fontSize: 20,
-  },
-  // Button Section
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
   },
   // Individual Buttons
   option: {

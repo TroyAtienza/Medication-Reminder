@@ -1,6 +1,7 @@
 import React, {useState, useRef, useCallback} from "react";
 import {View, StyleSheet, FlatList, Animated, Dimensions, Text} from "react-native";
 import {data} from "../model/PillList";
+import { useRoute } from "@react-navigation/native";
 
 const WINDOW_WIDTH = Dimensions.get("window").width;
 const BOX_WIDTH = WINDOW_WIDTH * 0.5;
@@ -14,7 +15,7 @@ function PillboxCarouselItem({item, selectedIndex}) {
             <View style={
                 [styles.boxSelected, {
                     marginLeft: item.id === 0 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
-                    marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
+                    marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2  : 0,
                 }]}
             >
                 <Text style={styles.titleSelected}>{item.day}</Text>
@@ -26,7 +27,7 @@ function PillboxCarouselItem({item, selectedIndex}) {
         <View style={
             [styles.box, {
                 marginLeft: item.id === 0 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
-                marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
+                marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2  : 0,
             }]
         }>
             <Text style={styles.title}>{item.day}</Text>
@@ -41,13 +42,17 @@ export default function PillboxCarousel( {setIndex} ) {
     const pillboxRef = useRef(null);
     let [currentIndex, setCurrentIndex] = useState(0);
 
+    const route = useRoute(); 
+
     const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
         if (changed && viewableItems.length > 0) {
             setCurrentIndex(viewableItems[0].index);
-            setIndex(viewableItems[0].index);
+            if (route.name == "Home"){
+                setIndex(viewableItems[0].index);
+            }
         }
     }, []);
-    const viewConfig = useRef({viewAreaCoveragePercentThreshold: 95});
+    const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50});
 
     // Returns FlatList containing all pillbox items and their contents
     return (
@@ -82,8 +87,8 @@ export default function PillboxCarousel( {setIndex} ) {
 const styles = StyleSheet.create({
     container: {
         paddingTop: 30,
-        flex: 1,
-        backgroundColor: '#fff',
+        height: "100%",
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
