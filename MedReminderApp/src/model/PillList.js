@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState } from "react";
-import { Text, TouchableOpacity, SafeAreaView, SectionList, StyleSheet, View, Button } from "react-native";
+import { SectionList, StyleSheet, View } from "react-native";
 import Pill from "./Pill";
 import Item from '../components/Item';
 
 const temp = new Pill();
 temp.pillName = "Panadol";
 temp.pillRepeats = 5;
-temp.pillInformation = "Take 2 every 8 hours.";
+temp.pillInformation = "Take 2 asdfasdfasfasfasfasfsafasfdsfsfsafsafsafsfsadevery 8 hours.";
 
 const temp1 = new Pill();
 temp1.pillName = "Pill";
@@ -24,11 +24,26 @@ temp3.pillName = "Pasdfsadfasd";
 temp3.pillRepeats = 3;
 temp3.pillInformation = "Take twice a day with food.";
 
+const temp4 = new Pill();
+temp4.pillName = "Pasdfsadfasd";
+temp4.pillRepeats = 3;
+temp4.pillInformation = "Take twice a day with food.";
+
+const temp5 = new Pill();
+temp5.pillName = "Pasdfsadfasd";
+temp5.pillRepeats = 3;
+temp5.pillInformation = "Take twice a day with food.";
+
+const temp6 = new Pill();
+temp6.pillName = "Pasdfsadfasd";
+temp6.pillRepeats = 3;
+temp6.pillInformation = "Take twice a day with food.";
+
 const data = [
     {
       id: 0,
       day: 'Monday',
-      data: [temp, temp1, temp2, temp3],
+      data: [temp, temp1, temp2, temp3, temp4, temp5, temp6],
     },
     {
       id: 1,
@@ -92,23 +107,29 @@ const data = [
     };
 
     return (
-        <SectionList 
-            sections={state} 
-            keyExtractor={(item, index) => item + index} 
-            renderItem={({item, section}) => <Item index={index} section={section} item={item} removePill={removePill}/>}
-        />
+        <View>
+          <SectionList 
+              sections={state} 
+              keyExtractor={(item, index) => item + index} 
+              renderItem={({item, section}) => <Item index={index} section={section} item={item} removePill={removePill}/>}
+          />
+        </View>
     );
   }
   
   const styles = StyleSheet.create({
+    titleStyle:{
+        textAlign: 'left',
+        fontSize: 20,
+        fontStyle: 'bold',
+    },
     textStyle:{
         textAlign: 'left',
+        fontSize: 15,
     },
     row: {
         flexDirection: 'row',
-        width: '100%',
         justifyContent: 'space-between',
-        padding: 5,
         alignItems: 'center',
     },
     header: {
