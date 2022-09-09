@@ -6,16 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 
 const splitScreenStyles = createStyles();
 
-const PillTime = ({}) => {
-
-}
-
 const AddPillTimesScreen = (props) => {
   const navigation = useNavigation();
 
   // text input variables
   const [text, setText] = useState('');
-
   // pill times for rendering
   var pillTimes = []; 
   
@@ -35,7 +30,6 @@ const AddPillTimesScreen = (props) => {
   /*
   * Updates the length of the dosage time list to render the amount of
   * dosages from the users input 
-  * 
   */
   const renderPillTimes = () => {
     // initialise variables for each input
