@@ -39,10 +39,14 @@ export function setPillSize(size) {
     pill.size = size;
 }
 
-export function setStartingDate (date) {
+export function setPillStartingDate (date) {
     pill.startingDate = date;
 }
 
-export function setEndingDate (date) {
+export function setPillEndingDate (date) {
     pill.endingDate = date;
+}
+
+export function setPillFrequency(frequency) {
+    pill.frequency = frequency;
 }

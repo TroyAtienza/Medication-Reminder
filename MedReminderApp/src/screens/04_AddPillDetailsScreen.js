@@ -8,7 +8,7 @@ import RepeatSelection from '../components/RepeatSelection';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useNavigation } from "@react-navigation/native";
 import Pill from '../model/Pill';
-import { setPillInformation, setPillName, setStartingDate, setEndingDate } from '../controller/PillController';
+import { setPillInformation, setPillName, setPillStartingDate, setPillEndingDate } from '../controller/PillController';
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 
@@ -114,8 +114,8 @@ const AddPillDetailsScreen = (props) => {
             <NextButton onPress={() => {
               setPillName(name);
               setPillInformation(description);
-              setStartingDate(startDate);
-              setEndingDate(endDate);
+              setPillStartingDate(startDate);
+              setPillEndingDate(endDate);
               navigation.navigate('PillTimes');
             }}/>
           </View>
