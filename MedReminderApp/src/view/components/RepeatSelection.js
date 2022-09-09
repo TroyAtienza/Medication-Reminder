@@ -1,26 +1,32 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
+/**
+ * RepeatSelection lets the user select what days they want the pill 
+ * to repeat on. The user can select and unselect days.
+ * 
+ * @param {*} setSelectedDays
+ */
 const RepeatSelection = ({ setSelectedDays }) => {  
     const [state, setState] = useState({
         selectedIndex: [],
         index: 0,
     });
 
-    const [array, setArray] = useState([0,0,0,0,0,0,0]);
+    const [array, setArray] = useState([0,0,0,0,0,0,0]); //set use state to return to details
 
-    const {selectedIndex, index} = state;
+    const {selectedIndex, index} = state; //set the initial state of the list
 
-    const SelectDays = ({item, id, callBack}) => {
+    const SelectDays = ({item, id, callBack}) => { //callback function that highlights the selected days
         var color = "grey"
         if(selectedIndex[1] && selectedIndex.includes(id)){
-          color ="lightblue"
+          color ="lightblue" //highlight the day boxes blue when they are selected
         } 
         else if(selectedIndex[0] === id){
           color = "lightblue"
         }
         return (
-            <TouchableOpacity onPress={() => { callBack(id); }} style={{ backgroundColor:color, 
+            <TouchableOpacity onPress={() => { callBack(id); }} style={{ backgroundColor:color, //styling for the day boxes dependent on colour.
                 borderTopLeftRadius:10,
                 borderTopRightRadius: 10,
                 borderBottomLeftRadius: 10,
@@ -30,7 +36,7 @@ const RepeatSelection = ({ setSelectedDays }) => {
         );
     };
 
-    const selectedDays = [
+    const selectedDays = [ //days list
         {
             id: 0,
             day: "M",
@@ -60,6 +66,12 @@ const RepeatSelection = ({ setSelectedDays }) => {
             day: "S",
         },
     ];
+    /**
+     * Gets the id of a selection and add it to the array of selected days.
+     * Deletes day from list if it is already selected.
+     * 
+     * @param {*} id 
+     */
 
     const selectedItem = (id) => { 
       array[id] = !array[id];
@@ -75,7 +87,7 @@ const RepeatSelection = ({ setSelectedDays }) => {
       };  
       return (
         <View style={detailsStyles.rowContainer}>
-              {selectedDays.map((data, key={index}) => (
+              {selectedDays.map((data, key={index}) => ( //maps index and calls callback function to change colour of selection.
                 <SelectDays key={data.id} item={data} id={key.toString()} callBack={(key) => {selectedItem(key);}}/>
               ))}
         </View>
