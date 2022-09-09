@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
 import { useState } from 'react';
-import TopNav from '../view/TopNav';
+import TopNav from '../components/TopNav';
 import PillboxCarousel from "../components/PillboxCarousel";
 import createStyles from '../styles/GlobalStyles'
 import BackButton from '../components/BackButton';

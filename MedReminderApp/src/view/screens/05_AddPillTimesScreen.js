@@ -1,6 +1,6 @@
 import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
 import createStyles from '../styles/GlobalStyles';
-import TopNav from '../view/TopNav';
+import TopNav from '../components/TopNav';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import BackButton from '../components/BackButton';

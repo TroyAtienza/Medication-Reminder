@@ -1,6 +1,6 @@
 import createStyles from '../styles/GlobalStyles'
 import { StyleSheet, Button, Text, View, TouchableOpacity, Image } from 'react-native';
-import TopNav from '../view/TopNav'
+import TopNav from '../components/TopNav'
 import { Component } from 'react';
 import imageList from '../assets/ImageList';
 import indexes from '../assets/ImageIndex';

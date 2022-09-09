@@ -3,7 +3,7 @@ import { PillList } from '../model/PillList';
 import AddButton from '../components/AddButton';
 import { View } from 'react-native';
 import createStyles from '../styles/GlobalStyles'
-import TopNav from '../view/TopNav'
+import TopNav from '../components/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import { useNavigation } from "@react-navigation/native";
 import { createNewPill } from '../controller/PillController';
