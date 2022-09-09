@@ -13,7 +13,6 @@ import RegistrationScreen from "./src/screens/RegistrationScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // TODO: When Home screen is completed change home component to actual home screen.
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
