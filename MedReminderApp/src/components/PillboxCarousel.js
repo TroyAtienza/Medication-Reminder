@@ -15,7 +15,7 @@ function PillboxCarouselItem({item, selectedIndex}) {
             <View style={
                 [styles.boxSelected, {
                     marginLeft: item.id === 0 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
-                    marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
+                    marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2  : 0,
                 }]}
             >
                 <Text style={styles.titleSelected}>{item.day}</Text>
@@ -27,7 +27,7 @@ function PillboxCarouselItem({item, selectedIndex}) {
         <View style={
             [styles.box, {
                 marginLeft: item.id === 0 ? (WINDOW_WIDTH-BOX_WIDTH) / 2: SPACING,
-                marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2 - SPACING : 0,
+                marginRight: item.id === 6 ? (WINDOW_WIDTH-BOX_WIDTH) / 2  : 0,
             }]
         }>
             <Text style={styles.title}>{item.day}</Text>
@@ -52,7 +52,7 @@ export default function PillboxCarousel( {setIndex} ) {
             }
         }
     }, []);
-    const viewConfig = useRef({viewAreaCoveragePercentThreshold: 95});
+    const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50});
 
     // Returns FlatList containing all pillbox items and their contents
     return (
