@@ -10,7 +10,12 @@ function createNewPill() {
 
 // TODO: dynamic data indexing based off selected day in pill case.
 export const addPill = () => {
-    data[6].data.push(pill);
+    // for (let i of pill.repeats) {
+    //     if (i) {
+    //         data[6].data.push(pill);
+    //     } 
+    // }
+    
     console.log(data);
 }
 
