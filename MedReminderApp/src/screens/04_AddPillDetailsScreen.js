@@ -5,13 +5,14 @@ import TopNav from '../view/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import AddButton from '../components/AddButton';
 import RepeatSelection from '../components/RepeatSelection';
-import DateTimePicker from '@react-native-community/datetimepicker'
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from "@react-navigation/native";
-import Pill from '../model/Pill';
+import { onChangeStartDate, onChangeEndDate, showModeStart, showModeEnd, sendValues,  } from '../controller/PillScreenController';
 
-const styles = createStyles()
+const styles = createStyles();
 
 const AddPillDetailsScreen = (props) => {
+
   const [index, setIndex] = useState(0);
   const navigation = useNavigation();
 
@@ -30,46 +31,6 @@ const AddPillDetailsScreen = (props) => {
   const [textStart, setTextStart] = useState("Select a start date!");
   const [textEnd, setTextEnd] = useState("Select an end date!");
 
-  const onChangeStartDate = (event, selectedDate) => {
-    if (event.type == 'set') {
-      const currentDate = selectedDate || startDate;
-      setShowStart(Platform.OS === 'android');
-      setStartDate(currentDate);
-
-      let tempDate = new Date(currentDate);
-      let fDate = tempDate.getDate() + '/' + (tempDate.getMonth()+1) + '/' + tempDate.getFullYear();
-      setTextStart(fDate);
-    }
-    setShowStart(false);
-  }
-
-  const onChangeEndDate = (event, selectedDate) => {
-    if (event.type == 'set') {
-      const currentDate = selectedDate || endDate;
-      setShowEnd(Platform.OS === 'android');
-      setEndDate(currentDate);
-
-      let tempDate = new Date(currentDate);
-      let fDate = tempDate.getDate() + '/' + (tempDate.getMonth()+1) + '/' + tempDate.getFullYear();
-      setTextEnd(fDate);
-    }
-    setShowEnd(false);
-  }
-
-  const showModeStart = (currentMode) => {
-    setShowStart(true);
-    setModeStart(currentMode);
-  }
-
-  const showModeEnd= (currentMode) => {
-    setShowEnd(true);
-    setModeEnd(currentMode);
-  }
- 
-  function sendValues(enteredName, enteredDescription, startDate, endDate) {
-    new Pill(enteredName, enteredDescription);
-  };
-  
   return (
     <View style={styles.container}>
       <TopNav/>
