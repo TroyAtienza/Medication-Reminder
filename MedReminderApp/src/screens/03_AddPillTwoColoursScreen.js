@@ -4,13 +4,11 @@ import TopNav from '../view/TopNav'
 import { Component } from 'react';
 import imageList from '../assets/ImageList';
 import indexes from '../assets/ImageIndex';
-
-// TODO:
-// - need to link chosen color to new pill object (can do once add pill type is done)
-// - change color of button to grey after press
-// - add styling to buttons
+import BackButton from '../components/BackButton';
+import NextButton from '../components/NextButton';
 
 const splitScreenStyles = createStyles();
+const buttonStyle = require('../components/ButtonStyle');
 
 // selected pill color information
 const pillType = 'PT'; // replace id with this infront to differentiate the pill types
@@ -79,17 +77,11 @@ class AddPillTwoColoursScreen extends Component {
           </View>
 
           {/* Buttons */}
-          <View style={styles.colorSelect}>
-            <View style={styles.bottomButtons}>
-              <Button style={styles.button} title="Back" onPress={() =>  this.props.navigation.navigate('PillType')}></Button>
-            </View>
-            <View style={styles.bottomButtons}>
-              <Button style={styles.button} title="Next" onPress={() =>  this.props.navigation.navigate('PillDetails')}></Button>
+          <View style={buttonStyle.footerContainer}>
+            <BackButton onPress={() =>  this.props.navigation.navigate('PillType')}/>
+            <NextButton onPress={() =>  this.props.navigation.navigate('PillDetails')}/>
           </View>
-          </View>
-
         </View>
-      
       </View>
     );
   }
@@ -106,11 +98,6 @@ const styles = StyleSheet.create({
     width: 100,
     flex: 1,
     left: '38%', // im not sure why its at the middle at 38%
-  },
-  bottomButtons: {
-    justifyContent: 'space-between'
-  },
-  button : {
   },
   topText : {
     textAlign: 'center',
