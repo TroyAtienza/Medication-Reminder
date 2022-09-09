@@ -1,9 +1,20 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native'
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Image,
+  Alert,
+} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigation } from "@react-navigation/native";
-
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../Firebase';
+import AsyncStorageNative from "@react-native-async-storage/async-storage/src/AsyncStorage.native";
+import Profile from "../model/Profile";
+import ProfileController from "../controller/ProfileController";
 
 const RegistrationScreen = () => {
   const navigation = useNavigation();
@@ -14,11 +25,16 @@ const RegistrationScreen = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
+        AsyncStorageNative.setItem('last-user', JSON.stringify(user))
+        ProfileController.profile =  new Profile(
+            user.email,
+        )
         navigation.navigate("Home");
       }
-    })
+    });
     return unsubscribe;
   }, [])
+
 
   const handleSignUp = () => {
     if (password !== confirmPassword) {
@@ -33,6 +49,7 @@ const RegistrationScreen = () => {
       console.log(error);
     });
   }
+
 
   return (
     <View style={styles.container}>

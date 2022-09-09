@@ -3,20 +3,44 @@ import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../Firebase';
+import AsyncStorageNative from "@react-native-async-storage/async-storage/src/AsyncStorage.native";
+import Profile from "../model/Profile";
+import ProfileOperations from "../controller/ProfileController";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPreviousUser, setPreviousUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
+      if (user && !isPreviousUser) {
         navigation.navigate("Home");
+        AsyncStorageNative.setItem('last-user', JSON.stringify(user))
+        ProfileOperations.profile = new Profile(
+            user.email,
+        )
       }
     })
     return unsubscribe;
   }, [])
+
+  useEffect(() => {
+    AsyncStorageNative.getItem('last-user').then((result) => {
+      if (result) {
+        let user = JSON.parse(result);
+        ProfileOperations.profile = new Profile(
+            user.email,
+        );
+        setPreviousUser(true);
+        navigation.navigate("Home");
+      }
+      else {
+        setPreviousUser(false);
+      }
+    });
+  }, []);
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
