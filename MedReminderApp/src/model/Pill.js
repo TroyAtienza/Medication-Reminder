@@ -1,5 +1,6 @@
-// TODO: extend Component and implement render() method for pill icon 
-
+/**
+ * Pill class.
+ */
 export default class Pill{
   constructor(){
     this.name = "";
