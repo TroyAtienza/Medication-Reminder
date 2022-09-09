@@ -48,7 +48,7 @@ const data = [
  */
   const PillList = (props) => {
     const [state, setState] = useState(data); //set initial state as original list
-    const index = props.index; //find index of carousel 
+    const index = props.index; //find index of carousel
 
     const editItem = (itemId, newValue) => {
       let newState = [...state]; //initialise a new state
