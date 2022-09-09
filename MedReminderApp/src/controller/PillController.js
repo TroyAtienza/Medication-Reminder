@@ -4,7 +4,7 @@ import Pill from "../model/Pill";
 //Builder Model
 let pill = new Pill();
 
-function createNewPill() {
+export function createNewPill() {
     pill = new Pill();
 }
 
