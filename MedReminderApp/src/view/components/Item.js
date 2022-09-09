@@ -21,7 +21,7 @@ const Item = ({ item, section, index, removePill }) => {
               </View> 
           </View>
           <TouchableOpacity onPress={() => removePill(section.id, item)}> 
-              <Image style={styles.trashImage} source={require(`../assets/buttons/trash.png`)}/>
+              <Image style={styles.trashImage} source={require(`../../assets/buttons/trash.png`)}/>
           </TouchableOpacity>
           </TouchableOpacity>
         <Text></Text>

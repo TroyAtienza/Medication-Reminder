@@ -3,7 +3,7 @@
 * Used to render the image on add pill color/two colors screens. 
 */
 
-import Images from '../assets/Images';
+import Images from './Images';
 
 const imageList = [
 

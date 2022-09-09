@@ -1,17 +1,17 @@
-import createStyles from '../view/SplitView'
-import { StyleSheet, Button, Text, View, TouchableOpacity, Image } from 'react-native';
-import TopNav from '../view/TopNav'
+import createStyles from '../../styles/GlobalStyles'
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import TopNav from '../components/TopNav'
 import { Component } from 'react';
-import imageList from '../assets/ImageList';
-import indexes from '../assets/ImageIndex';
+import imageList from '../../model/images/ImageList';
+import indexes from '../../model/images/ImageIndex';
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
-import { setPillColour } from '../controller/PillController';
+import { setPillColour } from '../../controller/PillController';
 import ColorSelectButton from '../components/ColorSelectButton';
 
 // imported styles
 const splitScreenStyles = createStyles();
-const buttonStyle = require('../components/ButtonStyle');
+const buttonStyle = require('../../styles/ButtonStyle');
 
 // selected pill color information
 const pillType = 'PT';

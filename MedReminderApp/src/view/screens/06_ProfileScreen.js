@@ -1,18 +1,11 @@
-import {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    TouchableOpacity,
-    Modal,
-    TextInput,
-    Dimensions,
-    Alert
-} from 'react-native';
+import {Alert, Dimensions, Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import ProfileController, {storeProfile} from "../controller/ProfileController";
-import {useEffect, useState} from "react";
-import ProfileOperations from "../controller/ProfileController";
+import ProfileController from "../../controller/ProfileController";
+import ProfileOperations, {updateProfile} from "../../controller/ProfileController";
+import {useState} from "react";
+import {auth} from "../../Firebase";
+import {reauthenticateWithCredential, updateEmail, updatePassword, signOut } from "firebase/auth"
+import firebase from "firebase/compat";
 
 const { width } = Dimensions.get("window");
 
@@ -21,71 +14,90 @@ const ProfileScreen = () => {
 
     const [currentProfile, setProfile] = useState(ProfileController.profile);
     const [isInputVisible, setInputVisible] = useState(false);
+    const [reauthVisible, setReauthVisible] = useState(false);
+    const [reauthInput, setReuthInput] = useState("");
     const [textInput, setTextInput] = useState("");
     const [buttonPressed, setButtonPressed] = useState("");
 
     const confirmInput = () => {
-        // return if input is empty
-        if (textInput.trim() === "") {
-            Alert.alert(
-                "Text field Empty!",
-                `Please input something into the text field, or press cancel`,
-                [
-                    {
-                        text: "OK",
-                    },
-                ]
-            );
-            return;
-        }
-        // confirm with user if input is what they desire
-        Alert.alert(
-            "Confirm",
-            `Change ${buttonPressed} to ${textInput}?`,
-            [
-                {
-                    text: "OK",
-                    onPress: () => enterInput()
-                },
-                {
-                    text: "Cancel",
-                    style: "cancel"
-                },
-            ]
-        );
+        const userProvidedPassword = reauthInput;
+        const credential = firebase.auth.EmailAuthProvider.credential(
+            auth.currentUser.email,
+            userProvidedPassword,
+        )
+        reauthenticateWithCredential(auth.currentUser, credential)
+            .then(() => {
+                toggleReauthVisibility();
+                toggleInputVisibility();
+                setReuthInput("");
+            }).catch(error => {
+            console.log("Re-authentication failed")
+        })
     }
 
     const enterInput = () => {
         toggleInputVisibility();
         switch (buttonPressed) {
             case "Email":
-                ProfileOperations.editEmail(textInput);
+                ProfileOperations.editEmail(textInput)
+                updateEmail(auth.currentUser, textInput)
+                    .then(r => {
+                    console.log("Email updated");
+                }).catch(error => {
+                    console.log("error occurred updating email: ");
+                });
                 break;
-            case "Name" :
-                ProfileOperations.editName(textInput);
+            case "Password":
+                updatePassword(auth.currentUser, textInput)
+                    .then(r => {
+                        console.log("Password updated");
+                    }).catch(error => {
+                    console.log("error occurred updating password: ");
+                });
                 break;
         }
+
         setProfile(ProfileOperations.profile);
-        storeProfile(ProfileOperations.profile)
+        updateProfile(ProfileOperations.profile)
             .then(r => console.log(r));
         setTextInput("");
     }
 
+    const PromptForCredentials = () => {
+        toggleReauthVisibility();
+    }
+
+    // Cancel user input
     const cancelInput = () => {
         toggleInputVisibility();
         setTextInput("")
     }
 
+    // Cancel user input
+    const cancelReauthInput = () => {
+        toggleReauthVisibility();
+        setReuthInput("")
+    }
+
+    // Toggles for input and re-authentication modals
     const toggleInputVisibility = () => {
         setInputVisible(!isInputVisible);
     }
+    const toggleReauthVisibility = () => {
+        setReauthVisible(!reauthVisible);
+    }
 
-    useEffect(() => {
-
-    }, []);
+    const doSignOut = () => {
+        signOut(auth).then(r => {
+            ProfileOperations.profile = null;
+            updateProfile();
+            navigation.navigate("Login");
+        });
+    }
 
     return (
         <View style={styles.container}>
+            {/* Modal for updating credentials */}
             <Modal
                 animationType="slide"
                 transparent visible={isInputVisible}
@@ -95,12 +107,13 @@ const ProfileScreen = () => {
                 <View style={styles.inputWrapper}>
                     <View style={styles.modalView}>
                         <TextInput
-                            placeholder="Enter change"
+                            placeholder= {textInput === "Password" ? "Enter New Password..." : "Enter Change"}
                             value={textInput} style={styles.textInput}
                             onChangeText={(value) => setTextInput(value)}
+                            secureTextEntry={ textInput === "Password" }
                         />
                         <View style={styles.modalButtonView}>
-                        <TouchableOpacity style={styles.Button} onPress={confirmInput}>
+                        <TouchableOpacity style={styles.Button} onPress={enterInput}>
                             <Text style={styles.ButtonText}>Save</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.CancelButton} onPress={cancelInput}>
@@ -111,10 +124,41 @@ const ProfileScreen = () => {
                 </View>
             </Modal>
 
+            {/* Modal for entering credentials */}
+            <Modal
+                animationType="slide"
+                transparent visible={reauthVisible}
+                presentationStyle="overFullScreen"
+                onDismiss={toggleReauthVisibility}
+            >
+                <View style={styles.inputWrapper}>
+                    <View style={styles.modalView}>
+                        <TextInput
+                            placeholder="Please Re-enter your password"
+                            value={reauthInput} style={styles.textInput}
+                            onChangeText={(value) => setReuthInput(value)}
+                            secureTextEntry
+                        />
+                        <View style={styles.modalButtonView}>
+                            <TouchableOpacity style={styles.Button} onPress={confirmInput}>
+                                <Text
+                                    style={styles.ButtonText}>Enter
+
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.CancelButton} onPress={cancelReauthInput}>
+                                <Text style={styles.CancelButtonText}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
+            {/* Main content for the profile screen*/}
             <View style={styles.topNav}>
                 <TouchableOpacity style={styles.navBackButton} onPress={() => navigation.navigate('Home')}>
                     <Image
-                        source={require('../assets/buttons/back.png')}
+                        source={require('../../assets/buttons/back.png')}
                     />
                 </TouchableOpacity>
                 <View></View>
@@ -122,13 +166,12 @@ const ProfileScreen = () => {
             <View style={styles.userWrapper}>
                 <Image
                     style={styles.profilePicture}
-                    source={currentProfile.picSource}>
+                    source={require("../../assets/profile/avatars/placeholder.png")}>
                 </Image>
                 <View style={styles.userInfo}>
-                    <Text style={styles.username}>{currentProfile.name}</Text>
                     <View style={styles.mailWrapper}>
-                        <Image style={styles.mailImage} source={require(`../assets/profile/email.png`)}/>
-                        <Text style={styles.mailText}>{currentProfile.email}</Text>
+                        <Image style={styles.mailImage} source={require(`../../assets/profile/email.png`)}/>
+                        <Text style={styles.username}>{currentProfile.email}</Text>
                     </View>
                 </View>
             </View>
@@ -137,59 +180,30 @@ const ProfileScreen = () => {
                     <TouchableOpacity
                         style={styles.option}
                         onPress={() => {
-                            //TODO ask to enter password first!
+                            setButtonPressed("Password");
+                            PromptForCredentials();
                         }}
                     >
-                        <Image source={require("../assets/profile/lock.png")} style={{ tintColor: "#919DA3"}}/>
-                        <Text style={styles.optionText}>Change Password</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.option}
-                        onPress={() => {
-                            setButtonPressed("Name");
-                            setInputVisible(true);
-                        }}
-                    >
-                        <Image source={require("../assets/profile/edit.png")} style={{ tintColor: "#919DA3"}}/>
-                        <Text style={styles.optionText}>Edit Name</Text>
+                        <Image source={require("../../assets/profile/lock.png")} style={{ tintColor: "#919DA3"}}/>
+                        <Text style={styles.optionText}>Reset Password</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.option}
                         onPress={() => {
                             setButtonPressed("Email");
-                            setInputVisible(true);
+                            PromptForCredentials();
                         }}
                     >
-                        <Image source={require("../assets/profile/at-sign.png")} style={{ tintColor: "#919DA3"}}/>
-                        <Text style={styles.optionText}>Edit Email</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.option}
-                        onPress={() => {
-                            //TODO need image picker
-                            setButtonPressed("Profile picture");
-                            setInputVisible(true);
-                        }}
-                    >
-                        <Image source={require("../assets/profile/avatar-small.png")}  />
-                        <Text style={styles.optionText}>Update Picture</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.option}
-                        onPress={() => {
-                            console.log("Put function here")
-                        }}
-                    >
-                        <Image source={require("../assets/profile/settings.png")} style={{ tintColor: "#919DA3"}}/>
-                        <Text style={styles.optionText}>Settings</Text>
+                        <Image source={require("../../assets/profile/at-sign.png")} style={{ tintColor: "#919DA3"}}/>
+                        <Text style={styles.optionText}>Change Email</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.optionLogout}
                         onPress={() => {
-                            console.log("Put function here")
+                            doSignOut();
                         }}
                     >
-                        <Image source={require("../assets/profile/log-out.png")} style={{ tintColor: "#fc6a6a"}}/>
+                        <Image source={require("../../assets/profile/log-out.png")} style={{ tintColor: "#fc6a6a"}}/>
                         <Text style={styles.logoutText}>Sign out</Text>
                     </TouchableOpacity>
                 </View>
@@ -252,10 +266,13 @@ const styles = StyleSheet.create({
     },
     mailWrapper: {
         flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
     },
     mailImage: {
-        height: 20,
-        width: 20,
+        height: 25,
+        width: 25,
+        marginRight: 5,
     },
     mailText: {
         marginLeft: 6,
@@ -268,7 +285,7 @@ const styles = StyleSheet.create({
         flex: 0.85,
         alignItems: 'flex-start',
         marginLeft: 40,
-        justifyContent: "space-between",
+        justifyContent: "space-around",
     },
     option: {
         flexDirection: "row",
@@ -370,3 +387,4 @@ const styles = StyleSheet.create({
 });
 
 export default ProfileScreen;
+export {styles}

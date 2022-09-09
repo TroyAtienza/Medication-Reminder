@@ -1,7 +1,5 @@
 export default class Profile {
-    constructor(name, email, picSource) {
-        this.name = name;
+    constructor(email) {
         this.email = email;
-        this.picSource = picSource;
     }
 }
