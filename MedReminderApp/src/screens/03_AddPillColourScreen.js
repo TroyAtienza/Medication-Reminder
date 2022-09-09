@@ -6,6 +6,7 @@ import imageList from '../assets/ImageList';
 import indexes from '../assets/ImageIndex';
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
+import ColorSelectButton from '../components/ColorSelectButton';
 
 const splitScreenStyles = createStyles();
 const buttonStyle = require('../components/ButtonStyle');
@@ -13,20 +14,6 @@ const buttonStyle = require('../components/ButtonStyle');
 // selected pill color information
 const pillType = 'PTT'; // replace id with this infront to differentiate the pill types
 const color = 'w';
-
-// Touchable opacity style
-const ColorSelectButton = ({ onPress, backgroundColor }) => (
-  <View>
-    <TouchableOpacity style={{
-      borderRadius: 15,
-      height: 60,
-      width: 60,
-      backgroundColor: backgroundColor,
-      }}
-      onPress={onPress}>
-    </TouchableOpacity>
-  </View>
-);
 
 class AddPillColourScreen extends Component {
   constructor() {

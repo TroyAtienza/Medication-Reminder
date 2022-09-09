@@ -5,9 +5,9 @@ import TopNav from '../view/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import AddButton from '../components/AddButton';
 import RepeatSelection from '../components/RepeatSelection';
-import DateTimePicker from '@react-native-community/datetimepicker'
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from "@react-navigation/native";
-import Pill from '../model/Pill';
+import { onChangeStartDate, onChangeEndDate, showModeStart, showModeEnd, sendValues,  } from '../controller/PillScreenController';
 import { setPillInformation, setPillName, setPillStartingDate, setPillEndingDate, setPillRepeats } from '../controller/PillController';
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
