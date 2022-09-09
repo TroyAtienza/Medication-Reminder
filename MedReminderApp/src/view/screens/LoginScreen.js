@@ -1,63 +1,64 @@
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Image,
-  Alert,
-} from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { useNavigation } from "@react-navigation/native";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../Firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../Firebase';
 import AsyncStorageNative from "@react-native-async-storage/async-storage/src/AsyncStorage.native";
-import Profile from "../model/Profile";
-import ProfileController from "../controller/ProfileController";
+import Profile from "../../model/Profile";
+import ProfileOperations from "../../controller/ProfileController";
 
-const RegistrationScreen = () => {
+const LoginScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isPreviousUser, setPreviousUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
+      if (user && !isPreviousUser) {
+        navigation.navigate("Home");
         AsyncStorageNative.setItem('last-user', JSON.stringify(user))
-        ProfileController.profile =  new Profile(
+        ProfileOperations.profile = new Profile(
             user.email,
         )
-        navigation.navigate("Home");
       }
-    });
+    })
     return unsubscribe;
   }, [])
 
+  useEffect(() => {
+    AsyncStorageNative.getItem('last-user').then((result) => {
+      if (result) {
+        let user = JSON.parse(result);
+        ProfileOperations.profile = new Profile(
+            user.email,
+        );
+        setPreviousUser(true);
+        navigation.navigate("Home");
+      }
+      else {
+        setPreviousUser(false);
+      }
+    });
+  }, []);
 
-  const handleSignUp = () => {
-    if (password !== confirmPassword) {
-      Alert.alert("Incorrect Password: Passwords Mismatch")
-      return;
-    }
-    createUserWithEmailAndPassword(auth, email, password)
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {
       const user = userCredentials.user;
     })
     .catch(error => {
-      console.log(error);
+      console.log(error.code);
+      if (error.code === "auth/user-not-found") {
+        Alert.alert("User not found.");
+      }
     });
   }
 
-
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/MedApp_Logo.png")} style={styles.logo}></Image>
-      <KeyboardAvoidingView
-        style={styles.inputContainer}
-        behavior="padding"
-      >
+      <Image source={require("../../assets/MedApp_Logo.png")} style={styles.logo}></Image>
+      <KeyboardAvoidingView behavior="padding" style={styles.inputContainer}>
         <View>
           <TextInput
             placeholder="Email"
@@ -72,26 +73,19 @@ const RegistrationScreen = () => {
             style={styles.input}
             secureTextEntry
           />
-          <TextInput
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChangeText={text => setConfirmPassword(text)}
-            style={styles.input}
-            secureTextEntry
-          />
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              onPress={handleSignUp}
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>Register</Text>
-            </TouchableOpacity>
-            <View style={styles.footerContainer}>
-              <Text style={styles.footerText}>
-                Already have an account?
-                <Text style={styles.footerLink} onPress={() => { navigation.navigate("Login") }}>
-                  Log in
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={handleSignIn}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <View style={styles.footerContainer}>
+            <Text style={styles.footerText}>
+              Don't have an account?
+              <Text style={styles.footerLink} onPress={() => {navigation.navigate("Register")}}>
+                &nbsp;Sign up
               </Text>
             </Text>
           </View>
@@ -101,7 +95,7 @@ const RegistrationScreen = () => {
   )
 }
 
-export default RegistrationScreen
+export default LoginScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -111,9 +105,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#A3CEF1",
   },
   logo: {
+    
     width: 200,
     height: 200,
-    marginTop:60,
   },
   inputContainer: {
     marginTop: 100,

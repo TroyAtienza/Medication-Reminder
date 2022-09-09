@@ -1,9 +1,9 @@
 import {Alert, Dimensions, Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import ProfileController from "../controller/ProfileController";
-import ProfileOperations, {updateProfile} from "../controller/ProfileController";
+import ProfileController from "../../controller/ProfileController";
+import ProfileOperations, {updateProfile} from "../../controller/ProfileController";
 import {useState} from "react";
-import {auth} from "../Firebase";
+import {auth} from "../../Firebase";
 import {reauthenticateWithCredential, updateEmail, updatePassword, signOut } from "firebase/auth"
 import firebase from "firebase/compat";
 
@@ -158,7 +158,7 @@ const ProfileScreen = () => {
             <View style={styles.topNav}>
                 <TouchableOpacity style={styles.navBackButton} onPress={() => navigation.navigate('Home')}>
                     <Image
-                        source={require('../assets/buttons/back.png')}
+                        source={require('../../assets/buttons/back.png')}
                     />
                 </TouchableOpacity>
                 <View></View>
@@ -166,11 +166,11 @@ const ProfileScreen = () => {
             <View style={styles.userWrapper}>
                 <Image
                     style={styles.profilePicture}
-                    source={require("../assets/profile/avatars/placeholder.png")}>
+                    source={require("../../assets/profile/avatars/placeholder.png")}>
                 </Image>
                 <View style={styles.userInfo}>
                     <View style={styles.mailWrapper}>
-                        <Image style={styles.mailImage} source={require(`../assets/profile/email.png`)}/>
+                        <Image style={styles.mailImage} source={require(`../../assets/profile/email.png`)}/>
                         <Text style={styles.username}>{currentProfile.email}</Text>
                     </View>
                 </View>
@@ -184,7 +184,7 @@ const ProfileScreen = () => {
                             PromptForCredentials();
                         }}
                     >
-                        <Image source={require("../assets/profile/lock.png")} style={{ tintColor: "#919DA3"}}/>
+                        <Image source={require("../../assets/profile/lock.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Reset Password</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -194,7 +194,7 @@ const ProfileScreen = () => {
                             PromptForCredentials();
                         }}
                     >
-                        <Image source={require("../assets/profile/at-sign.png")} style={{ tintColor: "#919DA3"}}/>
+                        <Image source={require("../../assets/profile/at-sign.png")} style={{ tintColor: "#919DA3"}}/>
                         <Text style={styles.optionText}>Change Email</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -203,7 +203,7 @@ const ProfileScreen = () => {
                             doSignOut();
                         }}
                     >
-                        <Image source={require("../assets/profile/log-out.png")} style={{ tintColor: "#fc6a6a"}}/>
+                        <Image source={require("../../assets/profile/log-out.png")} style={{ tintColor: "#fc6a6a"}}/>
                         <Text style={styles.logoutText}>Sign out</Text>
                     </TouchableOpacity>
                 </View>

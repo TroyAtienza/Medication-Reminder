@@ -1,19 +1,18 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import PillListScreen from "./src/screens/01_PillListScreen";
-import AddPillTypeScreen from "./src/screens/02_AddPillTypeScreen";
-import AddPillColourScreen from "./src/screens/03_AddPillColourScreen";
-import AddPillTwoColoursScreen from "./src/screens/03_AddPillTwoColoursScreen";
-import AddPillDetailsScreen from "./src/screens/04_AddPillDetailsScreen";
-import AddPillTimesScreen from "./src/screens/05_AddPillTimesScreen";
-import ProfileScreen from "./src/screens/06_ProfileScreen";
-import LoginScreen from "./src/screens/LoginScreen";
-import RegistrationScreen from "./src/screens/RegistrationScreen";
+import PillListScreen from "./src/view/screens/01_PillListScreen";
+import AddPillTypeScreen from "./src/view/screens/02_AddPillTypeScreen";
+import AddPillColourScreen from "./src/view/screens/03_AddPillColourScreen";
+import AddPillTwoColoursScreen from "./src/view/screens/03_AddPillTwoColoursScreen";
+import AddPillDetailsScreen from "./src/view/screens/04_AddPillDetailsScreen";
+import AddPillTimesScreen from "./src/view/screens/05_AddPillTimesScreen";
+import ProfileScreen from "./src/view/screens/06_ProfileScreen";
+import LoginScreen from "./src/view/screens/LoginScreen";
+import RegistrationScreen from "./src/view/screens/RegistrationScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // TODO: When Home screen is completed change home component to actual home screen.
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
