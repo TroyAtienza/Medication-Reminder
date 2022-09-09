@@ -12,6 +12,7 @@ import Pill from '../model/Pill';
 const styles = createStyles()
 
 const AddPillDetailsScreen = (props) => {
+  const [index, setIndex] = useState(0);
   const navigation = useNavigation();
 
   const [name, onChangeName] = useState('');
@@ -73,7 +74,8 @@ const AddPillDetailsScreen = (props) => {
     <View style={styles.container}>
       <TopNav/>
       <View style={styles.topScreen}>
-        <AddButton/>
+        <AddButton onPress={() => navigation.navigate("PillType")}/>
+        <PillboxCarousel setIndex = {setIndex}/>
       </View>
       <View style={styles.bottomScreen}>
         <ScrollView contentContainerStyle={styles.listContainer}> 
