@@ -108,7 +108,7 @@ const AddPillDetailsScreen = (props) => {
           )}
 
           <View style={{alignItems: 'flex-end'}}>
-            <Button title="Create Pill" fontWeightm='bold' onPress={() => {{sendValues(name, description, startDate, endDate)} navigation.navigate('PillTimes')}}/> 
+            <Button title="Create Pill" fontWeightm='bold' onPress={() => {sendValues(name, description, startDate, endDate), navigation.navigate('PillTimes')}}/> 
           </View>
         </ScrollView>
       </View>

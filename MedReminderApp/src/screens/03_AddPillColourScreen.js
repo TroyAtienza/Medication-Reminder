@@ -41,7 +41,7 @@ class AddPillColourScreen extends Component {
   render() {
     const {color} = this.state; // keeps track of the current states' color
     const searchIndex = indexes.filter( imageID => imageID.id.includes(color)); // searches the index map for a given color id
-    const renderImage = searchIndex.map( item => <Image style={styles.image} source={imageList[item.index]}/>) // renders the image on click
+    const renderImage = searchIndex.map( item => <Image key={item} style={styles.image} source={imageList[item.index]}/>) // renders the image on click
 
     return (
 

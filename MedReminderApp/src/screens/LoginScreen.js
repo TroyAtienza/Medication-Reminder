@@ -15,16 +15,13 @@ const LoginScreen = () => {
         navigation.navigate("Home");
       }
     })
-
     return unsubscribe;
   }, [])
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {
-      console.log("Signed in");
       const user = userCredentials.user;
-      console.log(user);
     })
     .catch(error => {
       console.log(error);
