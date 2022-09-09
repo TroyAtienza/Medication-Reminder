@@ -16,12 +16,18 @@ import AsyncStorageNative from "@react-native-async-storage/async-storage/src/As
 import Profile from "../../model/Profile";
 import ProfileController from "../../controller/ProfileController";
 
+/**
+ * The registration screen. Enables users to register an account.
+ */
 const RegistrationScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  /**
+   * Reads a previous user from memory and creates a Profile if user exists.
+   */
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
@@ -35,8 +41,11 @@ const RegistrationScreen = () => {
     return unsubscribe;
   }, [])
 
-
+  /**
+   * Handles sign in.
+   */
   const handleSignUp = () => {
+    // Checks whether passwords match.
     if (password !== confirmPassword) {
       Alert.alert("Incorrect Password: Passwords Mismatch")
       return;
@@ -49,7 +58,6 @@ const RegistrationScreen = () => {
       console.log(error.code);
     });
   }
-
 
   return (
     <View style={styles.container}>

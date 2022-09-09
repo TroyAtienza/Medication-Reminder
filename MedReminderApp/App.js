@@ -12,6 +12,9 @@ import RegistrationScreen from "./src/view/screens/RegistrationScreen";
 
 const Stack = createNativeStackNavigator();
 
+/**
+ * Holds all information regarding navigation.
+ */
 export default function App() {
   return (
     <NavigationContainer>

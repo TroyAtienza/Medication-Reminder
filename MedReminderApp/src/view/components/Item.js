@@ -1,6 +1,9 @@
 import { Text, Image, TouchableOpacity, View, StyleSheet } from "react-native";
 import { useState } from "react";
 
+/**
+ * Separate items in the list.
+ */
 const Item = ({ item, section, index, removePill }) => {
   const [taken, setTaken] = useState(false);
   
@@ -9,22 +12,21 @@ const Item = ({ item, section, index, removePill }) => {
   }
   return (
     <View>
-        <TouchableOpacity 
-         onPress = {() => (taken) ? setTaken(false) : setTaken(true)}
-          style = {[(taken) ? styles.taken : styles.notTaken, styles.row]}>
-          <View style={{flex:1,flexDirection:"row",alignContent:"flex-end"}}>
-              <View style={styles.titleContainer}> 
-                <Text style={styles.textTitle}> {item.name} </Text>
-              </View>
-              <View style={styles.infoContainer}> 
-                <Text style={styles.textInfo}> {item.information} </Text>
-              </View> 
+      <TouchableOpacity 
+        onPress = {() => setTaken(!taken)}
+        style = {[(taken) ? styles.taken : styles.notTaken, styles.row]}>
+        <View style={{flex:1,flexDirection:"row",alignContent:"flex-end"}}>
+          <View style={styles.titleContainer}> 
+            <Text style={styles.textTitle}> {item.name} </Text>
           </View>
-          <TouchableOpacity onPress={() => removePill(section.id, item)}> 
-              <Image style={styles.trashImage} source={require(`../../assets/buttons/trash.png`)}/>
-          </TouchableOpacity>
-          </TouchableOpacity>
-        <Text></Text>
+          <View style={styles.infoContainer}> 
+            <Text style={styles.textInfo}> {item.information} </Text>
+          </View> 
+        </View>
+        <TouchableOpacity onPress={() => removePill(section.id, item)}> 
+          <Image style={styles.trashImage} source={require(`../../assets/buttons/trash.png`)}/>
+        </TouchableOpacity>
+      </TouchableOpacity>
     </View>
   );
 };

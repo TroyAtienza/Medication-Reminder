@@ -7,12 +7,18 @@ import AsyncStorageNative from "@react-native-async-storage/async-storage/src/As
 import Profile from "../../model/Profile";
 import ProfileOperations from "../../controller/ProfileController";
 
+/**
+ * The login screen. Enables users to sign up to existing accounts.
+ */
 const LoginScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPreviousUser, setPreviousUser] = useState(null);
 
+  /**
+   * Adds listener to screen that gets removed when screen isn't in the viewport.
+   */
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user && !isPreviousUser) {
@@ -24,8 +30,11 @@ const LoginScreen = () => {
       }
     })
     return unsubscribe;
-  }, [])
+  }, []);
 
+  /**
+   * Reads a previous user from memory and creates a Profile if user exists.
+   */
   useEffect(() => {
     AsyncStorageNative.getItem('last-user').then((result) => {
       if (result) {
@@ -42,6 +51,9 @@ const LoginScreen = () => {
     });
   }, []);
 
+  /**
+   * Handles sign in.
+   */
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {
@@ -49,6 +61,7 @@ const LoginScreen = () => {
     })
     .catch(error => {
       console.log(error.code);
+      // Alerts user if they haven't signed up prior login.
       if (error.code === "auth/user-not-found") {
         Alert.alert("User not found.");
       }

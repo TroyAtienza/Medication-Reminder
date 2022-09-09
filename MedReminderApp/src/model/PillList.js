@@ -3,6 +3,9 @@ import { useState } from "react";
 import { SectionList, View } from "react-native";
 import Item from '../view/components/Item';
 
+/**
+ * Holds pill information for each day.
+ */
 const data = [
     {
       id: 0,

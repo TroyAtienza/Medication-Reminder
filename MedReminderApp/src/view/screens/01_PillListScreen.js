@@ -10,7 +10,10 @@ import { createNewPill } from '../../controller/PillController';
 
 const styles = createStyles()
 
-const PillListScreen = (props) => {
+/**
+ * Home screen.
+ */
+const PillListScreen = () => {
   const [index, setIndex] = useState(0);
 
   const navigation = useNavigation();

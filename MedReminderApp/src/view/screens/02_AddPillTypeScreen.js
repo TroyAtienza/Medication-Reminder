@@ -8,7 +8,10 @@ import NextButton from '../components/NextButton';
 import { setPillType, setPillSize } from '../../controller/PillController';
 import { useNavigation } from "@react-navigation/native";
 
-const AddPillTypeScreen = (props) => {
+/**
+ * First stage of pill addition.
+ */
+const AddPillTypeScreen = () => {
   const buttonStyle = require('../../styles/ButtonStyle');
   const navigation = useNavigation();
   const styles = createStyles();
