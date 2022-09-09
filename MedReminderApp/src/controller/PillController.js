@@ -10,11 +10,11 @@ function createNewPill() {
 
 // TODO: dynamic data indexing based off selected day in pill case.
 export const addPill = () => {
-    // for (let i of pill.repeats) {
-    //     if (i) {
-    //         data[6].data.push(pill);
-    //     } 
-    // }
+    for (let i = 0; i < pill.repeats.length; i++) {
+        if (pill.repeats[i]) {
+            data[i].data.push(pill);
+        }
+    }
     
     console.log(data);
 }
@@ -54,4 +54,8 @@ export function setPillEndingDate (date) {
 
 export function setPillFrequency(frequency) {
     pill.frequency = frequency;
+}
+
+export function setPillRepeats(repeats) {
+    pill.repeats = repeats;
 }

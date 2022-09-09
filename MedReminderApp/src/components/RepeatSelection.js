@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const RepeatSelection = () => {  
+const RepeatSelection = ({ setSelectedDays }) => {  
     const [state, setState] = useState({
         selectedIndex: [],
         index: 0,
     });
+
+    const [array, setArray] = useState([0,0,0,0,0,0,0]);
+
     const {selectedIndex, index} = state;
 
     const SelectDays = ({item, id, callBack}) => {
@@ -59,13 +62,16 @@ const RepeatSelection = () => {
     ];
 
     const selectedItem = (id) => { 
+      array[id] = !array[id];
+      setArray(array);
         if(selectedIndex.includes(id) === true){ //if item is already selected, remove from list.
             selectedIndex.splice(selectedIndex.indexOf(id),1);
-            setState({selectedIndex: [...selectedIndex], index: index+1}); 
+            setState({selectedIndex: [...selectedIndex], index: id}); 
         }
         else if(selectedIndex.includes(id) === false){
-          setState({selectedIndex: [...selectedIndex, id], index: index+1}); //add newly selected item to list.   
+          setState({selectedIndex: [...selectedIndex, id], index: id}); //add newly selected item to list.   
         }
+        setSelectedDays(array);
       };  
       return (
         <View style={detailsStyles.rowContainer}>
