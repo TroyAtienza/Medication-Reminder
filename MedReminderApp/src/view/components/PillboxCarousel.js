@@ -8,8 +8,9 @@ const BOX_WIDTH = WINDOW_WIDTH * 0.5;
 const SPACING = WINDOW_WIDTH * 0.02;
 const SNAP_TO_WIDTH = BOX_WIDTH + SPACING;
 
-// Individual Pillbox Item
+// An Individual Pillbox Item, to be individual highlight as they are selected
 function PillboxCarouselItem({item, selectedIndex}) {
+    // Check to see if current item is to be highlighted
     if (selectedIndex === item.id) {
         return (
             <View style={
@@ -47,6 +48,7 @@ export default function PillboxCarousel( {setIndex} ) {
     const onViewableItemsChanged = useCallback(({viewableItems, changed}) => {
         if (changed && viewableItems.length > 0) {
             setCurrentIndex(viewableItems[0].index);
+            // Checks if user is on the home screen (carousel has been rendered)
             if (route.name == "Home"){
                 setIndex(viewableItems[0].index);
             }

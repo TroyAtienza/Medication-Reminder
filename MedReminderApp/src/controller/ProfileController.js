@@ -1,5 +1,6 @@
 import AsyncStorageNative from "@react-native-async-storage/async-storage/src/AsyncStorage.native";
 
+// Updates the locally stored profile for the current user
 const updateProfile = async () => {
     try {
         await AsyncStorageNative.setItem(
@@ -12,8 +13,7 @@ const updateProfile = async () => {
     }
 }
 
-
-
+// Operations for a locally stored profile/user
 const ProfileOperations = {
     profile: null,
 

@@ -1,4 +1,4 @@
-import {Alert, Dimensions, Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import ProfileController from "../../controller/ProfileController";
 import ProfileOperations, {updateProfile} from "../../controller/ProfileController";
@@ -9,6 +9,7 @@ import firebase from "firebase/compat";
 
 const { width } = Dimensions.get("window");
 
+// Renders the profile screen
 const ProfileScreen = () => {
     const navigation = useNavigation();
 
@@ -19,6 +20,7 @@ const ProfileScreen = () => {
     const [textInput, setTextInput] = useState("");
     const [buttonPressed, setButtonPressed] = useState("");
 
+    // Confirms inputted password before proceeding with a credential change (password/email)
     const confirmInput = () => {
         const userProvidedPassword = reauthInput;
         const credential = firebase.auth.EmailAuthProvider.credential(
@@ -35,6 +37,7 @@ const ProfileScreen = () => {
         })
     }
 
+    // Enters the input for a credential change and saves the changes locally and to firebase
     const enterInput = () => {
         toggleInputVisibility();
         switch (buttonPressed) {
@@ -56,13 +59,14 @@ const ProfileScreen = () => {
                 });
                 break;
         }
-
+        // Update the locally stored profile
         setProfile(ProfileOperations.profile);
         updateProfile(ProfileOperations.profile)
             .then(r => console.log(r));
         setTextInput("");
     }
 
+    // Pop up the password input modal
     const PromptForCredentials = () => {
         toggleReauthVisibility();
     }
@@ -87,6 +91,7 @@ const ProfileScreen = () => {
         setReauthVisible(!reauthVisible);
     }
 
+    // Signs out a user and takes them back to the login screen
     const doSignOut = () => {
         signOut(auth).then(r => {
             ProfileOperations.profile = null;
