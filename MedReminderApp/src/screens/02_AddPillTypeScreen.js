@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react
 import { useState } from 'react';
 import TopNav from '../view/TopNav';
 import PillboxCarousel from "../components/PillboxCarousel";
-import createStyles from '../view/SplitView'
+import createStyles from '../styles/GlobalStyles'
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
 import { setPillType, setPillSize } from '../controller/PillController';

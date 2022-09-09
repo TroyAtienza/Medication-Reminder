@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Button, ScrollView, Text, View, TextInput, Platform } from 'react-native';
-import createStyles from '../view/SplitView'
+import createStyles from '../styles/GlobalStyles'
 import TopNav from '../view/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import AddButton from '../components/AddButton';

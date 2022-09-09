@@ -1,5 +1,5 @@
 import { Button, TextInput, StyleSheet, Text, View, Alert } from 'react-native';
-import createStyles from '../view/SplitView';
+import createStyles from '../styles/GlobalStyles';
 import TopNav from '../view/TopNav';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';

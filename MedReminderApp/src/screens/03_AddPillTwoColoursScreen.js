@@ -1,4 +1,4 @@
-import createStyles from '../view/SplitView'
+import createStyles from '../styles/GlobalStyles'
 import { StyleSheet, Button, Text, View, TouchableOpacity, Image } from 'react-native';
 import TopNav from '../view/TopNav'
 import { Component } from 'react';
