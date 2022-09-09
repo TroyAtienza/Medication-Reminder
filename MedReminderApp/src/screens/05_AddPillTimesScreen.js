@@ -3,37 +3,28 @@ import createStyles from '../view/SplitView';
 import TopNav from '../view/TopNav';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import useInput from '../controller/PillTimeController';
-
-// TODO:
-// - add time picker dependency (after merge)
-// - wrap bottom screen in a scroll list (after merge)
-// - add a check for input
-// - link chosen times to pill object (after merge)
 
 const splitScreenStyles = createStyles();
 
+const PillTime = ({}) => {
 
-// time picker variables
+}
 
 const AddPillTimesScreen = (props) => {
   const navigation = useNavigation();
 
   // text input variables
-  const [input, setText] = useState('');
+  const [text, setText] = useState('');
 
-  var pillTimes = []; // pill times for rendering
-  var inputs = []; // vars for each time input
-  var dtPickerID = null;
-  var currentInput = null;
-
+  // pill times for rendering
+  var pillTimes = []; 
+  
   /*
   * Checks if the text input value is valid. 
   * If it is, the pill dosage list can be updated, otherwise the user must input again.
   */
   const checkInput = () => {
-    if (isNaN(input)) { // need to check for non-ints, empty spaces, add limit, non zero
+    if (isNaN(text)) { // need to check for non-ints, empty spaces, add limit, non zero
       Alert.alert("Please enter a valid number.");
       // need to make the text input box clear
     } else {
@@ -49,32 +40,13 @@ const AddPillTimesScreen = (props) => {
   const renderPillTimes = () => {
     // initialise variables for each input
     pillTimes = [];
-    inputs = [];
-    dtPickerID = null;
-    currentInput = null;
 
     // for every input amount, add a new row to the pillTimes list
-    for (let i = 0; i < input; i++) {
-      inputs.push(useInput(new Date())) // makes a new input variable and adds it to the list
-      currentInput = inputs[i]; // sets input to variable
-      dtPickerID = 'dtPicker' + i; // reset testID
+    for (let i = 0; i < text; i++) {
       pillTimes.push(<Text key={i} style={styles.listText}>
       { 'Pill ' + (i + 1) + ':         ' }
-      <Button onPress={inputs[i].showDatepicker} title="--:--"/>
-      {currentInput.show && (
-        <DateTimePicker
-        testID={dtPickerID} 
-        value={inputs[i].date}
-        mode={inputs[i].mode}
-        is24Hour={false}
-        display="default"
-        onChange={inputs[i].onChange}/>
-      )}
       </Text>);
     }
-    console.log(pillTimes)
-    console.log(inputs)
-    console.log('=============================')
   }
 
   return (
@@ -93,8 +65,8 @@ const AddPillTimesScreen = (props) => {
         <View style={styles.row}>
           <Text style={styles.bottomScreenText}> How Many Times A Day? </Text>
           <TextInput
-          value={input}
-          onChangeText={(newInput) => setText(newInput)}
+          value={text}
+          onChangeText={(newText) => setText(newText)}
           placeholder="Enter dosage amount" 
           style={styles.bottomScreenText}
           keyboardType="numeric"/>
