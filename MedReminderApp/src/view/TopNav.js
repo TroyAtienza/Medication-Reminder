@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
     title: {
-    color : "#274C77", 
+    color : "#6096BA", 
     fontSize : 30, 
     fontWeight : "bold", 
     textAlign : "center",

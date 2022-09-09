@@ -8,6 +8,7 @@ import indexes from '../assets/ImageIndex';
 // TODO:
 // - need to link chosen color to new pill object (can do once add pill type is done)
 // - change color of button to grey after press
+// - add styling to buttons
 
 const splitScreenStyles = createStyles();
 
@@ -49,7 +50,7 @@ class AddPillColourScreen extends Component {
 
         {/* Top Screen */}
         <View style={splitScreenStyles.topScreen}>
-          <Text style={styles.bodyText}> Select Pill Colours Below:</Text>
+          <Text style={styles.topText}> Select Pill Colour Below:</Text>
           { renderImage }
         </View>
 
@@ -57,7 +58,7 @@ class AddPillColourScreen extends Component {
         <View style={splitScreenStyles.bottomScreen}>
         
           {/* Top capsule */}
-          <Text style={styles.colorText}> Colour: </Text>
+          <Text style={styles.bottomText}> Pill Colour: </Text>
           <View style={styles.colorSelect}>
             <ColorSelectButton backgroundColor='#E74C3C' onPress={() => { this.setState({color: pillType + 'r'}), renderImage }}/>
             <ColorSelectButton backgroundColor='#58D68D' onPress={() => { this.setState({color: pillType + 'g'}), renderImage }}/>
@@ -99,16 +100,17 @@ const styles = StyleSheet.create({
   },
   button : {
   },
-  bodyText : {
+  topText : {
     textAlign: 'center',
     fontSize: 25,
     fontWeight: 'bold',
     color: '#274C77',
   },
-  colorText : {
+  bottomText : {
     color: 'white',
     marginBottom: 10,
     marginLeft: 10,
+    fontSize: 16,
   }
 });
 
