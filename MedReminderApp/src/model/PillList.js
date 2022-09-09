@@ -1,54 +1,18 @@
 import React from 'react';
 import { useState } from "react";
 import { SectionList, StyleSheet, View } from "react-native";
-import Pill from "./Pill";
 import Item from '../components/Item';
-
-const temp = new Pill();
-temp.pillName = "Panadol";
-temp.pillRepeats = 5;
-temp.pillInformation = "Take 2 asdfasdfasfasfasfasfsafasfdsfsfsafsafsafsfsadevery 8 hours.";
-
-const temp1 = new Pill();
-temp1.pillName = "Pill";
-temp1.pillRepeats = 3;
-temp1.pillInformation = "Take twice a day with food.";
-
-const temp2 = new Pill();
-temp2.pillName = "asdfsaf";
-temp2.pillRepeats = 3;
-temp2.pillInformation = "Take twice a day with food.";
-
-const temp3 = new Pill();
-temp3.pillName = "Pasdfsadfasd";
-temp3.pillRepeats = 3;
-temp3.pillInformation = "Take twice a day with food.";
-
-const temp4 = new Pill();
-temp4.pillName = "Pasdfsadfasd";
-temp4.pillRepeats = 3;
-temp4.pillInformation = "Take twice a day with food.";
-
-const temp5 = new Pill();
-temp5.pillName = "Pasdfsadfasd";
-temp5.pillRepeats = 3;
-temp5.pillInformation = "Take twice a day with food.";
-
-const temp6 = new Pill();
-temp6.pillName = "Pasdfsadfasd";
-temp6.pillRepeats = 3;
-temp6.pillInformation = "Take twice a day with food.";
 
 const data = [
     {
       id: 0,
       day: 'Monday',
-      data: [temp, temp1, temp2, temp3, temp4, temp5, temp6],
+      data: [],
     },
     {
       id: 1,
       day: 'Tuesday',
-      data: [temp2],
+      data: [],
     },
     {
       id: 2,
@@ -58,7 +22,7 @@ const data = [
     {
       id: 3,
       day: 'Thursday',
-      data: [temp3],
+      data: [],
     },
     {
       id: 4,

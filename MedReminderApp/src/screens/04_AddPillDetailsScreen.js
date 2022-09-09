@@ -8,11 +8,14 @@ import RepeatSelection from '../components/RepeatSelection';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from "@react-navigation/native";
 import { onChangeStartDate, onChangeEndDate, showModeStart, showModeEnd, sendValues,  } from '../controller/PillScreenController';
+import { setPillInformation, setPillName, setPillStartingDate, setPillEndingDate, setPillRepeats } from '../controller/PillController';
+import BackButton from '../components/BackButton';
+import NextButton from '../components/NextButton';
 
-const styles = createStyles();
+const styles = createStyles()
+const buttonStyle = require('../components/ButtonStyle');
 
 const AddPillDetailsScreen = (props) => {
-
   const [index, setIndex] = useState(0);
   const navigation = useNavigation();
 
@@ -31,17 +34,53 @@ const AddPillDetailsScreen = (props) => {
   const [textStart, setTextStart] = useState("Select a start date!");
   const [textEnd, setTextEnd] = useState("Select an end date!");
 
+  const [selectedDays, setSelectedDays] = useState([0,0,0,0,0,0,0]);
+
+  const onChangeStartDate = (event, selectedDate) => {
+    if (event.type == 'set') {
+      const currentDate = selectedDate || startDate;
+      setShowStart(Platform.OS === 'android');
+      setStartDate(currentDate);
+
+      let tempDate = new Date(currentDate);
+      let fDate = tempDate.getDate() + '/' + (tempDate.getMonth()+1) + '/' + tempDate.getFullYear();
+      setTextStart(fDate);
+    }
+    setShowStart(false);
+  }
+
+  const onChangeEndDate = (event, selectedDate) => {
+    if (event.type == 'set') {
+      const currentDate = selectedDate || endDate;
+      setShowEnd(Platform.OS === 'android');
+      setEndDate(currentDate);
+
+      let tempDate = new Date(currentDate);
+      let fDate = tempDate.getDate() + '/' + (tempDate.getMonth()+1) + '/' + tempDate.getFullYear();
+      setTextEnd(fDate);
+    }
+    setShowEnd(false);
+  }
+
+  const showModeStart = (currentMode) => {
+    setShowStart(true);
+    setModeStart(currentMode);
+  }
+
+  const showModeEnd= (currentMode) => {
+    setShowEnd(true);
+    setModeEnd(currentMode);
+  }
+  
   return (
     <View style={styles.container}>
       <TopNav/>
       <View style={styles.topScreen}>
-        <AddButton onPress={() => navigation.navigate("PillType")}/>
         <PillboxCarousel setIndex = {setIndex}/>
       </View>
       <View style={styles.bottomScreen}>
-        <ScrollView contentContainerStyle={styles.listContainer}> 
-        
-          <RepeatSelection/>
+        <ScrollView contentContainerStyle={styles.listContainer}>       
+          <RepeatSelection setSelectedDays = {setSelectedDays}/>
           <Text style={detailsStyles.titleText}> Name: </Text>
           <View style={detailsStyles.inputBox}>
             <TextInput style={detailsStyles.inputText} onChangeName={onChangeName} onChangeText={text => onChangeName(text)} value={name}/>
@@ -70,8 +109,16 @@ const AddPillDetailsScreen = (props) => {
               <DateTimePicker testID='endDatePicker' value={endDate} mode={modeEnd} is24Hour={true} display='default' onChange={onChangeEndDate}/>
           )}
 
-          <View style={{alignItems: 'flex-end'}}>
-            <Button title="Next" fontWeightm='bold' onPress={() => {sendValues(name, description, startDate, endDate), navigation.navigate('PillTimes')}}/> 
+          <View style={buttonStyle.footerContainer}>
+            <BackButton onPress={() => navigation.navigate('PillType')}/>
+            <NextButton onPress={() => {
+              setPillName(name);
+              setPillInformation(description);
+              setPillStartingDate(startDate);
+              setPillEndingDate(endDate);
+              setPillRepeats(selectedDays);
+              navigation.navigate('PillTimes');
+            }}/>
           </View>
         </ScrollView>
       </View>
