@@ -8,16 +8,14 @@ import FinishButton from '../components/FinishButton';
 import { addPill } from '../controller/PillController'
 import { setPillFrequency } from '../controller/PillController';
 
+// imported styles
 const splitScreenStyles = createStyles();
 const buttonStyle = require('../components/ButtonStyle');
 
 const AddPillTimesScreen = (props) => {
   const navigation = useNavigation();
-
-  // text input variables
-  const [text, setText] = useState('');
-  // pill times for rendering
-  var pillTimes = []; 
+  const [text, setText] = useState('');  // text input variables
+  var pillTimes = []; // holds text components for rendering dosage list
   
   /*
   * Checks if the text input value is valid. 
@@ -79,7 +77,7 @@ const AddPillTimesScreen = (props) => {
         <View style={buttonStyle.footerContainer}>
           <BackButton onPress={() => navigation.navigate('PillDetails')}/>
           <FinishButton onPress={() => {
-            setPillFrequency(text);
+            setPillFrequency(text);  // updates current the new pills' colours information
             addPill();
             navigation.navigate('Home');
             }}/>

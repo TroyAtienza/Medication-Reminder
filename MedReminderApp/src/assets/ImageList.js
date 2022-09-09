@@ -1,4 +1,7 @@
-/* image list used for live pill change feature for the add pill color screen. */
+/* 
+* An array of images that holds all images of the possible combination of pilltypes and different colours.
+* Used to render the image on add pill color/two colors screens. 
+*/
 
 import Images from '../assets/Images';
 

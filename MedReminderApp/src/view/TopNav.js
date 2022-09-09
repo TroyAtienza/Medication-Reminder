@@ -1,6 +1,10 @@
 import { StyleSheet, View, Alert, Button, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+/*
+* Navigation bar component, fixed and displayed across all screens. Holds links to profile screen and logout 
+* functionality.
+*/
 const TopNav = (props) => {
   const navigation = useNavigation();
     return (

@@ -1,4 +1,6 @@
-/* images used for live pill change feature for the add pill color screen.*/
+/* 
+* Declares paths of images used for the add pill color/two colors screens.
+*/
 
 const images = {
 
