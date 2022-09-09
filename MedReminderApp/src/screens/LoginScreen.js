@@ -13,6 +13,7 @@ const LoginScreen = () => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         navigation.navigate("Home");
+        console.log(user.email);
       }
     })
     return unsubscribe;

@@ -8,9 +8,8 @@ import NextButton from '../components/NextButton';
 import { setPillType, setPillSize } from '../controller/PillController';
 import { useNavigation } from "@react-navigation/native";
 
-const styles = createStyles()
-
 const AddPillTypeScreen = (props) => {
+  const buttonStyle = require('../components/ButtonStyle');
   const navigation = useNavigation();
   const styles = createStyles();
 
@@ -98,7 +97,7 @@ const AddPillTypeScreen = (props) => {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.buttonContainer}>
+          <View style={buttonStyle.footerContainer}>
             <BackButton onPress={() => navigation.navigate("Home")}/>
             {/* need to add a check to navigate into 1 or 2 pill colors */}
             <NextButton onPress={() => navigation.navigate("PillTwoColours")}/>
