@@ -4,7 +4,7 @@ import TopNav from '../view/TopNav';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import BackButton from '../components/BackButton';
-import NextButton from '../components/NextButton';
+import FinishButton from '../components/FinishButton';
 
 const splitScreenStyles = createStyles();
 const buttonStyle = require('../components/ButtonStyle');
@@ -76,7 +76,7 @@ const AddPillTimesScreen = (props) => {
         {/* Buttons */}
         <View style={buttonStyle.footerContainer}>
           <BackButton onPress={() => navigation.navigate('PillDetails')}/>
-          <NextButton onPress={() => navigation.navigate('Home')}/>
+          <FinishButton onPress={() => navigation.navigate('Home')}/>
         </View>
       </View>
     </View>
