@@ -76,12 +76,10 @@ const AddPillDetailsScreen = (props) => {
     <View style={styles.container}>
       <TopNav/>
       <View style={styles.topScreen}>
-        <AddButton onPress={() => navigation.navigate("PillType")}/>
         <PillboxCarousel setIndex = {setIndex}/>
       </View>
       <View style={styles.bottomScreen}>
-        <ScrollView contentContainerStyle={styles.listContainer}> 
-        
+        <ScrollView contentContainerStyle={styles.listContainer}>       
           <RepeatSelection setSelectedDays = {setSelectedDays}/>
           <Text style={detailsStyles.titleText}> Name: </Text>
           <View style={detailsStyles.inputBox}>

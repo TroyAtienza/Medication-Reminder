@@ -14,10 +14,10 @@ const Item = ({ item, section, index, removePill }) => {
           style = {[(taken) ? styles.taken : styles.notTaken, styles.row]}>
           <View style={{flex:1,flexDirection:"row",alignContent:"flex-end"}}>
               <View style={styles.titleContainer}> 
-                <Text style={styles.textTitle}> {item.pillName} </Text>
+                <Text style={styles.textTitle}> {item.name} </Text>
               </View>
               <View style={styles.infoContainer}> 
-                <Text style={styles.textInfo}> {item.pillInformation} </Text>
+                <Text style={styles.textInfo}> {item.information} </Text>
               </View> 
           </View>
           <TouchableOpacity onPress={() => removePill(section.id, item)}> 
