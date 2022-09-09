@@ -6,6 +6,7 @@ import createStyles from '../view/SplitView'
 import TopNav from '../view/TopNav'
 import PillboxCarousel from "../components/PillboxCarousel";
 import { useNavigation } from "@react-navigation/native";
+import { createNewPill } from '../controller/PillController';
 
 const styles = createStyles()
 
@@ -17,7 +18,8 @@ const PillListScreen = (props) => {
       <TopNav/>
       <View style={styles.topScreen}>
         <AddButton onPress={() => {
-          navigation.navigate("PillType")
+          createNewPill();
+          navigation.navigate("PillType");
           return;
           }}/>
          <PillboxCarousel setIndex = {setIndex}/>

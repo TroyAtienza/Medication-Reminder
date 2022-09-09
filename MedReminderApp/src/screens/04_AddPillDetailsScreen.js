@@ -8,8 +8,12 @@ import RepeatSelection from '../components/RepeatSelection';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useNavigation } from "@react-navigation/native";
 import Pill from '../model/Pill';
+import { setPillInformation, setPillName, setPillStartingDate, setPillEndingDate, setPillRepeats } from '../controller/PillController';
+import BackButton from '../components/BackButton';
+import NextButton from '../components/NextButton';
 
 const styles = createStyles()
+const buttonStyle = require('../components/ButtonStyle');
 
 const AddPillDetailsScreen = (props) => {
   const [index, setIndex] = useState(0);
@@ -29,6 +33,8 @@ const AddPillDetailsScreen = (props) => {
 
   const [textStart, setTextStart] = useState("Select a start date!");
   const [textEnd, setTextEnd] = useState("Select an end date!");
+
+  const [selectedDays, setSelectedDays] = useState([0,0,0,0,0,0,0]);
 
   const onChangeStartDate = (event, selectedDate) => {
     if (event.type == 'set') {
@@ -65,10 +71,6 @@ const AddPillDetailsScreen = (props) => {
     setShowEnd(true);
     setModeEnd(currentMode);
   }
- 
-  function sendValues(enteredName, enteredDescription, startDate, endDate) {
-    new Pill(enteredName, enteredDescription);
-  };
   
   return (
     <View style={styles.container}>
@@ -80,7 +82,7 @@ const AddPillDetailsScreen = (props) => {
       <View style={styles.bottomScreen}>
         <ScrollView contentContainerStyle={styles.listContainer}> 
         
-          <RepeatSelection/>
+          <RepeatSelection setSelectedDays = {setSelectedDays}/>
           <Text style={detailsStyles.titleText}> Name: </Text>
           <View style={detailsStyles.inputBox}>
             <TextInput style={detailsStyles.inputText} onChangeName={onChangeName} onChangeText={text => onChangeName(text)} value={name}/>
@@ -109,8 +111,16 @@ const AddPillDetailsScreen = (props) => {
               <DateTimePicker testID='endDatePicker' value={endDate} mode={modeEnd} is24Hour={true} display='default' onChange={onChangeEndDate}/>
           )}
 
-          <View style={{alignItems: 'flex-end'}}>
-            <Button title="Next" fontWeightm='bold' onPress={() => {sendValues(name, description, startDate, endDate), navigation.navigate('PillTimes')}}/> 
+          <View style={buttonStyle.footerContainer}>
+            <BackButton onPress={() => navigation.navigate('PillType')}/>
+            <NextButton onPress={() => {
+              setPillName(name);
+              setPillInformation(description);
+              setPillStartingDate(startDate);
+              setPillEndingDate(endDate);
+              setPillRepeats(selectedDays);
+              navigation.navigate('PillTimes');
+            }}/>
           </View>
         </ScrollView>
       </View>
