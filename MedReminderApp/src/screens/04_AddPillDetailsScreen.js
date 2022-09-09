@@ -8,10 +8,12 @@ import RepeatSelection from '../components/RepeatSelection';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { useNavigation } from "@react-navigation/native";
 import Pill from '../model/Pill';
-import { setPillInformation, setPillName } from '../controller/PillController';
-
+import { setPillInformation, setPillName, setStartingDate, setEndingDate } from '../controller/PillController';
+import BackButton from '../components/BackButton';
+import NextButton from '../components/NextButton';
 
 const styles = createStyles()
+const buttonStyle = require('../components/ButtonStyle');
 
 const AddPillDetailsScreen = (props) => {
   const [index, setIndex] = useState(0);
@@ -67,11 +69,6 @@ const AddPillDetailsScreen = (props) => {
     setShowEnd(true);
     setModeEnd(currentMode);
   }
- 
-  function sendValues(enteredName, enteredDescription, startDate, endDate) {
-    setPillName(enteredName);
-    setPillInformation(enteredDescription);
-  };
   
   return (
     <View style={styles.container}>
@@ -112,8 +109,15 @@ const AddPillDetailsScreen = (props) => {
               <DateTimePicker testID='endDatePicker' value={endDate} mode={modeEnd} is24Hour={true} display='default' onChange={onChangeEndDate}/>
           )}
 
-          <View style={{alignItems: 'flex-end'}}>
-            <Button title="Next" fontWeightm='bold' onPress={() => {sendValues(name, description, startDate, endDate), navigation.navigate('PillTimes')}}/> 
+          <View style={buttonStyle.footerContainer}>
+            <BackButton onPress={() => navigation.navigate('PillType')}/>
+            <NextButton onPress={() => {
+              setPillName(name);
+              setPillInformation(description);
+              setStartingDate(startDate);
+              setEndingDate(endDate);
+              navigation.navigate('PillTimes');
+            }}/>
           </View>
         </ScrollView>
       </View>

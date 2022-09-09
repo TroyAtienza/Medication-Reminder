@@ -20,12 +20,14 @@ export function buildPill() {
 
 export function setPillName(name) {
     pill.name = name;
-    console.log("name: "+pill.name);
 }
 
 export function setPillInformation(information) {
     pill.information = information;
-    console.log("info: "+pill.information);
+}
+
+export function setPillColour(colour) {
+    pill.colour = colour;
 }
 
 // TODO: Requires further testing because unsure whether the image can be displayed again.
@@ -37,3 +39,10 @@ export function setPillSize(size) {
     pill.size = size;
 }
 
+export function setStartingDate (date) {
+    pill.startingDate = date;
+}
+
+export function setEndingDate (date) {
+    pill.endingDate = date;
+}

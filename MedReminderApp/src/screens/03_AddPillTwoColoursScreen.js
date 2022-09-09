@@ -6,6 +6,7 @@ import imageList from '../assets/ImageList';
 import indexes from '../assets/ImageIndex';
 import BackButton from '../components/BackButton';
 import NextButton from '../components/NextButton';
+import { setPillColour } from '../controller/PillController';
 
 const splitScreenStyles = createStyles();
 const buttonStyle = require('../components/ButtonStyle');
@@ -78,8 +79,11 @@ class AddPillTwoColoursScreen extends Component {
 
           {/* Buttons */}
           <View style={buttonStyle.footerContainer}>
-            <BackButton onPress={() =>  this.props.navigation.navigate('PillType')}/>
-            <NextButton onPress={() =>  this.props.navigation.navigate('PillDetails')}/>
+            <BackButton onPress={() => this.props.navigation.navigate('PillType')}/>
+            <NextButton onPress={() => {
+              setPillColour(topColor+bottomColor);
+              this.props.navigation.navigate('PillDetails');
+            }}/>
           </View>
         </View>
       </View>
