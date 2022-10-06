@@ -24,8 +24,8 @@ Home Screen
 </p>
 Add Pill Screens
 <p float="left">
-  <img title="PillColour" alt="PillType" src="/Images/PillColour.png" width="300">
   <img title="PillType" alt="PillType" src="/Images/PillType.png" width="300">
+  <img title="PillColour" alt="PillType" src="/Images/PillColour.png" width="300">
 </p>
 Add Pill Screens (cont.)
 <p float="left">
